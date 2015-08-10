@@ -116,7 +116,12 @@ section.content {
 
 
 
-
+.dz-success-mark {
+    display: none;
+}
+.dz-error-mark {
+    display: none;
+}
 
 /*checkbox*/
 

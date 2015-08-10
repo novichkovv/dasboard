@@ -45,7 +45,7 @@
     <script src="<?php echo SITE_DIR; ?>js/theme/plugins/daterangepicker/daterangepicker.js" type="text/javascript"></script>
 
     <script src="<?php echo SITE_DIR; ?>js/theme/plugins/chart.js" type="text/javascript"></script>
-
+    <script src="<?php echo SITE_DIR; ?>js/libs/dropzone.min.js" type="text/javascript"></script>
     <!-- datepicker
 <script src="<?php //echo SITE_DIR; ?>js/theme/plugins/datepicker/bootstrap-datepicker.js" type="text/javascript"></script>-->
     <!-- Bootstrap WYSIHTML5
