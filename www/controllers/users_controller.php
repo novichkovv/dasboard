@@ -166,31 +166,31 @@ class users_controller extends controller
     public function permissions_ajax()
     {
         switch($_REQUEST['action']) {
-            case "get_modules_permissions":
+            case "get_charts_permissions":
                 $permissions = [];
-                $tmp = $this->model('modules_user_groups_relations')->getAll();
+                $tmp = $this->model('charts_user_groups_relations')->getAll();
                 foreach($tmp as $v) {
-                    $permissions[$v['user_group_id']][] = $v['module_id'];
+                    $permissions[$v['user_group_id']][] = $v['chart_id'];
                 }
-                $tmp = $this->model('modules')->getAll();
-                $modules = [];
+                $tmp = $this->model('charts')->getAll();
+                $charts = [];
                 foreach($tmp as $v) {
-                    $modules[$v['id']] = $v;
+                    $charts[$v['id']] = $v;
                 }
                 $groups = $this->model('user_groups')->getAll();
 
                 $result = [];
                 foreach($groups as $v) {
                     $result[$v['id']]['group_name'] = $v['group_name'];
-                    $result[$v['id']]['modules'] = $modules;
-                    foreach($result[$v['id']]['modules'] as $k => $module) {
-                        if(is_array($permissions[$v['id']]) && in_array($module['id'], $permissions[$v['id']])) {
-                            $result[$v['id']]['modules'][$k]['checked'] = true;
+                    $result[$v['id']]['charts'] = $charts;
+                    foreach($result[$v['id']]['charts'] as $k => $chart) {
+                        if(is_array($permissions[$v['id']]) && in_array($chart['id'], $permissions[$v['id']])) {
+                            $result[$v['id']]['charts'][$k]['checked'] = true;
                         }
                     }
                 }
                 $this->render('result', $result);
-                $this->view_only('users' . DS . 'ajax' . DS . 'modules_permissions');
+                $this->view_only('users' . DS . 'ajax' . DS . 'charts_permissions');
                 exit;
                 break;
 
@@ -200,7 +200,7 @@ class users_controller extends controller
                         $part = 'system_route';
                         break;
                     case "2":
-                        $part = 'module';
+                        $part = 'chart';
                         break;
                 }
                 //echo $part . 's_user_groups_relations';

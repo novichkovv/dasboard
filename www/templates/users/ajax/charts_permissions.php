@@ -5,14 +5,14 @@
                 <div class="col-md-3 col-sm-6">
                     <h3><?php echo $v['group_name']; ?></h3>
                     <ul style="">
-                        <?php foreach($v['modules'] as $module): ?>
+                        <?php foreach($v['charts'] as $chart): ?>
                             <li>
                                 <div class="checkbox">
                                     <div class="squaredFour">
-                                        <input type="checkbox" id="squaredFour_2_<?php echo $user_group_id; ?>_<?php echo $module['id']; ?>"  name="permission[2][<?php echo $user_group_id; ?>][<?php echo $module['id']; ?>]" value="<?php echo $module['id']; ?>" <?php if($module['checked']) echo 'checked'; ?> class="parent_perm styled-checkbox">
-                                        <label for="squaredFour_2_<?php echo $user_group_id; ?>_<?php echo $module['id']; ?>"></label>
+                                        <input type="checkbox" id="squaredFour_2_<?php echo $user_group_id; ?>_<?php echo $chart['id']; ?>"  name="permission[2][<?php echo $user_group_id; ?>][<?php echo $chart['id']; ?>]" value="<?php echo $chart['id']; ?>" <?php if($chart['checked']) echo 'checked'; ?> class="parent_perm styled-checkbox">
+                                        <label for="squaredFour_2_<?php echo $user_group_id; ?>_<?php echo $chart['id']; ?>"></label>
                                     </div>
-                                    <span class="styled-checkbox-label"><?php echo $module['module_name']; ?></span>
+                                    <span class="styled-checkbox-label"><?php echo $chart['chart_name']; ?></span>
                                 </div>
                             </li>
                         <?php endforeach; ?>

@@ -15,13 +15,13 @@
         <header class="panel-heading tab-bg-dark-navy-blue">
             <ul class="nav nav-tabs">
                 <li class="active">
-                    <a data-toggle="tab" href="#home-2">
+                    <a data-toggle="tab" href="#system_routes">
                         <i class="fa fa-gear"></i>
                         System
                     </a>
                 </li>
                 <li>
-                    <a data-toggle="tab" href="#modules">
+                    <a data-toggle="tab" href="#charts">
                         <i class="fa fa-dashboard"></i>
                         Dashboard
                     </a>
@@ -35,7 +35,7 @@
         <div style="background: #B4D9E5; height: 5px;"></div>
         <div class="panel-body">
             <div class="tab-content" style="background: none;">
-                <div id="home-2" class="tab-pane  active">
+                <div id="system_routes" class="tab-pane  active">
                     <form class="permissions_form" id="permissions_form_1">
                         <div class="row">
                             <div class="col-xs-12">
@@ -83,10 +83,9 @@
                     </form>
 
                 </div>
-                <div id="modules" class="tab-pane">
+                <div id="charts" class="tab-pane">
 
                 </div>
-                <div id="contact-2" class="tab-pane ">Contact</div>
             </div>
         </div>
     </section>

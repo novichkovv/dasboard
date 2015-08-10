@@ -43,6 +43,31 @@ abstract class controller extends base
         $this->action_name = $action . ($this->check_auth ? '_na' : '');
     }
 
+    /**
+     * @param string $template
+     * @return string
+     * @throws Exception
+     */
+
+    public function fetch($template)
+    {
+        $template_file = ROOT_DIR . 'templates' . DS . $template . '.php';
+        if(!file_exists($template_file)) {
+            throw new Exception('cannot find template in ' . $template_file);
+        }
+        foreach($this->vars as $k => $v) {
+            $$k = $v;
+        }
+        ob_start();
+        @require($template_file);
+        return ob_get_clean();
+    }
+
+    /**
+     * @param string $template
+     * @throws Exception
+     */
+
     protected function view($template)
     {
         $this->render('log', registry::get('log'));
@@ -75,6 +100,11 @@ abstract class controller extends base
         }
     }
 
+    /**
+     * @param string $template
+     * @throws Exception
+     */
+
     protected function view_only($template)
     {
         $this->render('log', registry::get('log'));
@@ -89,6 +119,11 @@ abstract class controller extends base
     }
 
     abstract function index();
+
+    /**
+     * @param string $key
+     * @param mixed $value
+     */
 
     protected function render($key, $value)
     {
@@ -216,7 +251,13 @@ abstract class controller extends base
         $this->render('sidebar', $sidebar);
     }
 
-    public function getDataTable($params, $print = null)
+    /**
+     * @param array $params
+     * @param bool $print
+     * @return mixed
+     */
+
+    public function getDataTable(array $params, $print = false)
     {
         $search = get_object_vars(json_decode($_REQUEST['params']));
         foreach($search as $k=>$v)

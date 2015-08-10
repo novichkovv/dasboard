@@ -121,3 +121,44 @@ INSERT INTO `user_groups` (`id`, `group_name`, `create_date`) VALUES
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;
 /*!40101 SET CHARACTER_SET_RESULTS=@OLD_CHARACTER_SET_RESULTS */;
 /*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
+
+-- --------------------------------------------------------
+
+--
+-- Table Structure `user_groups`
+--
+
+CREATE TABLE IF NOT EXISTS `charts` (
+  `id` bigint(20) unsigned NOT NULL AUTO_INCREMENT,
+  `chart_name` varchar(255) NOT NULL,
+  `chart_key` varchar(255) NOT NULL,
+  `position` int(11) NOT NULL,
+  `icon` varchar(255) NOT NULL,
+  PRIMARY KEY (`id`),
+  UNIQUE KEY `id` (`id`)
+) ENGINE=MyISAM  DEFAULT CHARSET=utf8;
+
+--
+-- Table data dump `system_routes`
+--
+INSERT INTO `charts` (`chart_name`, `chart_key`, `position`, `icon`) VALUES
+  ('Active Projects', 'active_projects', 1, ''),
+  ('Team Member Hours', 'team_member_hours', 2, ''),
+  ('Team Member Table', 'team_member_table', 3, ''),
+  ('Utilization In Office', 'utilization', 4, ''),
+  ('Week Performance', 'week', 5, ''),
+  ('Project Detail', 'project_detail', 6, ''),
+  ('Project Cost', 'project_cost', 7, ''),
+  ('Overall Costs', 'overall', 8, '');
+
+-- --------------------------------------------------------
+
+--
+-- Table Structure `system_routes_user_groups_relations`
+--
+
+CREATE TABLE IF NOT EXISTS `charts_user_groups_relations` (
+  `chart_id` bigint(20) unsigned NOT NULL,
+  `user_group_id` bigint(20) unsigned NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+

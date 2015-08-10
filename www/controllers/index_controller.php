@@ -7,9 +7,21 @@
  */
 class index_controller extends controller
 {
+    private $template = '';
+
     public function index()
     {
-        //$this->render('modules', $this->model('modules')->getGroupModel());
+        $permitted_charts = $this->model('charts')->getPermittedChartsList();
+        foreach($permitted_charts as $chart) {
+            $method_name = $chart['chart_key'];
+            if(method_exists($this, $method_name)) {
+                $this->$method_name();
+                $this->template .= $this->fetch('charts' . DS . $method_name);
+            } else {
+                $this->writeLog('ERRORS', 'WRONG chart method "' . $method_name . '" called! ');
+            }
+        }
+        $this->render('template', $this->template);
         $this->view('index');
     }
 
@@ -29,5 +41,45 @@ class index_controller extends controller
         $this->header = false;
         $this->footer = false;
         $this->view('index_na');
+    }
+
+    private function active_projects()
+    {
+
+    }
+
+    private function team_member_hours()
+    {
+
+    }
+
+    private function team_member_table()
+    {
+
+    }
+
+    private function utilization()
+    {
+
+    }
+
+    private function week()
+    {
+
+    }
+
+    private function project_detail()
+    {
+
+    }
+
+    private function project_cost()
+    {
+
+    }
+
+    private function overall()
+    {
+
     }
 }
