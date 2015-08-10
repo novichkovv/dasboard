@@ -20,7 +20,7 @@
                 <label>Group</label>
                 <select name="user_group_id" class="form-control">
                     <?php foreach($user_groups as $group): ?>
-                        <option value="<?php echo $group['id']; ?>" <?php if($user['user_group'] == $group['id'])echo 'selected'; ?>>
+                        <option value="<?php echo $group['id']; ?>" <?php if($user['user_group_id'] == $group['id'])echo 'selected'; ?>>
                             <?php echo $group['group_name']; ?>
                         </option>
                     <?php endforeach; ?>
