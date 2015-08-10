@@ -1,7 +1,3 @@
-</aside><!-- /.right-side -->
-
-</div><!-- ./wrapper -->
-
 
 <!-- jQuery 2.0.2 -->
 

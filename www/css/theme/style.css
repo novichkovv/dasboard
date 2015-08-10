@@ -20,6 +20,9 @@ body {
   background: #f1f2f7;
     /*background: #B4D9E5;*/
 }
+.wrapper {
+    background: #f1f2f7 !important;   
+}
 a {
   color: #3c8dbc;
 }
