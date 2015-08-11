@@ -22,7 +22,7 @@
                 </li>
                 <li>
                     <a data-toggle="tab" href="#charts">
-                        <i class="fa fa-dashboard"></i>
+                        <i class="fa fa-bar-chart"></i>
                         Dashboard
                     </a>
                 </li>

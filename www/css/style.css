@@ -112,7 +112,12 @@ section.content {
     border: 2px solid #96CAD3;
 }
 
-
+.validate-message {
+    display: none;
+    color: #c04040;
+    font-size: 15px;
+    padding: 5px 10px;
+}
 
 
 
