@@ -4,7 +4,7 @@
             Active Projects
         </header>
         <div class="panel-body">
-            <div id="active_projects" style="width:600px;height:300px"></div>
+            <div id="active_projects" style="width: 100%; height:300px"></div>
         </div>
     </section>
 </div>

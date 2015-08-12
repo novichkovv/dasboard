@@ -130,6 +130,7 @@ var validate = function validate(form_id)
 function ajax_datatable(id)
 {
     var oTable = $("#" + id).dataTable({
+        "destroy": $.fn.dataTable.isDataTable("#" + id),
         "bJQueryUI": false,
         "bAutoWidth": false,
         //"sPaginationType": "full_numbers",
