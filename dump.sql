@@ -173,3 +173,10 @@ CREATE TABLE `user_mapping` (
   UNIQUE KEY `user_name` (`user_name`),
   UNIQUE KEY `user_id` (`user_id`)
 ) ENGINE=MyISAM DEFAULT CHARSET=utf8;
+
+CREATE TABLE work_time (
+  `id` SERIAL PRIMARY KEY,
+  `username` varchar(100) NOT NULL,
+  `work_begin` DATETIME NOT NULL,
+  `work_end` DATETIME NOT NULL
+);
