@@ -1290,3 +1290,2587 @@
 
 )
 
+2015-08-10 16:38:41 - Array
+(
+    [0] => Array
+        (
+            [name] => employee name
+            [id] => employee ID
+            [type] => date
+            [date] => 1970-01-01 02:00:00
+        )
+
+    [1] => Array
+        (
+            [name] => Bernardo, Dennis 
+            [id] => 1
+            [type] => 42212
+            [date] => 1970-01-01 02:00:00
+        )
+
+    [2] => Array
+        (
+            [name] => Barrido, Gloria Mae 
+            [id] => 19
+            [type] => 42212
+            [date] => 1970-01-01 02:00:00
+        )
+
+    [3] => Array
+        (
+            [name] => Buizon, Monico 
+            [id] => 18
+            [type] => 42212
+            [date] => 1970-01-01 02:00:00
+        )
+
+    [4] => Array
+        (
+            [name] => Martinez, Jermaine 
+            [id] => 21
+            [type] => 42212
+            [date] => 1970-01-01 02:00:00
+        )
+
+    [5] => Array
+        (
+            [name] => Dumo, Kristel 
+            [id] => 7
+            [type] => 42212
+            [date] => 1970-01-01 02:00:00
+        )
+
+    [6] => Array
+        (
+            [name] => Belardo, Daisy 
+            [id] => 4
+            [type] => 42212
+            [date] => 1970-01-01 02:00:00
+        )
+
+    [7] => Array
+        (
+            [name] => Bacong, Kenneth 
+            [id] => 19
+            [type] => 42212
+            [date] => 1970-01-01 02:00:00
+        )
+
+    [8] => Array
+        (
+            [name] => Mandapat, Abigael 
+            [id] => 17
+            [type] => 42212
+            [date] => 1970-01-01 02:00:00
+        )
+
+    [9] => Array
+        (
+            [name] => Cunanan, Ronald 
+            [id] => 3
+            [type] => 42212
+            [date] => 1970-01-01 02:00:00
+        )
+
+    [10] => Array
+        (
+            [name] => Aguillon, Oliver 
+            [id] => 15
+            [type] => 42212
+            [date] => 1970-01-01 02:00:00
+        )
+
+    [11] => Array
+        (
+            [name] => Gallardo, Johanna 
+            [id] => 12
+            [type] => 42212
+            [date] => 1970-01-01 02:00:00
+        )
+
+    [12] => Array
+        (
+            [name] => Balasa, Joan B
+            [id] => 22
+            [type] => 42212
+            [date] => 1970-01-01 02:00:00
+        )
+
+    [13] => Array
+        (
+            [name] => Caluag, Rosanna 
+            [id] => 20
+            [type] => 42212
+            [date] => 1970-01-01 02:00:00
+        )
+
+    [14] => Array
+        (
+            [name] => Bonifacio, Woody 
+            [id] => 5
+            [type] => 42212
+            [date] => 1970-01-01 02:00:00
+        )
+
+    [15] => Array
+        (
+            [name] => Dayauon, Eric 
+            [id] => 11
+            [type] => 42212
+            [date] => 1970-01-01 02:00:00
+        )
+
+    [16] => Array
+        (
+            [name] => De Guzman, Joseph 
+            [id] => 13
+            [type] => 42212
+            [date] => 1970-01-01 02:00:00
+        )
+
+    [17] => Array
+        (
+            [name] => Bernardo, Dennis 
+            [id] => 1
+            [type] => 42212
+            [date] => 1970-01-01 02:00:00
+        )
+
+    [18] => Array
+        (
+            [name] => Cunanan, Ronald 
+            [id] => 3
+            [type] => 42212
+            [date] => 1970-01-01 02:00:00
+        )
+
+    [19] => Array
+        (
+            [name] => Buizon, Monico 
+            [id] => 18
+            [type] => 42212
+            [date] => 1970-01-01 02:00:00
+        )
+
+    [20] => Array
+        (
+            [name] => Balasa, Joan B
+            [id] => 22
+            [type] => 42212
+            [date] => 1970-01-01 02:00:00
+        )
+
+    [21] => Array
+        (
+            [name] => Mandapat, Abigael 
+            [id] => 17
+            [type] => 42212
+            [date] => 1970-01-01 02:00:00
+        )
+
+    [22] => Array
+        (
+            [name] => Aguillon, Oliver 
+            [id] => 15
+            [type] => 42212
+            [date] => 1970-01-01 02:00:00
+        )
+
+    [23] => Array
+        (
+            [name] => Martinez, Jermaine 
+            [id] => 21
+            [type] => 42212
+            [date] => 1970-01-01 02:00:00
+        )
+
+    [24] => Array
+        (
+            [name] => Caluag, Rosanna 
+            [id] => 20
+            [type] => 42212
+            [date] => 1970-01-01 02:00:00
+        )
+
+    [25] => Array
+        (
+            [name] => Barrido, Gloria Mae 
+            [id] => 19
+            [type] => 42212
+            [date] => 1970-01-01 02:00:00
+        )
+
+    [26] => Array
+        (
+            [name] => Bonifacio, Woody 
+            [id] => 5
+            [type] => 42212
+            [date] => 1970-01-01 02:00:00
+        )
+
+    [27] => Array
+        (
+            [name] => Gallardo, Johanna 
+            [id] => 12
+            [type] => 42212
+            [date] => 1970-01-01 02:00:00
+        )
+
+    [28] => Array
+        (
+            [name] => Dayauon, Eric 
+            [id] => 11
+            [type] => 42212
+            [date] => 1970-01-01 02:00:00
+        )
+
+    [29] => Array
+        (
+            [name] => Dumo, Kristel 
+            [id] => 7
+            [type] => 42212
+            [date] => 1970-01-01 02:00:00
+        )
+
+    [30] => Array
+        (
+            [name] => Belardo, Daisy 
+            [id] => 4
+            [type] => 42212
+            [date] => 1970-01-01 02:00:00
+        )
+
+    [31] => Array
+        (
+            [name] => De Guzman, Joseph 
+            [id] => 13
+            [type] => 42212
+            [date] => 1970-01-01 02:00:00
+        )
+
+    [32] => Array
+        (
+            [name] => Bacong, Kenneth 
+            [id] => 19
+            [type] => 42212
+            [date] => 1970-01-02 02:00:00
+        )
+
+    [33] => Array
+        (
+            [name] => Bernardo, Dennis 
+            [id] => 1
+            [type] => 42213
+            [date] => 1970-01-01 02:00:00
+        )
+
+    [34] => Array
+        (
+            [name] => Balasa, Joan B
+            [id] => 22
+            [type] => 42213
+            [date] => 1970-01-01 02:00:00
+        )
+
+    [35] => Array
+        (
+            [name] => Goce, Dennis 
+            [id] => 14
+            [type] => 42213
+            [date] => 1970-01-01 02:00:00
+        )
+
+    [36] => Array
+        (
+            [name] => Caluag, Rosanna 
+            [id] => 20
+            [type] => 42213
+            [date] => 1970-01-01 02:00:00
+        )
+
+    [37] => Array
+        (
+            [name] => Buizon, Monico 
+            [id] => 18
+            [type] => 42213
+            [date] => 1970-01-01 02:00:00
+        )
+
+    [38] => Array
+        (
+            [name] => Cunanan, Ronald 
+            [id] => 3
+            [type] => 42213
+            [date] => 1970-01-01 02:00:00
+        )
+
+    [39] => Array
+        (
+            [name] => Barrido, Gloria Mae 
+            [id] => 19
+            [type] => 42213
+            [date] => 1970-01-01 02:00:00
+        )
+
+    [40] => Array
+        (
+            [name] => Campos, Alexis 
+            [id] => 2
+            [type] => 42213
+            [date] => 1970-01-01 02:00:00
+        )
+
+    [41] => Array
+        (
+            [name] => Aguillon, Oliver 
+            [id] => 15
+            [type] => 42213
+            [date] => 1970-01-01 02:00:00
+        )
+
+    [42] => Array
+        (
+            [name] => Bacong, Kenneth 
+            [id] => 19
+            [type] => 42213
+            [date] => 1970-01-01 02:00:00
+        )
+
+    [43] => Array
+        (
+            [name] => Belardo, Daisy 
+            [id] => 4
+            [type] => 42213
+            [date] => 1970-01-01 02:00:00
+        )
+
+    [44] => Array
+        (
+            [name] => Martinez, Jermaine 
+            [id] => 21
+            [type] => 42213
+            [date] => 1970-01-01 02:00:00
+        )
+
+    [45] => Array
+        (
+            [name] => Bonifacio, Woody 
+            [id] => 5
+            [type] => 42213
+            [date] => 1970-01-01 02:00:00
+        )
+
+    [46] => Array
+        (
+            [name] => Gallardo, Johanna 
+            [id] => 12
+            [type] => 42213
+            [date] => 1970-01-01 02:00:00
+        )
+
+    [47] => Array
+        (
+            [name] => Dayauon, Eric 
+            [id] => 11
+            [type] => 42213
+            [date] => 1970-01-01 02:00:00
+        )
+
+    [48] => Array
+        (
+            [name] => Dumo, Kristel 
+            [id] => 7
+            [type] => 42213
+            [date] => 1970-01-01 02:00:00
+        )
+
+    [49] => Array
+        (
+            [name] => De Guzman, Joseph 
+            [id] => 13
+            [type] => 42213
+            [date] => 1970-01-01 02:00:00
+        )
+
+    [50] => Array
+        (
+            [name] => Campos, Alexis 
+            [id] => 2
+            [type] => 42213
+            [date] => 1970-01-01 02:00:00
+        )
+
+    [51] => Array
+        (
+            [name] => Bernardo, Dennis 
+            [id] => 1
+            [type] => 42213
+            [date] => 1970-01-01 02:00:00
+        )
+
+    [52] => Array
+        (
+            [name] => Goce, Dennis 
+            [id] => 14
+            [type] => 42213
+            [date] => 1970-01-01 02:00:00
+        )
+
+    [53] => Array
+        (
+            [name] => Cunanan, Ronald 
+            [id] => 3
+            [type] => 42213
+            [date] => 1970-01-01 02:00:00
+        )
+
+    [54] => Array
+        (
+            [name] => Bonifacio, Woody 
+            [id] => 5
+            [type] => 42213
+            [date] => 1970-01-01 02:00:00
+        )
+
+    [55] => Array
+        (
+            [name] => Bacong, Kenneth 
+            [id] => 19
+            [type] => 42213
+            [date] => 1970-01-01 02:00:00
+        )
+
+    [56] => Array
+        (
+            [name] => Balasa, Joan B
+            [id] => 22
+            [type] => 42213
+            [date] => 1970-01-01 02:00:00
+        )
+
+    [57] => Array
+        (
+            [name] => Belardo, Daisy 
+            [id] => 4
+            [type] => 42213
+            [date] => 1970-01-01 02:00:00
+        )
+
+    [58] => Array
+        (
+            [name] => Dayauon, Eric 
+            [id] => 11
+            [type] => 42213
+            [date] => 1970-01-01 02:00:00
+        )
+
+    [59] => Array
+        (
+            [name] => Aguillon, Oliver 
+            [id] => 15
+            [type] => 42213
+            [date] => 1970-01-01 02:00:00
+        )
+
+    [60] => Array
+        (
+            [name] => Buizon, Monico 
+            [id] => 18
+            [type] => 42213
+            [date] => 1970-01-01 02:00:00
+        )
+
+    [61] => Array
+        (
+            [name] => Barrido, Gloria Mae 
+            [id] => 19
+            [type] => 42213
+            [date] => 1970-01-01 02:00:00
+        )
+
+    [62] => Array
+        (
+            [name] => Caluag, Rosanna 
+            [id] => 20
+            [type] => 42213
+            [date] => 1970-01-01 02:00:00
+        )
+
+    [63] => Array
+        (
+            [name] => Martinez, Jermaine 
+            [id] => 21
+            [type] => 42213
+            [date] => 1970-01-01 02:00:00
+        )
+
+    [64] => Array
+        (
+            [name] => Dumo, Kristel 
+            [id] => 7
+            [type] => 42213
+            [date] => 1970-01-02 02:00:00
+        )
+
+    [65] => Array
+        (
+            [name] => Gallardo, Johanna 
+            [id] => 12
+            [type] => 42213
+            [date] => 1970-01-02 02:00:00
+        )
+
+    [66] => Array
+        (
+            [name] => De Guzman, Joseph 
+            [id] => 13
+            [type] => 42213
+            [date] => 1970-01-02 02:00:00
+        )
+
+    [67] => Array
+        (
+            [name] => Bernardo, Dennis 
+            [id] => 1
+            [type] => 42214
+            [date] => 1970-01-01 02:00:00
+        )
+
+    [68] => Array
+        (
+            [name] => Balasa, Joan B
+            [id] => 22
+            [type] => 42214
+            [date] => 1970-01-01 02:00:00
+        )
+
+    [69] => Array
+        (
+            [name] => Caluag, Rosanna 
+            [id] => 20
+            [type] => 42214
+            [date] => 1970-01-01 02:00:00
+        )
+
+    [70] => Array
+        (
+            [name] => Barrido, Gloria Mae 
+            [id] => 19
+            [type] => 42214
+            [date] => 1970-01-01 02:00:00
+        )
+
+    [71] => Array
+        (
+            [name] => Campos, Alexis 
+            [id] => 2
+            [type] => 42214
+            [date] => 1970-01-01 02:00:00
+        )
+
+    [72] => Array
+        (
+            [name] => Goce, Dennis 
+            [id] => 14
+            [type] => 42214
+            [date] => 1970-01-01 02:00:00
+        )
+
+    [73] => Array
+        (
+            [name] => Cunanan, Ronald 
+            [id] => 3
+            [type] => 42214
+            [date] => 1970-01-01 02:00:00
+        )
+
+    [74] => Array
+        (
+            [name] => Martinez, Jermaine 
+            [id] => 21
+            [type] => 42214
+            [date] => 1970-01-01 02:00:00
+        )
+
+    [75] => Array
+        (
+            [name] => Aguillon, Oliver 
+            [id] => 15
+            [type] => 42214
+            [date] => 1970-01-01 02:00:00
+        )
+
+    [76] => Array
+        (
+            [name] => Bacong, Kenneth 
+            [id] => 19
+            [type] => 42214
+            [date] => 1970-01-01 02:00:00
+        )
+
+    [77] => Array
+        (
+            [name] => Belardo, Daisy 
+            [id] => 4
+            [type] => 42214
+            [date] => 1970-01-01 02:00:00
+        )
+
+    [78] => Array
+        (
+            [name] => De Guzman, Joseph 
+            [id] => 13
+            [type] => 42214
+            [date] => 1970-01-01 02:00:00
+        )
+
+    [79] => Array
+        (
+            [name] => Dumo, Kristel 
+            [id] => 7
+            [type] => 42214
+            [date] => 1970-01-01 02:00:00
+        )
+
+    [80] => Array
+        (
+            [name] => Gallardo, Johanna 
+            [id] => 12
+            [type] => 42214
+            [date] => 1970-01-01 02:00:00
+        )
+
+    [81] => Array
+        (
+            [name] => Bonifacio, Woody 
+            [id] => 5
+            [type] => 42214
+            [date] => 1970-01-01 02:00:00
+        )
+
+    [82] => Array
+        (
+            [name] => Mandapat, Abigael 
+            [id] => 17
+            [type] => 42214
+            [date] => 1970-01-01 02:00:00
+        )
+
+    [83] => Array
+        (
+            [name] => Dayauon, Eric 
+            [id] => 11
+            [type] => 42214
+            [date] => 1970-01-01 02:00:00
+        )
+
+    [84] => Array
+        (
+            [name] => Campos, Alexis 
+            [id] => 2
+            [type] => 42214
+            [date] => 1970-01-01 02:00:00
+        )
+
+    [85] => Array
+        (
+            [name] => Martinez, Jermaine 
+            [id] => 21
+            [type] => 42214
+            [date] => 1970-01-01 02:00:00
+        )
+
+    [86] => Array
+        (
+            [name] => Goce, Dennis 
+            [id] => 14
+            [type] => 42214
+            [date] => 1970-01-01 02:00:00
+        )
+
+    [87] => Array
+        (
+            [name] => Dumo, Kristel 
+            [id] => 7
+            [type] => 42214
+            [date] => 1970-01-01 02:00:00
+        )
+
+    [88] => Array
+        (
+            [name] => Belardo, Daisy 
+            [id] => 4
+            [type] => 42214
+            [date] => 1970-01-01 02:00:00
+        )
+
+    [89] => Array
+        (
+            [name] => Gallardo, Johanna 
+            [id] => 12
+            [type] => 42214
+            [date] => 1970-01-01 02:00:00
+        )
+
+    [90] => Array
+        (
+            [name] => Dayauon, Eric 
+            [id] => 11
+            [type] => 42214
+            [date] => 1970-01-01 02:00:00
+        )
+
+    [91] => Array
+        (
+            [name] => Balasa, Joan B
+            [id] => 22
+            [type] => 42214
+            [date] => 1970-01-01 02:00:00
+        )
+
+    [92] => Array
+        (
+            [name] => Bernardo, Dennis 
+            [id] => 1
+            [type] => 42214
+            [date] => 1970-01-01 02:00:00
+        )
+
+    [93] => Array
+        (
+            [name] => Bacong, Kenneth 
+            [id] => 19
+            [type] => 42214
+            [date] => 1970-01-01 02:00:00
+        )
+
+    [94] => Array
+        (
+            [name] => Cunanan, Ronald 
+            [id] => 3
+            [type] => 42214
+            [date] => 1970-01-01 02:00:00
+        )
+
+    [95] => Array
+        (
+            [name] => Bonifacio, Woody 
+            [id] => 5
+            [type] => 42214
+            [date] => 1970-01-01 02:00:00
+        )
+
+    [96] => Array
+        (
+            [name] => Caluag, Rosanna 
+            [id] => 20
+            [type] => 42214
+            [date] => 1970-01-01 02:00:00
+        )
+
+    [97] => Array
+        (
+            [name] => Barrido, Gloria Mae 
+            [id] => 19
+            [type] => 42214
+            [date] => 1970-01-01 02:00:00
+        )
+
+    [98] => Array
+        (
+            [name] => De Guzman, Joseph 
+            [id] => 13
+            [type] => 42214
+            [date] => 1970-01-01 02:00:00
+        )
+
+    [99] => Array
+        (
+            [name] => Mandapat, Abigael 
+            [id] => 17
+            [type] => 42214
+            [date] => 1970-01-01 02:00:00
+        )
+
+    [100] => Array
+        (
+            [name] => Aguillon, Oliver 
+            [id] => 15
+            [type] => 42214
+            [date] => 1970-01-01 02:00:00
+        )
+
+    [101] => Array
+        (
+            [name] => Campos, Alexis 
+            [id] => 2
+            [type] => 42215
+            [date] => 1970-01-01 02:00:00
+        )
+
+    [102] => Array
+        (
+            [name] => Goce, Dennis 
+            [id] => 14
+            [type] => 42215
+            [date] => 1970-01-01 02:00:00
+        )
+
+    [103] => Array
+        (
+            [name] => Caluag, Rosanna 
+            [id] => 20
+            [type] => 42215
+            [date] => 1970-01-01 02:00:00
+        )
+
+    [104] => Array
+        (
+            [name] => Balasa, Joan B
+            [id] => 22
+            [type] => 42215
+            [date] => 1970-01-01 02:00:00
+        )
+
+    [105] => Array
+        (
+            [name] => Barrido, Gloria Mae 
+            [id] => 19
+            [type] => 42215
+            [date] => 1970-01-01 02:00:00
+        )
+
+    [106] => Array
+        (
+            [name] => Cunanan, Ronald 
+            [id] => 3
+            [type] => 42215
+            [date] => 1970-01-01 02:00:00
+        )
+
+    [107] => Array
+        (
+            [name] => Gallardo, Johanna 
+            [id] => 12
+            [type] => 42215
+            [date] => 1970-01-01 02:00:00
+        )
+
+    [108] => Array
+        (
+            [name] => Martinez, Jermaine 
+            [id] => 21
+            [type] => 42215
+            [date] => 1970-01-01 02:00:00
+        )
+
+    [109] => Array
+        (
+            [name] => Bacong, Kenneth 
+            [id] => 19
+            [type] => 42215
+            [date] => 1970-01-01 02:00:00
+        )
+
+    [110] => Array
+        (
+            [name] => Dumo, Kristel 
+            [id] => 7
+            [type] => 42215
+            [date] => 1970-01-01 02:00:00
+        )
+
+    [111] => Array
+        (
+            [name] => Aguillon, Oliver 
+            [id] => 15
+            [type] => 42215
+            [date] => 1970-01-01 02:00:00
+        )
+
+    [112] => Array
+        (
+            [name] => Belardo, Daisy 
+            [id] => 4
+            [type] => 42215
+            [date] => 1970-01-01 02:00:00
+        )
+
+    [113] => Array
+        (
+            [name] => Mandapat, Abigael 
+            [id] => 17
+            [type] => 42215
+            [date] => 1970-01-01 02:00:00
+        )
+
+    [114] => Array
+        (
+            [name] => Dayauon, Eric 
+            [id] => 11
+            [type] => 42215
+            [date] => 1970-01-01 02:00:00
+        )
+
+    [115] => Array
+        (
+            [name] => De Guzman, Joseph 
+            [id] => 13
+            [type] => 42215
+            [date] => 1970-01-01 02:00:00
+        )
+
+    [116] => Array
+        (
+            [name] => Bonifacio, Woody 
+            [id] => 5
+            [type] => 42215
+            [date] => 1970-01-01 02:00:00
+        )
+
+    [117] => Array
+        (
+            [name] => Gallardo, Johanna 
+            [id] => 12
+            [type] => 42215
+            [date] => 1970-01-01 02:00:00
+        )
+
+    [118] => Array
+        (
+            [name] => Belardo, Daisy 
+            [id] => 4
+            [type] => 42215
+            [date] => 1970-01-01 02:00:00
+        )
+
+    [119] => Array
+        (
+            [name] => Dumo, Kristel 
+            [id] => 7
+            [type] => 42215
+            [date] => 1970-01-01 02:00:00
+        )
+
+    [120] => Array
+        (
+            [name] => Dayauon, Eric 
+            [id] => 11
+            [type] => 42215
+            [date] => 1970-01-01 02:00:00
+        )
+
+    [121] => Array
+        (
+            [name] => Martinez, Jermaine 
+            [id] => 21
+            [type] => 42215
+            [date] => 1970-01-01 02:00:00
+        )
+
+    [122] => Array
+        (
+            [name] => Goce, Dennis 
+            [id] => 14
+            [type] => 42215
+            [date] => 1970-01-01 02:00:00
+        )
+
+    [123] => Array
+        (
+            [name] => Mandapat, Abigael 
+            [id] => 17
+            [type] => 42215
+            [date] => 1970-01-01 02:00:00
+        )
+
+    [124] => Array
+        (
+            [name] => Balasa, Joan B
+            [id] => 22
+            [type] => 42215
+            [date] => 1970-01-01 02:00:00
+        )
+
+    [125] => Array
+        (
+            [name] => Bacong, Kenneth 
+            [id] => 19
+            [type] => 42215
+            [date] => 1970-01-01 02:00:00
+        )
+
+    [126] => Array
+        (
+            [name] => Cunanan, Ronald 
+            [id] => 3
+            [type] => 42215
+            [date] => 1970-01-01 02:00:00
+        )
+
+    [127] => Array
+        (
+            [name] => Bonifacio, Woody 
+            [id] => 5
+            [type] => 42215
+            [date] => 1970-01-01 02:00:00
+        )
+
+    [128] => Array
+        (
+            [name] => Aguillon, Oliver 
+            [id] => 15
+            [type] => 42215
+            [date] => 1970-01-01 02:00:00
+        )
+
+    [129] => Array
+        (
+            [name] => Campos, Alexis 
+            [id] => 2
+            [type] => 42215
+            [date] => 1970-01-01 02:00:00
+        )
+
+    [130] => Array
+        (
+            [name] => De Guzman, Joseph 
+            [id] => 13
+            [type] => 42215
+            [date] => 1970-01-01 02:00:00
+        )
+
+    [131] => Array
+        (
+            [name] => Barrido, Gloria Mae 
+            [id] => 19
+            [type] => 42216
+            [date] => 1970-01-01 02:00:00
+        )
+
+    [132] => Array
+        (
+            [name] => Caluag, Rosanna 
+            [id] => 20
+            [type] => 42216
+            [date] => 1970-01-01 02:00:00
+        )
+
+    [133] => Array
+        (
+            [name] => Campos, Alexis 
+            [id] => 2
+            [type] => 42216
+            [date] => 1970-01-01 02:00:00
+        )
+
+    [134] => Array
+        (
+            [name] => Goce, Dennis 
+            [id] => 14
+            [type] => 42216
+            [date] => 1970-01-01 02:00:00
+        )
+
+    [135] => Array
+        (
+            [name] => Caluag, Rosanna 
+            [id] => 20
+            [type] => 42216
+            [date] => 1970-01-01 02:00:00
+        )
+
+    [136] => Array
+        (
+            [name] => Bacong, Kenneth 
+            [id] => 19
+            [type] => 42216
+            [date] => 1970-01-01 02:00:00
+        )
+
+    [137] => Array
+        (
+            [name] => Aguillon, Oliver 
+            [id] => 15
+            [type] => 42216
+            [date] => 1970-01-01 02:00:00
+        )
+
+    [138] => Array
+        (
+            [name] => Balasa, Joan B
+            [id] => 22
+            [type] => 42216
+            [date] => 1970-01-01 02:00:00
+        )
+
+    [139] => Array
+        (
+            [name] => Barrido, Gloria Mae 
+            [id] => 19
+            [type] => 42216
+            [date] => 1970-01-01 02:00:00
+        )
+
+    [140] => Array
+        (
+            [name] => Belardo, Daisy 
+            [id] => 4
+            [type] => 42216
+            [date] => 1970-01-01 02:00:00
+        )
+
+    [141] => Array
+        (
+            [name] => Mandapat, Abigael 
+            [id] => 17
+            [type] => 42216
+            [date] => 1970-01-01 02:00:00
+        )
+
+    [142] => Array
+        (
+            [name] => Gallardo, Johanna 
+            [id] => 12
+            [type] => 42216
+            [date] => 1970-01-01 02:00:00
+        )
+
+    [143] => Array
+        (
+            [name] => Dumo, Kristel 
+            [id] => 7
+            [type] => 42216
+            [date] => 1970-01-01 02:00:00
+        )
+
+    [144] => Array
+        (
+            [name] => Dayauon, Eric 
+            [id] => 11
+            [type] => 42216
+            [date] => 1970-01-01 02:00:00
+        )
+
+    [145] => Array
+        (
+            [name] => Bonifacio, Woody 
+            [id] => 5
+            [type] => 42216
+            [date] => 1970-01-01 02:00:00
+        )
+
+    [146] => Array
+        (
+            [name] => De Guzman, Joseph 
+            [id] => 13
+            [type] => 42216
+            [date] => 1970-01-01 02:00:00
+        )
+
+    [147] => Array
+        (
+            [name] => Buizon, Monico 
+            [id] => 18
+            [type] => 42216
+            [date] => 1970-01-01 02:00:00
+        )
+
+    [148] => Array
+        (
+            [name] => Campos, Alexis 
+            [id] => 2
+            [type] => 42216
+            [date] => 1970-01-01 02:00:00
+        )
+
+    [149] => Array
+        (
+            [name] => Goce, Dennis 
+            [id] => 14
+            [type] => 42216
+            [date] => 1970-01-01 02:00:00
+        )
+
+    [150] => Array
+        (
+            [name] => Mandapat, Abigael 
+            [id] => 17
+            [type] => 42216
+            [date] => 1970-01-01 02:00:00
+        )
+
+    [151] => Array
+        (
+            [name] => Belardo, Daisy 
+            [id] => 4
+            [type] => 42216
+            [date] => 1970-01-01 02:00:00
+        )
+
+    [152] => Array
+        (
+            [name] => Dumo, Kristel 
+            [id] => 7
+            [type] => 42216
+            [date] => 1970-01-01 02:00:00
+        )
+
+    [153] => Array
+        (
+            [name] => Gallardo, Johanna 
+            [id] => 12
+            [type] => 42216
+            [date] => 1970-01-01 02:00:00
+        )
+
+    [154] => Array
+        (
+            [name] => Dayauon, Eric 
+            [id] => 11
+            [type] => 42216
+            [date] => 1970-01-01 02:00:00
+        )
+
+    [155] => Array
+        (
+            [name] => Aguillon, Oliver 
+            [id] => 15
+            [type] => 42216
+            [date] => 1970-01-01 02:00:00
+        )
+
+    [156] => Array
+        (
+            [name] => Buizon, Monico 
+            [id] => 18
+            [type] => 42216
+            [date] => 1970-01-01 02:00:00
+        )
+
+    [157] => Array
+        (
+            [name] => Balasa, Joan B
+            [id] => 22
+            [type] => 42216
+            [date] => 1970-01-01 02:00:00
+        )
+
+    [158] => Array
+        (
+            [name] => Bacong, Kenneth 
+            [id] => 19
+            [type] => 42216
+            [date] => 1970-01-01 02:00:00
+        )
+
+    [159] => Array
+        (
+            [name] => De Guzman, Joseph 
+            [id] => 13
+            [type] => 42216
+            [date] => 1970-01-01 02:00:00
+        )
+
+    [160] => Array
+        (
+            [name] => Bonifacio, Woody 
+            [id] => 5
+            [type] => 42216
+            [date] => 1970-01-01 02:00:00
+        )
+
+)
+
+2015-08-10 16:49:37 - Array
+(
+    [0] => Array
+        (
+            [name] => employee name
+            [id] => employee ID
+            [type] => date
+            [date] => 1970-01-01 02:00:00
+        )
+
+    [1] => Array
+        (
+            [name] => Bernardo, Dennis 
+            [id] => 1
+            [type] => 42212
+            [date] => 1970-01-01 02:00:00
+        )
+
+    [2] => Array
+        (
+            [name] => Barrido, Gloria Mae 
+            [id] => 19
+            [type] => 42212
+            [date] => 1970-01-01 02:00:00
+        )
+
+    [3] => Array
+        (
+            [name] => Buizon, Monico 
+            [id] => 18
+            [type] => 42212
+            [date] => 1970-01-01 02:00:00
+        )
+
+    [4] => Array
+        (
+            [name] => Martinez, Jermaine 
+            [id] => 21
+            [type] => 42212
+            [date] => 1970-01-01 02:00:00
+        )
+
+    [5] => Array
+        (
+            [name] => Dumo, Kristel 
+            [id] => 7
+            [type] => 42212
+            [date] => 1970-01-01 02:00:00
+        )
+
+    [6] => Array
+        (
+            [name] => Belardo, Daisy 
+            [id] => 4
+            [type] => 42212
+            [date] => 1970-01-01 02:00:00
+        )
+
+    [7] => Array
+        (
+            [name] => Bacong, Kenneth 
+            [id] => 19
+            [type] => 42212
+            [date] => 1970-01-01 02:00:00
+        )
+
+    [8] => Array
+        (
+            [name] => Mandapat, Abigael 
+            [id] => 17
+            [type] => 42212
+            [date] => 1970-01-01 02:00:00
+        )
+
+    [9] => Array
+        (
+            [name] => Cunanan, Ronald 
+            [id] => 3
+            [type] => 42212
+            [date] => 1970-01-01 02:00:00
+        )
+
+    [10] => Array
+        (
+            [name] => Aguillon, Oliver 
+            [id] => 15
+            [type] => 42212
+            [date] => 1970-01-01 02:00:00
+        )
+
+    [11] => Array
+        (
+            [name] => Gallardo, Johanna 
+            [id] => 12
+            [type] => 42212
+            [date] => 1970-01-01 02:00:00
+        )
+
+    [12] => Array
+        (
+            [name] => Balasa, Joan B
+            [id] => 22
+            [type] => 42212
+            [date] => 1970-01-01 02:00:00
+        )
+
+    [13] => Array
+        (
+            [name] => Caluag, Rosanna 
+            [id] => 20
+            [type] => 42212
+            [date] => 1970-01-01 02:00:00
+        )
+
+    [14] => Array
+        (
+            [name] => Bonifacio, Woody 
+            [id] => 5
+            [type] => 42212
+            [date] => 1970-01-01 02:00:00
+        )
+
+    [15] => Array
+        (
+            [name] => Dayauon, Eric 
+            [id] => 11
+            [type] => 42212
+            [date] => 1970-01-01 02:00:00
+        )
+
+    [16] => Array
+        (
+            [name] => De Guzman, Joseph 
+            [id] => 13
+            [type] => 42212
+            [date] => 1970-01-01 02:00:00
+        )
+
+    [17] => Array
+        (
+            [name] => Bernardo, Dennis 
+            [id] => 1
+            [type] => 42212
+            [date] => 1970-01-01 02:00:00
+        )
+
+    [18] => Array
+        (
+            [name] => Cunanan, Ronald 
+            [id] => 3
+            [type] => 42212
+            [date] => 1970-01-01 02:00:00
+        )
+
+    [19] => Array
+        (
+            [name] => Buizon, Monico 
+            [id] => 18
+            [type] => 42212
+            [date] => 1970-01-01 02:00:00
+        )
+
+    [20] => Array
+        (
+            [name] => Balasa, Joan B
+            [id] => 22
+            [type] => 42212
+            [date] => 1970-01-01 02:00:00
+        )
+
+    [21] => Array
+        (
+            [name] => Mandapat, Abigael 
+            [id] => 17
+            [type] => 42212
+            [date] => 1970-01-01 02:00:00
+        )
+
+    [22] => Array
+        (
+            [name] => Aguillon, Oliver 
+            [id] => 15
+            [type] => 42212
+            [date] => 1970-01-01 02:00:00
+        )
+
+    [23] => Array
+        (
+            [name] => Martinez, Jermaine 
+            [id] => 21
+            [type] => 42212
+            [date] => 1970-01-01 02:00:00
+        )
+
+    [24] => Array
+        (
+            [name] => Caluag, Rosanna 
+            [id] => 20
+            [type] => 42212
+            [date] => 1970-01-01 02:00:00
+        )
+
+    [25] => Array
+        (
+            [name] => Barrido, Gloria Mae 
+            [id] => 19
+            [type] => 42212
+            [date] => 1970-01-01 02:00:00
+        )
+
+    [26] => Array
+        (
+            [name] => Bonifacio, Woody 
+            [id] => 5
+            [type] => 42212
+            [date] => 1970-01-01 02:00:00
+        )
+
+    [27] => Array
+        (
+            [name] => Gallardo, Johanna 
+            [id] => 12
+            [type] => 42212
+            [date] => 1970-01-01 02:00:00
+        )
+
+    [28] => Array
+        (
+            [name] => Dayauon, Eric 
+            [id] => 11
+            [type] => 42212
+            [date] => 1970-01-01 02:00:00
+        )
+
+    [29] => Array
+        (
+            [name] => Dumo, Kristel 
+            [id] => 7
+            [type] => 42212
+            [date] => 1970-01-01 02:00:00
+        )
+
+    [30] => Array
+        (
+            [name] => Belardo, Daisy 
+            [id] => 4
+            [type] => 42212
+            [date] => 1970-01-01 02:00:00
+        )
+
+    [31] => Array
+        (
+            [name] => De Guzman, Joseph 
+            [id] => 13
+            [type] => 42212
+            [date] => 1970-01-01 02:00:00
+        )
+
+    [32] => Array
+        (
+            [name] => Bacong, Kenneth 
+            [id] => 19
+            [type] => 42212
+            [date] => 1970-01-02 02:00:00
+        )
+
+    [33] => Array
+        (
+            [name] => Bernardo, Dennis 
+            [id] => 1
+            [type] => 42213
+            [date] => 1970-01-01 02:00:00
+        )
+
+    [34] => Array
+        (
+            [name] => Balasa, Joan B
+            [id] => 22
+            [type] => 42213
+            [date] => 1970-01-01 02:00:00
+        )
+
+    [35] => Array
+        (
+            [name] => Goce, Dennis 
+            [id] => 14
+            [type] => 42213
+            [date] => 1970-01-01 02:00:00
+        )
+
+    [36] => Array
+        (
+            [name] => Caluag, Rosanna 
+            [id] => 20
+            [type] => 42213
+            [date] => 1970-01-01 02:00:00
+        )
+
+    [37] => Array
+        (
+            [name] => Buizon, Monico 
+            [id] => 18
+            [type] => 42213
+            [date] => 1970-01-01 02:00:00
+        )
+
+    [38] => Array
+        (
+            [name] => Cunanan, Ronald 
+            [id] => 3
+            [type] => 42213
+            [date] => 1970-01-01 02:00:00
+        )
+
+    [39] => Array
+        (
+            [name] => Barrido, Gloria Mae 
+            [id] => 19
+            [type] => 42213
+            [date] => 1970-01-01 02:00:00
+        )
+
+    [40] => Array
+        (
+            [name] => Campos, Alexis 
+            [id] => 2
+            [type] => 42213
+            [date] => 1970-01-01 02:00:00
+        )
+
+    [41] => Array
+        (
+            [name] => Aguillon, Oliver 
+            [id] => 15
+            [type] => 42213
+            [date] => 1970-01-01 02:00:00
+        )
+
+    [42] => Array
+        (
+            [name] => Bacong, Kenneth 
+            [id] => 19
+            [type] => 42213
+            [date] => 1970-01-01 02:00:00
+        )
+
+    [43] => Array
+        (
+            [name] => Belardo, Daisy 
+            [id] => 4
+            [type] => 42213
+            [date] => 1970-01-01 02:00:00
+        )
+
+    [44] => Array
+        (
+            [name] => Martinez, Jermaine 
+            [id] => 21
+            [type] => 42213
+            [date] => 1970-01-01 02:00:00
+        )
+
+    [45] => Array
+        (
+            [name] => Bonifacio, Woody 
+            [id] => 5
+            [type] => 42213
+            [date] => 1970-01-01 02:00:00
+        )
+
+    [46] => Array
+        (
+            [name] => Gallardo, Johanna 
+            [id] => 12
+            [type] => 42213
+            [date] => 1970-01-01 02:00:00
+        )
+
+    [47] => Array
+        (
+            [name] => Dayauon, Eric 
+            [id] => 11
+            [type] => 42213
+            [date] => 1970-01-01 02:00:00
+        )
+
+    [48] => Array
+        (
+            [name] => Dumo, Kristel 
+            [id] => 7
+            [type] => 42213
+            [date] => 1970-01-01 02:00:00
+        )
+
+    [49] => Array
+        (
+            [name] => De Guzman, Joseph 
+            [id] => 13
+            [type] => 42213
+            [date] => 1970-01-01 02:00:00
+        )
+
+    [50] => Array
+        (
+            [name] => Campos, Alexis 
+            [id] => 2
+            [type] => 42213
+            [date] => 1970-01-01 02:00:00
+        )
+
+    [51] => Array
+        (
+            [name] => Bernardo, Dennis 
+            [id] => 1
+            [type] => 42213
+            [date] => 1970-01-01 02:00:00
+        )
+
+    [52] => Array
+        (
+            [name] => Goce, Dennis 
+            [id] => 14
+            [type] => 42213
+            [date] => 1970-01-01 02:00:00
+        )
+
+    [53] => Array
+        (
+            [name] => Cunanan, Ronald 
+            [id] => 3
+            [type] => 42213
+            [date] => 1970-01-01 02:00:00
+        )
+
+    [54] => Array
+        (
+            [name] => Bonifacio, Woody 
+            [id] => 5
+            [type] => 42213
+            [date] => 1970-01-01 02:00:00
+        )
+
+    [55] => Array
+        (
+            [name] => Bacong, Kenneth 
+            [id] => 19
+            [type] => 42213
+            [date] => 1970-01-01 02:00:00
+        )
+
+    [56] => Array
+        (
+            [name] => Balasa, Joan B
+            [id] => 22
+            [type] => 42213
+            [date] => 1970-01-01 02:00:00
+        )
+
+    [57] => Array
+        (
+            [name] => Belardo, Daisy 
+            [id] => 4
+            [type] => 42213
+            [date] => 1970-01-01 02:00:00
+        )
+
+    [58] => Array
+        (
+            [name] => Dayauon, Eric 
+            [id] => 11
+            [type] => 42213
+            [date] => 1970-01-01 02:00:00
+        )
+
+    [59] => Array
+        (
+            [name] => Aguillon, Oliver 
+            [id] => 15
+            [type] => 42213
+            [date] => 1970-01-01 02:00:00
+        )
+
+    [60] => Array
+        (
+            [name] => Buizon, Monico 
+            [id] => 18
+            [type] => 42213
+            [date] => 1970-01-01 02:00:00
+        )
+
+    [61] => Array
+        (
+            [name] => Barrido, Gloria Mae 
+            [id] => 19
+            [type] => 42213
+            [date] => 1970-01-01 02:00:00
+        )
+
+    [62] => Array
+        (
+            [name] => Caluag, Rosanna 
+            [id] => 20
+            [type] => 42213
+            [date] => 1970-01-01 02:00:00
+        )
+
+    [63] => Array
+        (
+            [name] => Martinez, Jermaine 
+            [id] => 21
+            [type] => 42213
+            [date] => 1970-01-01 02:00:00
+        )
+
+    [64] => Array
+        (
+            [name] => Dumo, Kristel 
+            [id] => 7
+            [type] => 42213
+            [date] => 1970-01-02 02:00:00
+        )
+
+    [65] => Array
+        (
+            [name] => Gallardo, Johanna 
+            [id] => 12
+            [type] => 42213
+            [date] => 1970-01-02 02:00:00
+        )
+
+    [66] => Array
+        (
+            [name] => De Guzman, Joseph 
+            [id] => 13
+            [type] => 42213
+            [date] => 1970-01-02 02:00:00
+        )
+
+    [67] => Array
+        (
+            [name] => Bernardo, Dennis 
+            [id] => 1
+            [type] => 42214
+            [date] => 1970-01-01 02:00:00
+        )
+
+    [68] => Array
+        (
+            [name] => Balasa, Joan B
+            [id] => 22
+            [type] => 42214
+            [date] => 1970-01-01 02:00:00
+        )
+
+    [69] => Array
+        (
+            [name] => Caluag, Rosanna 
+            [id] => 20
+            [type] => 42214
+            [date] => 1970-01-01 02:00:00
+        )
+
+    [70] => Array
+        (
+            [name] => Barrido, Gloria Mae 
+            [id] => 19
+            [type] => 42214
+            [date] => 1970-01-01 02:00:00
+        )
+
+    [71] => Array
+        (
+            [name] => Campos, Alexis 
+            [id] => 2
+            [type] => 42214
+            [date] => 1970-01-01 02:00:00
+        )
+
+    [72] => Array
+        (
+            [name] => Goce, Dennis 
+            [id] => 14
+            [type] => 42214
+            [date] => 1970-01-01 02:00:00
+        )
+
+    [73] => Array
+        (
+            [name] => Cunanan, Ronald 
+            [id] => 3
+            [type] => 42214
+            [date] => 1970-01-01 02:00:00
+        )
+
+    [74] => Array
+        (
+            [name] => Martinez, Jermaine 
+            [id] => 21
+            [type] => 42214
+            [date] => 1970-01-01 02:00:00
+        )
+
+    [75] => Array
+        (
+            [name] => Aguillon, Oliver 
+            [id] => 15
+            [type] => 42214
+            [date] => 1970-01-01 02:00:00
+        )
+
+    [76] => Array
+        (
+            [name] => Bacong, Kenneth 
+            [id] => 19
+            [type] => 42214
+            [date] => 1970-01-01 02:00:00
+        )
+
+    [77] => Array
+        (
+            [name] => Belardo, Daisy 
+            [id] => 4
+            [type] => 42214
+            [date] => 1970-01-01 02:00:00
+        )
+
+    [78] => Array
+        (
+            [name] => De Guzman, Joseph 
+            [id] => 13
+            [type] => 42214
+            [date] => 1970-01-01 02:00:00
+        )
+
+    [79] => Array
+        (
+            [name] => Dumo, Kristel 
+            [id] => 7
+            [type] => 42214
+            [date] => 1970-01-01 02:00:00
+        )
+
+    [80] => Array
+        (
+            [name] => Gallardo, Johanna 
+            [id] => 12
+            [type] => 42214
+            [date] => 1970-01-01 02:00:00
+        )
+
+    [81] => Array
+        (
+            [name] => Bonifacio, Woody 
+            [id] => 5
+            [type] => 42214
+            [date] => 1970-01-01 02:00:00
+        )
+
+    [82] => Array
+        (
+            [name] => Mandapat, Abigael 
+            [id] => 17
+            [type] => 42214
+            [date] => 1970-01-01 02:00:00
+        )
+
+    [83] => Array
+        (
+            [name] => Dayauon, Eric 
+            [id] => 11
+            [type] => 42214
+            [date] => 1970-01-01 02:00:00
+        )
+
+    [84] => Array
+        (
+            [name] => Campos, Alexis 
+            [id] => 2
+            [type] => 42214
+            [date] => 1970-01-01 02:00:00
+        )
+
+    [85] => Array
+        (
+            [name] => Martinez, Jermaine 
+            [id] => 21
+            [type] => 42214
+            [date] => 1970-01-01 02:00:00
+        )
+
+    [86] => Array
+        (
+            [name] => Goce, Dennis 
+            [id] => 14
+            [type] => 42214
+            [date] => 1970-01-01 02:00:00
+        )
+
+    [87] => Array
+        (
+            [name] => Dumo, Kristel 
+            [id] => 7
+            [type] => 42214
+            [date] => 1970-01-01 02:00:00
+        )
+
+    [88] => Array
+        (
+            [name] => Belardo, Daisy 
+            [id] => 4
+            [type] => 42214
+            [date] => 1970-01-01 02:00:00
+        )
+
+    [89] => Array
+        (
+            [name] => Gallardo, Johanna 
+            [id] => 12
+            [type] => 42214
+            [date] => 1970-01-01 02:00:00
+        )
+
+    [90] => Array
+        (
+            [name] => Dayauon, Eric 
+            [id] => 11
+            [type] => 42214
+            [date] => 1970-01-01 02:00:00
+        )
+
+    [91] => Array
+        (
+            [name] => Balasa, Joan B
+            [id] => 22
+            [type] => 42214
+            [date] => 1970-01-01 02:00:00
+        )
+
+    [92] => Array
+        (
+            [name] => Bernardo, Dennis 
+            [id] => 1
+            [type] => 42214
+            [date] => 1970-01-01 02:00:00
+        )
+
+    [93] => Array
+        (
+            [name] => Bacong, Kenneth 
+            [id] => 19
+            [type] => 42214
+            [date] => 1970-01-01 02:00:00
+        )
+
+    [94] => Array
+        (
+            [name] => Cunanan, Ronald 
+            [id] => 3
+            [type] => 42214
+            [date] => 1970-01-01 02:00:00
+        )
+
+    [95] => Array
+        (
+            [name] => Bonifacio, Woody 
+            [id] => 5
+            [type] => 42214
+            [date] => 1970-01-01 02:00:00
+        )
+
+    [96] => Array
+        (
+            [name] => Caluag, Rosanna 
+            [id] => 20
+            [type] => 42214
+            [date] => 1970-01-01 02:00:00
+        )
+
+    [97] => Array
+        (
+            [name] => Barrido, Gloria Mae 
+            [id] => 19
+            [type] => 42214
+            [date] => 1970-01-01 02:00:00
+        )
+
+    [98] => Array
+        (
+            [name] => De Guzman, Joseph 
+            [id] => 13
+            [type] => 42214
+            [date] => 1970-01-01 02:00:00
+        )
+
+    [99] => Array
+        (
+            [name] => Mandapat, Abigael 
+            [id] => 17
+            [type] => 42214
+            [date] => 1970-01-01 02:00:00
+        )
+
+    [100] => Array
+        (
+            [name] => Aguillon, Oliver 
+            [id] => 15
+            [type] => 42214
+            [date] => 1970-01-01 02:00:00
+        )
+
+    [101] => Array
+        (
+            [name] => Campos, Alexis 
+            [id] => 2
+            [type] => 42215
+            [date] => 1970-01-01 02:00:00
+        )
+
+    [102] => Array
+        (
+            [name] => Goce, Dennis 
+            [id] => 14
+            [type] => 42215
+            [date] => 1970-01-01 02:00:00
+        )
+
+    [103] => Array
+        (
+            [name] => Caluag, Rosanna 
+            [id] => 20
+            [type] => 42215
+            [date] => 1970-01-01 02:00:00
+        )
+
+    [104] => Array
+        (
+            [name] => Balasa, Joan B
+            [id] => 22
+            [type] => 42215
+            [date] => 1970-01-01 02:00:00
+        )
+
+    [105] => Array
+        (
+            [name] => Barrido, Gloria Mae 
+            [id] => 19
+            [type] => 42215
+            [date] => 1970-01-01 02:00:00
+        )
+
+    [106] => Array
+        (
+            [name] => Cunanan, Ronald 
+            [id] => 3
+            [type] => 42215
+            [date] => 1970-01-01 02:00:00
+        )
+
+    [107] => Array
+        (
+            [name] => Gallardo, Johanna 
+            [id] => 12
+            [type] => 42215
+            [date] => 1970-01-01 02:00:00
+        )
+
+    [108] => Array
+        (
+            [name] => Martinez, Jermaine 
+            [id] => 21
+            [type] => 42215
+            [date] => 1970-01-01 02:00:00
+        )
+
+    [109] => Array
+        (
+            [name] => Bacong, Kenneth 
+            [id] => 19
+            [type] => 42215
+            [date] => 1970-01-01 02:00:00
+        )
+
+    [110] => Array
+        (
+            [name] => Dumo, Kristel 
+            [id] => 7
+            [type] => 42215
+            [date] => 1970-01-01 02:00:00
+        )
+
+    [111] => Array
+        (
+            [name] => Aguillon, Oliver 
+            [id] => 15
+            [type] => 42215
+            [date] => 1970-01-01 02:00:00
+        )
+
+    [112] => Array
+        (
+            [name] => Belardo, Daisy 
+            [id] => 4
+            [type] => 42215
+            [date] => 1970-01-01 02:00:00
+        )
+
+    [113] => Array
+        (
+            [name] => Mandapat, Abigael 
+            [id] => 17
+            [type] => 42215
+            [date] => 1970-01-01 02:00:00
+        )
+
+    [114] => Array
+        (
+            [name] => Dayauon, Eric 
+            [id] => 11
+            [type] => 42215
+            [date] => 1970-01-01 02:00:00
+        )
+
+    [115] => Array
+        (
+            [name] => De Guzman, Joseph 
+            [id] => 13
+            [type] => 42215
+            [date] => 1970-01-01 02:00:00
+        )
+
+    [116] => Array
+        (
+            [name] => Bonifacio, Woody 
+            [id] => 5
+            [type] => 42215
+            [date] => 1970-01-01 02:00:00
+        )
+
+    [117] => Array
+        (
+            [name] => Gallardo, Johanna 
+            [id] => 12
+            [type] => 42215
+            [date] => 1970-01-01 02:00:00
+        )
+
+    [118] => Array
+        (
+            [name] => Belardo, Daisy 
+            [id] => 4
+            [type] => 42215
+            [date] => 1970-01-01 02:00:00
+        )
+
+    [119] => Array
+        (
+            [name] => Dumo, Kristel 
+            [id] => 7
+            [type] => 42215
+            [date] => 1970-01-01 02:00:00
+        )
+
+    [120] => Array
+        (
+            [name] => Dayauon, Eric 
+            [id] => 11
+            [type] => 42215
+            [date] => 1970-01-01 02:00:00
+        )
+
+    [121] => Array
+        (
+            [name] => Martinez, Jermaine 
+            [id] => 21
+            [type] => 42215
+            [date] => 1970-01-01 02:00:00
+        )
+
+    [122] => Array
+        (
+            [name] => Goce, Dennis 
+            [id] => 14
+            [type] => 42215
+            [date] => 1970-01-01 02:00:00
+        )
+
+    [123] => Array
+        (
+            [name] => Mandapat, Abigael 
+            [id] => 17
+            [type] => 42215
+            [date] => 1970-01-01 02:00:00
+        )
+
+    [124] => Array
+        (
+            [name] => Balasa, Joan B
+            [id] => 22
+            [type] => 42215
+            [date] => 1970-01-01 02:00:00
+        )
+
+    [125] => Array
+        (
+            [name] => Bacong, Kenneth 
+            [id] => 19
+            [type] => 42215
+            [date] => 1970-01-01 02:00:00
+        )
+
+    [126] => Array
+        (
+            [name] => Cunanan, Ronald 
+            [id] => 3
+            [type] => 42215
+            [date] => 1970-01-01 02:00:00
+        )
+
+    [127] => Array
+        (
+            [name] => Bonifacio, Woody 
+            [id] => 5
+            [type] => 42215
+            [date] => 1970-01-01 02:00:00
+        )
+
+    [128] => Array
+        (
+            [name] => Aguillon, Oliver 
+            [id] => 15
+            [type] => 42215
+            [date] => 1970-01-01 02:00:00
+        )
+
+    [129] => Array
+        (
+            [name] => Campos, Alexis 
+            [id] => 2
+            [type] => 42215
+            [date] => 1970-01-01 02:00:00
+        )
+
+    [130] => Array
+        (
+            [name] => De Guzman, Joseph 
+            [id] => 13
+            [type] => 42215
+            [date] => 1970-01-01 02:00:00
+        )
+
+    [131] => Array
+        (
+            [name] => Barrido, Gloria Mae 
+            [id] => 19
+            [type] => 42216
+            [date] => 1970-01-01 02:00:00
+        )
+
+    [132] => Array
+        (
+            [name] => Caluag, Rosanna 
+            [id] => 20
+            [type] => 42216
+            [date] => 1970-01-01 02:00:00
+        )
+
+    [133] => Array
+        (
+            [name] => Campos, Alexis 
+            [id] => 2
+            [type] => 42216
+            [date] => 1970-01-01 02:00:00
+        )
+
+    [134] => Array
+        (
+            [name] => Goce, Dennis 
+            [id] => 14
+            [type] => 42216
+            [date] => 1970-01-01 02:00:00
+        )
+
+    [135] => Array
+        (
+            [name] => Caluag, Rosanna 
+            [id] => 20
+            [type] => 42216
+            [date] => 1970-01-01 02:00:00
+        )
+
+    [136] => Array
+        (
+            [name] => Bacong, Kenneth 
+            [id] => 19
+            [type] => 42216
+            [date] => 1970-01-01 02:00:00
+        )
+
+    [137] => Array
+        (
+            [name] => Aguillon, Oliver 
+            [id] => 15
+            [type] => 42216
+            [date] => 1970-01-01 02:00:00
+        )
+
+    [138] => Array
+        (
+            [name] => Balasa, Joan B
+            [id] => 22
+            [type] => 42216
+            [date] => 1970-01-01 02:00:00
+        )
+
+    [139] => Array
+        (
+            [name] => Barrido, Gloria Mae 
+            [id] => 19
+            [type] => 42216
+            [date] => 1970-01-01 02:00:00
+        )
+
+    [140] => Array
+        (
+            [name] => Belardo, Daisy 
+            [id] => 4
+            [type] => 42216
+            [date] => 1970-01-01 02:00:00
+        )
+
+    [141] => Array
+        (
+            [name] => Mandapat, Abigael 
+            [id] => 17
+            [type] => 42216
+            [date] => 1970-01-01 02:00:00
+        )
+
+    [142] => Array
+        (
+            [name] => Gallardo, Johanna 
+            [id] => 12
+            [type] => 42216
+            [date] => 1970-01-01 02:00:00
+        )
+
+    [143] => Array
+        (
+            [name] => Dumo, Kristel 
+            [id] => 7
+            [type] => 42216
+            [date] => 1970-01-01 02:00:00
+        )
+
+    [144] => Array
+        (
+            [name] => Dayauon, Eric 
+            [id] => 11
+            [type] => 42216
+            [date] => 1970-01-01 02:00:00
+        )
+
+    [145] => Array
+        (
+            [name] => Bonifacio, Woody 
+            [id] => 5
+            [type] => 42216
+            [date] => 1970-01-01 02:00:00
+        )
+
+    [146] => Array
+        (
+            [name] => De Guzman, Joseph 
+            [id] => 13
+            [type] => 42216
+            [date] => 1970-01-01 02:00:00
+        )
+
+    [147] => Array
+        (
+            [name] => Buizon, Monico 
+            [id] => 18
+            [type] => 42216
+            [date] => 1970-01-01 02:00:00
+        )
+
+    [148] => Array
+        (
+            [name] => Campos, Alexis 
+            [id] => 2
+            [type] => 42216
+            [date] => 1970-01-01 02:00:00
+        )
+
+    [149] => Array
+        (
+            [name] => Goce, Dennis 
+            [id] => 14
+            [type] => 42216
+            [date] => 1970-01-01 02:00:00
+        )
+
+    [150] => Array
+        (
+            [name] => Mandapat, Abigael 
+            [id] => 17
+            [type] => 42216
+            [date] => 1970-01-01 02:00:00
+        )
+
+    [151] => Array
+        (
+            [name] => Belardo, Daisy 
+            [id] => 4
+            [type] => 42216
+            [date] => 1970-01-01 02:00:00
+        )
+
+    [152] => Array
+        (
+            [name] => Dumo, Kristel 
+            [id] => 7
+            [type] => 42216
+            [date] => 1970-01-01 02:00:00
+        )
+
+    [153] => Array
+        (
+            [name] => Gallardo, Johanna 
+            [id] => 12
+            [type] => 42216
+            [date] => 1970-01-01 02:00:00
+        )
+
+    [154] => Array
+        (
+            [name] => Dayauon, Eric 
+            [id] => 11
+            [type] => 42216
+            [date] => 1970-01-01 02:00:00
+        )
+
+    [155] => Array
+        (
+            [name] => Aguillon, Oliver 
+            [id] => 15
+            [type] => 42216
+            [date] => 1970-01-01 02:00:00
+        )
+
+    [156] => Array
+        (
+            [name] => Buizon, Monico 
+            [id] => 18
+            [type] => 42216
+            [date] => 1970-01-01 02:00:00
+        )
+
+    [157] => Array
+        (
+            [name] => Balasa, Joan B
+            [id] => 22
+            [type] => 42216
+            [date] => 1970-01-01 02:00:00
+        )
+
+    [158] => Array
+        (
+            [name] => Bacong, Kenneth 
+            [id] => 19
+            [type] => 42216
+            [date] => 1970-01-01 02:00:00
+        )
+
+    [159] => Array
+        (
+            [name] => De Guzman, Joseph 
+            [id] => 13
+            [type] => 42216
+            [date] => 1970-01-01 02:00:00
+        )
+
+    [160] => Array
+        (
+            [name] => Bonifacio, Woody 
+            [id] => 5
+            [type] => 42216
+            [date] => 1970-01-01 02:00:00
+        )
+
+)
+
