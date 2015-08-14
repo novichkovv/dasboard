@@ -1,10 +1,10 @@
-<div class="col-md-6">
+<div class="col-md-12">
     <section class="panel">
         <header class="panel-heading">
             Team Member Hours
         </header>
         <div class="panel-body">
-            <div id="team_member_hours" style="width:600px;height:300px"></div>
+            <div id="team_member_hours" style="width:100% ;height:400px"></div>
         </div>
     </section>
 </div>
@@ -13,9 +13,13 @@
     $(document).ready(function () {
         var ticks = ['a','b','c','d'];
         $.plot($("#team_member_hours"), [ {
-                data: [[0, 4], [1, 6], [2,3], [3,1], [4,5], [5,2], [6,4], [7,0], [8,4]],
+                data: [
+                    <?php foreach($stats['data'] as $k => $v): ?>
+                    [<?php echo $v; ?>,<?php echo $k; ?>]<?php if($k != count($stats['data']) - 1) echo ','; ?>
+                    <?php endforeach; ?>
+                ],
                 bars: {
-//                    show: true,
+                    show: true,
                     barWidth: 0.8,
                     fillColor: '#CCE8E2',
                     highlightColor: '#CCE8E2',
@@ -24,11 +28,16 @@
             }],
             {
                 yaxis: {
-                    max: 7,
-                    ticks: [[0,'Time Tracker Fix'],[1,'Software'],[2,'Cadworx'],[3,'CRM bug fixes'], [4,'invoice hcc'], [5,'Rolex Time'], [6, 'Shoring takeoff']]
+                    ticks: [
+                    <?php foreach($stats['ticks'] as $k => $v): ?>
+                    [<?php echo $k; ?>, '<?php echo $v; ?>']<?php if($k != count($stats['ticks']) - 1) echo ','; ?>
+                    <?php endforeach; ?>
+            ]
+
                 },
                 xasis: {
-                    max: 20
+//                    max: 20
+
                 }
             });
     });

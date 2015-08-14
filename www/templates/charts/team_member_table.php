@@ -24,11 +24,11 @@
             }],
             {
                 yaxis: {
-                    max: 7,
-                    ticks: [[0,'Time Tracker Fix'],[1,'Software'],[2,'Cadworx'],[3,'CRM bug fixes'], [4,'invoice hcc'], [5,'Rolex Time'], [6, 'Shoring takeoff']]
+//                    max: 7
+//                    ticks: [[0,'Time Tracker Fix'],[1,'Software'],[2,'Cadworx'],[3,'CRM bug fixes'], [4,'invoice hcc'], [5,'Rolex Time'], [6, 'Shoring takeoff']]
                 },
                 xasis: {
-                    max: 20
+//                    max: 20
                 }
             });
     });
