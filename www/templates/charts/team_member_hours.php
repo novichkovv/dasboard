@@ -4,7 +4,7 @@
             Team Member Hours
         </header>
         <div class="panel-body">
-            <div id="team_member_hours" style="width:100% ;height:400px"></div>
+            <div id="team_member_hours" style="width:100% ;height:400px; background-color: rgba(115, 193, 255, 0.11)"></div>
         </div>
     </section>
 </div>
@@ -16,18 +16,21 @@
                 data: [
                     <?php foreach($stats['data'] as $k => $v): ?>
                     [<?php echo $v; ?>,<?php echo $k; ?>]<?php if($k != count($stats['data']) - 1) echo ','; ?>
-                    <?php endforeach; ?>
+                    <?php endforeach; ?>,
+
                 ],
+                color: '#78A8FF',
                 bars: {
                     show: true,
                     barWidth: 0.8,
-                    fillColor: '#CCE8E2',
+                    fillColor: 'rgba(143, 198, 242, 0.7)',
                     highlightColor: '#CCE8E2',
                     horizontal: true
                 }
             }],
             {
                 yaxis: {
+                    color: 'white',
                     ticks: [
                     <?php foreach($stats['ticks'] as $k => $v): ?>
                     [<?php echo $k; ?>, '<?php echo $v; ?>']<?php if($k != count($stats['ticks']) - 1) echo ','; ?>
@@ -36,6 +39,7 @@
 
                 },
                 xasis: {
+                    color: 'white',
 //                    max: 20
 
                 }
