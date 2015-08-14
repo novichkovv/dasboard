@@ -381,4 +381,31 @@ class model
         $log[] = print_r($value,1);
         registry::set('log', $log);
     }
+
+    /**
+     *
+     */
+
+    public function beginTransaction()
+    {
+        $this->pdo->beginTransaction();
+    }
+
+    /**
+     *
+     */
+
+    public function commitTransaction()
+    {
+        $this->pdo->commit();
+    }
+
+    /**
+     *
+     */
+
+    public function rollbackTransaction()
+    {
+        $this->pdo->rollBack();
+    }
 }

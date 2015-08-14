@@ -125,7 +125,7 @@ INSERT INTO `user_groups` (`id`, `group_name`, `create_date`) VALUES
 -- --------------------------------------------------------
 
 --
--- Table Structure `user_groups`
+-- Table Structure `charts`
 --
 
 CREATE TABLE IF NOT EXISTS `charts` (
@@ -139,7 +139,7 @@ CREATE TABLE IF NOT EXISTS `charts` (
 ) ENGINE=MyISAM  DEFAULT CHARSET=utf8;
 
 --
--- Table data dump `system_routes`
+-- Table data dump `charts`
 --
 INSERT INTO `charts` (`chart_name`, `chart_key`, `position`, `icon`) VALUES
   ('Active Projects', 'active_projects', 1, ''),
@@ -154,11 +154,29 @@ INSERT INTO `charts` (`chart_name`, `chart_key`, `position`, `icon`) VALUES
 -- --------------------------------------------------------
 
 --
--- Table Structure `system_routes_user_groups_relations`
+-- Table Structure `charts_user_groups_relations`
 --
 
 CREATE TABLE IF NOT EXISTS `charts_user_groups_relations` (
   `chart_id` bigint(20) unsigned NOT NULL,
   `user_group_id` bigint(20) unsigned NOT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+) ENGINE=MyISAM DEFAULT CHARSET=utf8;
 
+
+
+CREATE TABLE `user_mapping` (
+  `id` bigint(20) unsigned NOT NULL AUTO_INCREMENT,
+  `user_name` varchar(100) NOT NULL,
+  `user_id` bigint(20) unsigned NOT NULL,
+  PRIMARY KEY (`id`),
+  UNIQUE KEY `id` (`id`),
+  UNIQUE KEY `user_name` (`user_name`),
+  UNIQUE KEY `user_id` (`user_id`)
+) ENGINE=MyISAM DEFAULT CHARSET=utf8;
+
+CREATE TABLE work_time (
+  `id` SERIAL PRIMARY KEY,
+  `username` varchar(100) NOT NULL,
+  `work_begin` DATETIME NOT NULL,
+  `work_end` DATETIME NOT NULL
+);

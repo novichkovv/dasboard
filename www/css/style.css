@@ -81,7 +81,7 @@ section.content {
     background: -ms-linear-gradient(top, #fcfff4 0%, #EDF3E4 40%, #e6ecde 100%);
     background: linear-gradient(top, #fcfff4 0%, #EDF3E4 40%, #e6ecde 100%);
     filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#fcfff4', endColorstr='#b3bead',GradientType=0 );
-    padding: 20px 9px;
+    /*padding: 20px 9px;*/
 }
 .transparent-input:-webkit-autofill {
     background: none;
@@ -112,7 +112,12 @@ section.content {
     border: 2px solid #96CAD3;
 }
 
-
+.validate-message {
+    display: none;
+    color: #c04040;
+    font-size: 15px;
+    padding: 5px 10px;
+}
 
 
 

@@ -28,7 +28,8 @@ class base
             } else {
                 $m = new default_model($model);
             }
-            $models[$model][$table];
+            $models[$model][$table] = $m;
+            registry::remove('models');
             registry::set('models', $models);
         }
         return $m;

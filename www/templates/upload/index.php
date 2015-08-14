@@ -11,6 +11,66 @@
         </section>
     </div>
 </div>
+
+<div class="modal fade" id="warning_modal">
+    <div class="modal-dialog modal-sm">
+        <div class="modal-content">
+            <div class="modal-header modal-warning">
+                <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
+                <h4 class="modal-title">
+                    <i class="text-danger fa fa-warning"></i>
+                    Following Users Are Not Mapped
+                </h4>
+            </div>
+            <div class="modal-body with-padding">
+                <table class="table">
+                    <thead>
+                    <tr>
+                        <th>Id</th>
+                        <th>Name</th>
+                    </tr>
+                    </thead>
+                    <tbody id="table_body">
+
+                    </tbody>
+                </table>
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+            </div>
+        </div>
+    </div>
+</div>
+<div class="modal fade" id="warning_modal_1">
+    <div class="modal-dialog modal-sm">
+        <div class="modal-content">
+            <div class="modal-header modal-warning">
+                <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
+                <h4 class="modal-title">
+                    <i class="text-danger fa fa-warning"></i>
+                    Following Records have Incorrect Type
+                </h4>
+            </div>
+            <div class="modal-body with-padding">
+                <table class="table">
+                    <thead>
+                    <tr>
+                        <th>#</th>
+                        <th>Name</th>
+                        <th>Type</th>
+                    </tr>
+                    </thead>
+                    <tbody id="table_body_1">
+
+                    </tbody>
+                </table>
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+            </div>
+        </div>
+    </div>
+</div>
 <script type="text/javascript">
     $ = jQuery.noConflict();
     $(document).ready(function () {
@@ -22,7 +82,31 @@
                     {
                         Notifier.success('The File was successfully uploaded', 'Success');
                     }, function(respond) {
-                        Notifier.error(respond.error, 'Fail');
+                        if(respond.status == 3) {
+                            $("#table_body").html('');
+                            for (var i in respond.result) {
+                                $("#table_body").append('' +
+                                '<tr>' +
+                                '   <td>' + respond.result[i][1] + '</td>' +
+                                '   <td>' + respond.result[i][0] + '</td>' +
+                                '</tr>');
+                                $("#warning_modal").modal('show');
+                            }
+                        } else if(respond.status == 4) {
+                            $("#table_body_1").html('');
+                            for(var i in respond.result) {
+                                $("#table_body_1").append('' +
+                                '<tr>' +
+                                '   <td>' + respond.result[i][0] + '</td>' +
+                                '   <td>' + respond.result[i][1] + '</td>' +
+                                '   <td>' + respond.result[i][2] + '</td>' +
+                                '</tr>');
+                                $("#warning_modal_1").modal('show');
+                            }
+                        } else {
+                            Notifier.error(respond.error, 'Fail');
+                        }
+
                     });
                 });
             },
