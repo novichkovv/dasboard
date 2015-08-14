@@ -180,3 +180,7 @@ CREATE TABLE work_time (
   `work_begin` DATETIME NOT NULL,
   `work_end` DATETIME NOT NULL
 );
+
+
+INSERT INTO `dashboard`.`system_routes` (`route`, `title`, `position`, `icon`) VALUES ('mapping', 'User Mapping', '9', 'fa fa-exchange');
+UPDATE `dashboard`.`system_routes` SET `position`='8' WHERE `id`='8';
