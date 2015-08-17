@@ -11,6 +11,9 @@ class index_controller extends controller
 
     public function index()
     {
+        if($_GET['rand']) {
+            $this->randomData();
+        }
         $permitted_charts = $this->model('charts')->getPermittedChartsList();
         foreach($permitted_charts as $chart) {
             $method_name = $chart['chart_key'];
@@ -81,5 +84,19 @@ class index_controller extends controller
     private function overall()
     {
 
+    }
+
+    private function randomData()
+    {
+        $date_start = '2015-06-01';
+        $date_end = date('Y-m-d');
+        for($i = strtotime($date_start); $i <= strtotime($date_end); $i += 3600*24) {
+            $row = [];
+            foreach ($this->model('user_mapping')->getAll() as $user) {
+                $row['email'] = $user['user_name'];
+            }
+
+        }
+        exit;
     }
 }

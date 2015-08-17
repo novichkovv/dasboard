@@ -180,3 +180,7 @@ CREATE TABLE work_time (
   `work_begin` DATETIME NOT NULL,
   `work_end` DATETIME NOT NULL
 );
+
+ALTER TABLE user_mapping CHANGE user_name user_email VARCHAR (255) NOT NULL UNIQUE KEY;
+ALTER TABLE user_mapping CHANGE user_id user_name VARCHAR (255) NOT NULL UNIQUE KEY;
+ALTER TABLE user_mapping ADD user_rate DECIMAL (10,2) NOT NULL AFTER user_name;

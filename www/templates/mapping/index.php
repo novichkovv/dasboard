@@ -42,19 +42,25 @@
                         <thead>
                         <tr>
                             <th>
+                                <input type="text" name="user_email" data-sign="like" placeholder="search" class="form-control filter-field">
+                            </th>
+                            <th>
                                 <input type="text" name="user_name" data-sign="like" placeholder="search" class="form-control filter-field">
                             </th>
                             <th>
-                                <input type="text" name="user_id" data-sign="like" placeholder="search" class="form-control filter-field">
+<!--                                <input type="text" name="user_id" data-sign="like" placeholder="search" class="form-control filter-field">-->
                             </th>
                             <th></th>
                         </tr>
                         <tr>
                             <th>
+                                User Email
+                            </th>
+                            <th>
                                 User Name
                             </th>
                             <th>
-                                User Id
+                                User Rate
                             </th>
                             <th>
                                 Actions
@@ -80,15 +86,29 @@
                 </div>
                 <div class="modal-body with-padding">
                     <div class="form-group">
-                        <label>User Name</label>
-                        <input name="mapping[user_name]" id="edit_name" class="form-control" data-require="1">
+                        <label>User Email</label>
+                        <input name="mapping[user_email]" id="edit_name" class="form-control" data-require="1">
                         <div class="error-require validate-message">
                             Required Field
                         </div>
                     </div>
                     <div class="form-group">
-                        <label>User Id</label>
-                        <input name="mapping[user_id]" id="edit_name" class="form-control" data-require="1">
+                        <label>User Name</label>
+                        <select name="mapping[user_name]" class="form-control">
+                            <?php foreach ($names as $name): ?>
+                                <option value="<?php echo $name['username']; ?>">
+                                    <?php echo $name['username']; ?>
+                                </option>
+                            <?php endforeach; ?>
+                        </select>
+<!--                        <input id="edit_name" class="form-control" data-require="1">-->
+                        <div class="error-require validate-message">
+                            Required Field
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <label>User Rate</label>
+                        <input name="mapping[user_rate]" id="edit_name" class="form-control">
                         <div class="error-require validate-message">
                             Required Field
                         </div>

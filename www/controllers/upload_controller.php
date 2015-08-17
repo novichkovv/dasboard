@@ -26,15 +26,15 @@ class upload_controller extends controller
                         if($k == 0) {
                             continue;
                         }
-                        if (!$user = $this->model('user_mapping')->getByField('user_id', $row[1])) {
-                            $mapping_errors[$row[1]] = $row;
+                        if (!$user = $this->model('user_mapping')->getByField('user_name', $row[0])) {
+                            //$mapping_errors[$row[0]] = $row;
                         }
-                        $values[$k]['username'] = $user['user_name'];
+                        $values[$k]['username'] = $row[0];
                         if($row[2] == 'Clock In') {
                             $values[$k]['work_begin'] = date('Y-m-d H:i:s', $simpleXLSX->unixstamp($row[3] + $row[4]));
                         } elseif($row[2] == 'Clock Out') {
                             $values[$k]['id'] = $this->model('work_time')->getByFields(array(
-                                'username' => $user['user_name'],
+                                'username' => $row[0],
                                 'work_end' => '0000-00-00 00:00:00'
                             ))['id'];
                             $values[$k]['work_end'] = date('Y-m-d H:i:s', $simpleXLSX->unixstamp($row[3] + $row[4]));
