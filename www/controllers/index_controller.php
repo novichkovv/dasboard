@@ -18,7 +18,8 @@ class index_controller extends controller
         foreach($permitted_charts as $chart) {
             $method_name = $chart['chart_key'];
             if(method_exists($this, $method_name)) {
-                $this->$method_name();
+                $data = $this->model('charts')->$method_name();
+                $this->$method_name($data);
                 $this->template .= $this->fetch('charts' . DS . $method_name);
             } else {
                 $this->writeLog('ERRORS', 'WRONG chart method "' . $method_name . '" called! ');
@@ -46,42 +47,48 @@ class index_controller extends controller
         $this->view('index_na');
     }
 
-    private function active_projects()
+    private function active_projects($data)
     {
 
     }
 
-    private function team_member_hours()
+    private function team_member_hours($data)
+    {
+        $stats = [];
+        foreach($data as $k => $v) {
+            $stats['data'][$k] = round($v['seconds'] / 3600);
+            $stats['ticks'][$k] = $v['username'];
+        }
+        $this->render('stats', $stats);
+
+    }
+
+    private function team_member_table($data)
     {
 
     }
 
-    private function team_member_table()
+    private function utilization($data)
     {
 
     }
 
-    private function utilization()
+    private function week($data)
     {
 
     }
 
-    private function week()
+    private function project_detail($data)
     {
 
     }
 
-    private function project_detail()
+    private function project_cost($data)
     {
 
     }
 
-    private function project_cost()
-    {
-
-    }
-
-    private function overall()
+    private function overall($data)
     {
 
     }

@@ -181,6 +181,12 @@ CREATE TABLE work_time (
   `work_end` DATETIME NOT NULL
 );
 
+<<<<<<< HEAD
 ALTER TABLE user_mapping CHANGE user_name user_email VARCHAR (255) NOT NULL UNIQUE KEY;
 ALTER TABLE user_mapping CHANGE user_id user_name VARCHAR (255) NOT NULL UNIQUE KEY;
 ALTER TABLE user_mapping ADD user_rate DECIMAL (10,2) NOT NULL AFTER user_name;
+=======
+
+INSERT INTO `dashboard`.`system_routes` (`route`, `title`, `position`, `icon`) VALUES ('mapping', 'User Mapping', '9', 'fa fa-exchange');
+UPDATE `dashboard`.`system_routes` SET `position`='8' WHERE `id`='8';
+>>>>>>> 366174df248ecf348e8978e5923f26ad437bba36

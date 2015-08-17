@@ -41,9 +41,11 @@ class upload_controller extends controller
                         } else {
                             $type_errors[] = array($k + 1, $user['user_name'], $row[2]);
                         }
-                        $this->model('work_time')->insert($values[$k]);
+                        if($values[$k]['username']) {
+                            $this->model('work_time')->insert($values[$k]);
+                        }
                     }
-                    if(!$type_errors) {
+                    if(!$type_errors && !$mapping_errors) {
                         $this->model('work_time')->commitTransaction();
                     } else {
                         $this->model('work_time')->rollbackTransaction();
