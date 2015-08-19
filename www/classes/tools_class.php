@@ -28,4 +28,16 @@ class tools_class
         $mail->MsgHTML($message);
         return $mail->Send();
     }
+
+    public static function formatTime($seconds)
+    {
+        $sec = $seconds % 60;
+        $sec = $sec < 10 ? '0' . $sec : $sec;
+        $seconds = floor($seconds / 60);
+        $min = $seconds % 60;
+        $min = $min < 10 ? '0' . $min : $min;
+        $hours = floor($seconds / 60);
+        $hours = $hours < 10 ? '0' . $hours : $hours;
+        return $hours . ':' . $min . ':' . $sec;
+    }
 }

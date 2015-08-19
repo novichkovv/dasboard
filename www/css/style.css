@@ -831,3 +831,9 @@ section.content {
      list-style: none;
      margin-left: -20px;
  }
+ .flot-tick-label.tickLabel {
+     margin-right: 5px !important;
+     margin-bottom: 15px !important;
+     font-size: 14px !important;
+     min-width: 20% !important;
+ }

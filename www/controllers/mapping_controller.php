@@ -42,7 +42,7 @@ class mapping_controller extends controller
                 } elseif(!$_POST['mapping']['id'] && $this->model('user_mapping')->getByField('user_name', $_POST['mapping']['user_name'])) {
                     echo json_encode(array('status' => 2, 'error' => 'User Name Already Exists'));
                 } elseif(!$_POST['mapping']['id'] && $this->model('user_mapping')->getByField('user_email', $_POST['mapping']['user_email'])['id']) {
-                    echo json_encode(array('status' => 2, 'error' => 'User Id Already Exists'));
+                    echo json_encode(array('status' => 2, 'error' => 'User Email Already Exists'));
                 } else {
                     if($this->model('user_mapping')->insert($_POST['mapping'])) {
                         echo json_encode(array('status' => 1));

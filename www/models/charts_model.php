@@ -23,54 +23,89 @@ class charts_model extends model
         return $this->get_all($stm, array('user_group_id' => registry::get('user')['user_group_id']));
     }
 
-    public function active_projects()
+    public function active_projects($date_range)
     {
-
+        $stm = $this->pdo->prepare('
+        SELECT
+            project,
+            SUM(TIMESTAMPDIFF(HOUR,
+                work_begin,
+                work_end)) hours
+        FROM
+            asanatt_task t
+                JOIN
+            asanatt_worktime w USING (tid)
+        WHERE
+            work_begin > :date_start
+                AND work_end < :date_end
+        GROUP BY project
+		');
+        return $this->get_all($stm, $date_range);
     }
 
 
-    public function team_member_hours()
+    public function team_member_hours($date_range)
     {
         $stm = $this->pdo->prepare('
         SELECT
             username,
-            SUM(TIMESTAMPDIFF(SECOND,
+            SUM(TIMESTAMPDIFF(HOUR,
                 work_begin,
-                work_end)) seconds
+                work_end)) hours
         FROM
-            work_time
+            asanatt_task t
+                JOIN
+            asanatt_worktime w USING (tid)
+        WHERE
+            work_begin > :date_start
+                AND work_end < :date_end
         GROUP BY username
         ');
-        return $this->get_all($stm);
+        return $this->get_all($stm, $date_range);
     }
 
-    public function team_member_table()
+    public function team_member_table($date_range)
+    {
+        $stm = $this->pdo->prepare('
+        SELECT
+            DATE(work_begin) date,
+            username,
+            SUM(TIMESTAMPDIFF(SECOND ,
+                        work_begin,
+                        work_end)) seconds
+        FROM
+            work_time
+        WHERE
+            work_begin > :date_start
+                AND work_end < :date_end
+            GROUP BY DATE(work_begin), username
+        ');
+        return $this->get_all($stm, $date_range);
+    }
+
+    public function utilization($date_range)
     {
 
     }
 
-    public function utilization()
+    public function week($date_range)
     {
 
     }
 
-    public function week()
+    public function project_detail($date_range)
     {
 
     }
 
-    public function project_detail()
+    public function project_cost($date_range)
     {
 
     }
 
-    public function project_cost()
+    public function overall($date_range)
     {
 
     }
 
-    public function overall()
-    {
-
-    }
 }

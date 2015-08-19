@@ -27,7 +27,7 @@ class upload_controller extends controller
                             continue;
                         }
                         if (!$user = $this->model('user_mapping')->getByField('user_name', $row[0])) {
-                            //$mapping_errors[$row[0]] = $row;
+                            $mapping_errors[$row[0]] = $row;
                         }
                         $values[$k]['username'] = $row[0];
                         if($row[2] == 'Clock In') {
@@ -67,5 +67,31 @@ class upload_controller extends controller
             exit;
         }
         $this->view('upload' . DS . 'index');
+    }
+
+    public function index_ajax()
+    {
+        switch($_REQUEST['action']) {
+            case "save_mapping":
+                foreach ($_POST['mapping'] as $k => $v) {
+                    $_POST['mapping'][$k] = trim($v);
+                }
+                if(!$_POST['mapping']['user_name'] || !$_POST['mapping']['user_email']) {
+                    echo json_encode(array('status' => 2, 'error' => 'Missed Required Fields'));
+                } elseif(!$_POST['mapping']['id'] && $this->model('user_mapping')->getByField('user_name', $_POST['mapping']['user_name'])) {
+                    echo json_encode(array('status' => 2, 'error' => 'User Name Already Exists'));
+                } elseif(!$_POST['mapping']['id'] && $this->model('user_mapping')->getByField('user_email', $_POST['mapping']['user_email'])['id']) {
+                    echo json_encode(array('status' => 2, 'error' => 'User Email Already Exists'));
+                } else {
+                    if($this->model('user_mapping')->insert($_POST['mapping'])) {
+                        echo json_encode(array('status' => 1));
+                    } else {
+                        echo json_encode(array('status' => 2, 'Unexpected Error'));
+                    }
+                }
+                exit;
+                break;
+
+        }
     }
 }
