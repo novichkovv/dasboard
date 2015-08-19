@@ -26,7 +26,7 @@
                 <li class="dropdown-header text-center">Account</li>
                 <li class="divider"></li>
                 <li>
-                    <a data-toggle="modal" href="#modal-user-settings">
+                    <a data-toggle="modal" href="<?php echo SITE_DIR; ?>settings/">
                         <i class="fa fa-cog fa-fw pull-right"></i>
                         Settings
                     </a>

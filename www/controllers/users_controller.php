@@ -68,6 +68,12 @@ class users_controller extends controller
                 $row['user_password'] = md5($_POST['user_password']);
             }
             $this->model('users')->insert($row);
+            if($_POST['user_password']) {
+                $this->logOut();
+                $this->auth(registry::get('user')['email'], md5($_POST['user_password']));
+                registry::remove('user');
+                $this->checkAuth();
+            }
             header('Location: ' . SITE_DIR . 'users/');
             exit;
         }

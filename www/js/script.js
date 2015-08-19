@@ -88,10 +88,10 @@ var validate = function validate(form_id)
 
     $(form).find('[data-validate="password"]').each(function()
     {
-        if($(this).val() != $(form).find('[data-validate="rpassword"]').val())
+        if($(this).val() != $(form).find('[data-validate="repeat_password"]').val())
         {
-            if($(this).parent().find('.error-require').css('display') == 'none') {
-                $(this).parent().find('.error-validate').slideDown();
+            if($(form).find('[data-validate="repeat_password"]').parent().find('.error-require').css('display') == 'none') {
+                $(form).find('[data-validate="repeat_password"]').parent().find('.error-validate').slideDown();
             }
             validate = false;
         }
