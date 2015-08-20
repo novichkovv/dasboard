@@ -46,12 +46,12 @@
                     <?php endforeach; ?>,
 
                 ],
-                color: '#F06262',
+                color: '#BF85AB',
                 bars: {
                     show: true,
                     barWidth: 0.8,
-                    fillColor: '#F28D8D',
-                    highlightColor: '#F28D8D',
+                    fillColor: '#DE94C4',
+                    highlightColor: '#DE94C4',
                     horizontal: true
                 }
             }],
@@ -73,7 +73,8 @@
             }
         );
         <?php $i = 1; ?>
-        <?php foreach($stats as $stat): ?>
+        <?php foreach($stats as $k => $stat): ?>
+        <?php if(array_keys($stats)[0] == $k) continue; ?>
         $("[href='#cost_tab_<?php echo $i; ?>']").click(function()
         {
             setTimeout(function()
@@ -85,12 +86,12 @@
                             <?php endforeach; ?>,
 
                         ],
-                        color: '#F06262',
+                        color: '#BF85AB',
                         bars: {
                             show: true,
                             barWidth: 0.8,
-                            fillColor: '#F28D8D',
-                            highlightColor: '#F28D8D',
+                            fillColor: '#DE94C4',
+                            highlightColor: '#DE94C4',
                             horizontal: true
                         }
                     }],

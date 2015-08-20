@@ -103,7 +103,14 @@ class index_controller extends controller
 
     private function week($data)
     {
-
+        $stats = [];
+        $i = 0;
+        foreach($data as $k => $v) {
+            $stats['data'][$i] = $v;
+            $stats['ticks'][$i] = $k;
+            $i ++;
+        }
+        $this->render('stats', $stats);
     }
 
     private function project_detail($data)
@@ -131,7 +138,6 @@ class index_controller extends controller
                 $stats[$project]['ticks'][$i] = trim($val['name']);
                 $i ++;
             }
-
         }
         $this->render('stats', $stats);
     }
@@ -162,12 +168,9 @@ class index_controller extends controller
                 $start = date('Y-m-d', $i) . ' ' . $time['start'];
                 $end = date('Y-m-d', $i) . ' ' . $time['end'];
                 for($j = 0; $j < rand(0,2); $j ++) {
-                   // echo rand(0,2);
                     $row = [];
                     $row['work_begin'] = $start;
                     $row['work_end'] = $end;
-                   // print_r($row);
-                   // exit;;
                     $tid = $this->model('asanatt_worktime')->insert($row);
                     $row = [];
                     $row['tid'] = $tid;

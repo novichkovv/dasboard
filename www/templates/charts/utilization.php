@@ -11,7 +11,6 @@
 <script type="text/javascript">
     $ = jQuery.noConflict();
     $(document).ready(function () {
-        var ticks = ['a','b','c','d'];
         $.plot($("#utilization"), [ {
                 data: [
                     <?php foreach($stats['data'] as $k => $v): ?>
@@ -19,12 +18,12 @@
                     <?php endforeach; ?>,
 
                 ],
-                color: '#F06262',
+                color: '#EBEB56',
                 bars: {
                     show: true,
                     barWidth: 0.8,
-                    fillColor: '#F28D8D',
-                    highlightColor: '#F28D8D',
+                    fillColor: '#FFFF98',
+                    highlightColor: '#FFFF98',
                     horizontal: true
                 }
             }],
@@ -40,8 +39,6 @@
                 },
                 xasis: {
                     color: 'white',
-//                    max: 20
-
                 }
             });
     });

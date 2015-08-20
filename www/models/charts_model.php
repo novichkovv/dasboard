@@ -133,7 +133,7 @@ class charts_model extends model
             username,
             SUM(TIMESTAMPDIFF(SECOND,
                 work_begin,
-                work_end)) / 3600 hours
+                work_end))  seconds
         FROM
             asanatt_task t
                 JOIN
@@ -141,8 +141,25 @@ class charts_model extends model
         WHERE
             work_begin > :date_start
                 AND work_end < :date_end
-        GROUP BY username, DATE_FORMAT(work_begin, "%Y-%u")
+        GROUP BY  username, DATE_FORMAT(work_begin, "%Y-%u")
         ');
+        $tmp = $this->get_all($stm, $date_range);
+
+        $hours = [];
+        foreach($tmp as $v) {
+            if(!$hours[$v['username']]['seconds']) {
+                $hours[$v['username']]['seconds'] = 0;
+                $hours[$v['username']]['count'] = 0;
+            }
+            $hours[$v['username']]['seconds'] += $v['seconds'] / 3600 / 40;
+            $hours[$v['username']]['count'] += 1;
+        }
+        foreach($hours as $k => $v) {
+            if($v['count']) {
+                $hours[$k] = $v['seconds'] /$v['count'] * 100;
+            }
+        }
+        return $hours;
     }
 
     public function project_detail($date_range)
@@ -202,7 +219,7 @@ class charts_model extends model
             }
             $res[$v['project']][$v['name']]['sum'] += ($v['hours'] * $v['user_rate']);
         }
-        print_r($res);
+        //print_r($res);
 
         return $res;
     }
@@ -212,9 +229,9 @@ class charts_model extends model
         $stm = $this->pdo->prepare('
         SELECT
             project,
-            SUM(TIMESTAMPDIFF(SECOND,
+            TIMESTAMPDIFF(SECOND,
                 work_begin,
-                work_end) / 3600 * user_rate) sum
+                work_end) / 3600 * user_rate sum
 
         FROM
             asanatt_task t
@@ -225,18 +242,16 @@ class charts_model extends model
         WHERE
             work_begin > :date_start
                 AND work_end < :date_end
-        GROUP BY user_rate
         ');
         $tmp = $this->get_all($stm, $date_range);
         $res = [];
         foreach($tmp as $v) {
             if(!$res[$v['project']]['sum']) {
-                $res[$v['project']]['sum'] = $v['sum'];
+                $res[$v['project']]['sum'] = 0;
                 $res[$v['project']]['project'] = $v['project'];
             }
-            //$res[$v['project']]['sum'] += ($v['hours'] * $v['user_rate']);
+            $res[$v['project']]['sum'] += $v['sum'];
         }
-        print_r($res);
         return $res;
     }
 
