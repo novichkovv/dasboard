@@ -21,7 +21,7 @@
                         <div class="col-md-offset-1 col-lg-10">
                             <div class="checkbox">
                                 <div class="squaredFour">
-                                    <input type="checkbox" value="None" id="squaredFour" name="check" class="styled-checkbox" checked>
+                                    <input type="checkbox" value="1" id="squaredFour" name="remember" class="styled-checkbox" checked>
                                     <label for="squaredFour"></label>
                                 </div>
                                 <span class="styled-checkbox-label">Remember me</span>

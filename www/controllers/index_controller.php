@@ -89,7 +89,16 @@ class index_controller extends controller
 
     private function utilization($data)
     {
-
+        $stats = [];
+        $i = 0;
+        foreach($data as $k => $v) {
+            if($v['uploaded']) {
+                $stats['data'][$i] = round($v['db'] / $v['uploaded']*100);
+            }
+            $stats['ticks'][$i] = $k;
+            $i ++;
+        }
+        $this->render('stats', $stats);
     }
 
     private function week($data)
@@ -99,17 +108,45 @@ class index_controller extends controller
 
     private function project_detail($data)
     {
+        $stats = [];
+        foreach($data as $project => $v) {
+            $i = 0;
+            foreach($v as $task => $val) {
+                $stats[$project]['data'][$i] = round($val['hours']);
+                $stats[$project]['ticks'][$i] = trim($val['name']);
+                $i ++;
+            }
 
+        }
+        $this->render('stats', $stats);
     }
 
     private function project_cost($data)
     {
+        $stats = [];
+        foreach($data as $project => $v) {
+            $i = 0;
+            foreach($v as $task => $val) {
+                $stats[$project]['data'][$i] = round($val['sum'], 2);
+                $stats[$project]['ticks'][$i] = trim($val['name']);
+                $i ++;
+            }
 
+        }
+        $this->render('stats', $stats);
     }
 
     private function overall($data)
     {
+        $stats = [];
+        $i = 0;
+        foreach($data as $val) {
+            $stats['data'][$i] = round($val['sum'], 2);
+            $stats['ticks'][$i] = trim($val['project']);
+            $i ++;
+        }
 
+        $this->render('stats', $stats);
     }
 
     private function randomData()

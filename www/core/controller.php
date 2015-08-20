@@ -144,6 +144,19 @@ abstract class controller extends base
                 'id' => $_SESSION['user']['id'],
                 'email' => $_SESSION['user']['email'],
                 'user_password' => $_SESSION['user']['user_password']
+            ))
+            ) {
+                registry::set('auth', true);
+                registry::set('user', $user);
+                return true;
+            } else {
+                return false;
+            }
+        } elseif($_COOKIE['auth']) {
+            if($user = $this->model('users')->getByFields(array(
+                'id' => $_COOKIE['id'],
+                'email' => $_COOKIE['email'],
+                'user_password' => $_COOKIE['user_password']
             ))) {
                 registry::set('auth', true);
                 registry::set('user', $user);
@@ -175,6 +188,11 @@ abstract class controller extends base
                 $_SESSION['user']['email'] = $user['email'];
                 $_SESSION['user']['user_password'] = $user['user_password'];
                 $_SESSION['auth'] = 1;
+            } else {
+                setcookie('id', $user['id'], time() + 3600 * 24 * 90);
+                setcookie('email', $user['email'], time() + 3600 * 24 * 90);
+                setcookie('user_password', $user['user_password'], time() + 3600 * 24 * 90);
+                setcookie('auth', 1, time() + 3600 * 24 * 90);
             }
             return true;
         } else {
@@ -190,6 +208,10 @@ abstract class controller extends base
     {
         unset($_SESSION['user']);
         unset($_SESSION['auth']);
+        setcookie('id', '', time() - 3600);
+        setcookie('email', '', time() - 3600);
+        setcookie('user_password', '', time() - 3600);
+        setcookie('auth', '', time() - 3600);
     }
 
     private function sidebar()
