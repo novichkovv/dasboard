@@ -164,6 +164,9 @@ class charts_model extends model
 
     public function project_detail($date_range)
     {
+        $date_start = $_POST['detail_date_start'] ? $_POST['detail_date_start']. ' 00:00:00' : $date_range['date_start'];
+        $date_end = $_POST['detail_date_end'] ? $_POST['detail_date_end']. ' 00:00:00' : $date_range['date_end'];
+        $date_range = array('date_start' => $date_start, 'date_end' => $date_end);
         $stm = $this->pdo->prepare('
         SELECT
 			project,
