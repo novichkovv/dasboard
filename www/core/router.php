@@ -20,7 +20,7 @@ if(isset($_GET['route'])) {
     array_slice($arr, 2);
     unset($_GET['route']);
 } else {
-    $controller = 'index';
+    $controller = 'dashboard';
     $action = 'index';
 }
 

@@ -308,3 +308,9 @@ UNLOCK TABLES;
 /*!40111 SET SQL_NOTES=@OLD_SQL_NOTES */;
 
 -- Dump completed on 2015-08-23 16:00:56
+UPDATE `dashboard`.`system_routes` SET `route`='dashboard/index' WHERE `id`='11';
+UPDATE `dashboard`.`system_routes` SET `route`='dashboard/members_table' WHERE `id`='12';
+UPDATE `dashboard`.`system_routes` SET `route`='dashboard/office_utilization' WHERE `id`='13';
+UPDATE `dashboard`.`system_routes` SET `route`='dashboard/week_performance' WHERE `id`='14';
+UPDATE `dashboard`.`system_routes` SET `route`='dashboard/detail' WHERE `id`='15';
+UPDATE `dashboard`.`system_routes` SET `route`='dashboard/cost' WHERE `id`='16';

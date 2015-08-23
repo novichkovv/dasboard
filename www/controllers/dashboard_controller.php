@@ -5,7 +5,7 @@
  * Date: 25.05.2015
  * Time: 1:19
  */
-class index_controller extends controller
+class dashboard_controller extends controller
 {
     private $template = '';
     private $date_start;
