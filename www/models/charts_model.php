@@ -7,7 +7,7 @@
  */
 class charts_model extends model
 {
-    public function getPermittedChartsList()
+    public function getPermittedChartsList($url)
     {
         $stm = $this->pdo->prepare('
             SELECT
@@ -18,9 +18,32 @@ class charts_model extends model
                 charts_user_groups_relations r ON r.chart_id = c.id
             WHERE
                 r.user_group_id = :user_group_id
+                    AND
+                c.url = :url
             ORDER BY c.position
         ');
-        return $this->get_all($stm, array('user_group_id' => registry::get('user')['user_group_id']));
+        return $this->get_all($stm, array('user_group_id' => registry::get('user')['user_group_id'], 'url' => $url));
+    }
+
+    public function getRestChartsList($url)
+    {
+        $stm = $this->pdo->prepare('
+            SELECT
+                chart_name,
+                url,
+                icon,
+                color
+            FROM
+                charts c
+                    JOIN
+                charts_user_groups_relations r ON r.chart_id = c.id
+            WHERE
+                r.user_group_id = :user_group_id
+                    AND
+                c.url != :url
+            ORDER BY c.position
+        ');
+        return $this->get_all($stm, array('user_group_id' => registry::get('user')['user_group_id'], 'url' => $url));
     }
 
     public function active_projects($date_range)
@@ -162,11 +185,11 @@ class charts_model extends model
         return $hours;
     }
 
-    public function project_detail($date_range)
+    public function project_detail($date_range, $project = '')
     {
-        $date_start = $_POST['detail_date_start'] ? $_POST['detail_date_start']. ' 00:00:00' : $date_range['date_start'];
-        $date_end = $_POST['detail_date_end'] ? $_POST['detail_date_end']. ' 00:00:00' : $date_range['date_end'];
-        $date_range = array('date_start' => $date_start, 'date_end' => $date_end);
+        if(!$project) {
+            $project = $this->get_row($this->pdo->prepare('SELECT project FROM asanatt_task LIMIT 1'))['project'];
+        }
         $stm = $this->pdo->prepare('
         SELECT
 			project,
@@ -181,19 +204,24 @@ class charts_model extends model
         WHERE
             work_begin > :date_start
                 AND work_end < :date_end
-        GROUP BY project, name
+                AND project = :project
+        GROUP BY name
         ');
-
+        $date_range['project'] = $project;
         $tmp = $this->get_all($stm, $date_range);
         $res = [];
         foreach($tmp as $v) {
-            $res[$v['project']][$v['name']] = $v;
+            $res[$v['name']] = $v;
         }
+        $res['project'] = $project;
         return $res;
     }
 
-    public function project_cost($date_range)
+    public function project_cost($date_range, $project = '')
     {
+        if(!$project) {
+            $project = $this->get_row($this->pdo->prepare('SELECT project FROM asanatt_task LIMIT 1'))['project'];
+        }
         $stm = $this->pdo->prepare('
         SELECT
 			project,
@@ -211,19 +239,19 @@ class charts_model extends model
         WHERE
             work_begin > :date_start
                 AND work_end < :date_end
+                AND project = :project
         ');
+        $date_range['project'] = $project;
         $tmp = $this->get_all($stm, $date_range);
         $res = [];
         foreach($tmp as $v) {
-            if(!$res[$v['project']][$v['name']]['sum']) {
-                $res[$v['project']][$v['name']]['sum'] = 0;
-                $res[$v['project']][$v['name']]['project'] = $v['project'];
-                $res[$v['project']][$v['name']]['name'] = $v['name'];
+            if(!$res[$v['name']]['sum']) {
+                $res[$v['name']]['sum'] = 0;
+                $res[$v['name']]['project'] = $v['project'];
+                $res[$v['name']]['name'] = $v['name'];
             }
-            $res[$v['project']][$v['name']]['sum'] += ($v['hours'] * $v['user_rate']);
+            $res[$v['name']]['sum'] += ($v['hours'] * $v['user_rate']);
         }
-        //print_r($res);
-
         return $res;
     }
 
@@ -256,6 +284,14 @@ class charts_model extends model
             $res[$v['project']]['sum'] += $v['sum'];
         }
         return $res;
+    }
+
+    public function getProjectList($date_range)
+    {
+        $stm = $this->pdo->prepare('
+            SELECT project FROM asanatt_task JOIN asanatt_worktime USING (tid) WHERE work_begin >= :date_start AND work_end <= :date_end GROUP BY project
+        ');
+        return $this->get_all($stm, $date_range);
     }
 
 }

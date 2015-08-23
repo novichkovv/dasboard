@@ -13,9 +13,51 @@ class index_controller extends controller
     
     public function index()
     {
+        $this->render('links', $this->model('charts')->getRestChartsList(__FUNCTION__));
+        $this->getCharts(__FUNCTION__);
+    }
+
+    public function members_table()
+    {
+        $this->render('links', $this->model('charts')->getRestChartsList(__FUNCTION__));
+        $this->getCharts(__FUNCTION__);
+    }
+
+    public function office_utilization()
+    {
+        $this->render('links', $this->model('charts')->getRestChartsList(__FUNCTION__));
+        $this->getCharts(__FUNCTION__);
+    }
+
+    public function week_performance()
+    {
+        $this->render('links', $this->model('charts')->getRestChartsList(__FUNCTION__));
+        $this->getCharts(__FUNCTION__);
+    }
+
+    public function detail()
+    {
+        $this->render('links', $this->model('charts')->getRestChartsList(__FUNCTION__));
+        $this->getCharts(__FUNCTION__);
+    }
+
+    public function cost()
+    {
+        $this->render('links', $this->model('charts')->getRestChartsList(__FUNCTION__));
+        $this->getCharts(__FUNCTION__);
+    }
+
+    public function overall_cost()
+    {
+        $this->render('links', $this->model('charts')->getRestChartsList(__FUNCTION__));
+        $this->getCharts(__FUNCTION__);
+    }
+
+    private function getCharts($url)
+    {
         $this->date_start = ($_POST['date_start'] ? $_POST['date_start'] : date('Y-m-d', strtotime(date('Y-m-d') . ' - 15 day'))) . ' 00:00:00';
         $this->date_end = ($_POST['date_end'] ? $_POST['date_end'] : date('Y-m-d')) . ' 23:59:59';
-        $permitted_charts = $this->model('charts')->getPermittedChartsList();
+        $permitted_charts = $this->model('charts')->getPermittedChartsList($url);
         foreach($permitted_charts as $chart) {
             $method_name = $chart['chart_key'];
             if(method_exists($this, $method_name)) {
@@ -28,16 +70,6 @@ class index_controller extends controller
         }
         $this->render('template', $this->template);
         $this->view('index');
-    }
-
-    public function index_ajax()
-    {
-        switch($_REQUEST['action']) {
-            case "save_modules_position":
-                $this->model('modules')->savePositions($_POST['positions']);
-                exit;
-                break;
-        }
     }
 
     public function index_na()
@@ -116,30 +148,73 @@ class index_controller extends controller
     private function project_detail($data)
     {
         $stats = [];
+        $i = 0;
+        $this->render('active_project', $data['project']);
+        unset($data['project']);
         foreach($data as $project => $v) {
-            $i = 0;
-            foreach($v as $task => $val) {
-                $stats[$project]['data'][$i] = round($val['hours']);
-                $stats[$project]['ticks'][$i] = trim($val['name']);
+                $stats['data'][$i] = round($v['hours']);
+                $stats['ticks'][$i] = trim($v['name']);
                 $i ++;
-            }
-
         }
+        $this->render('projects', $this->model('charts')->getProjectList(array('date_start' => $this->date_start, 'date_end' => $this->date_end)));
         $this->render('stats', $stats);
+    }
+
+    public function detail_ajax()
+    {
+        switch ($_REQUEST['action']) {
+            case "get_graph_data":
+                $date_range = array('date_start' => $_POST['date_start'], 'date_end' => $_POST['date_end']);
+                $data = $this->model('charts')->project_detail($date_range, $_POST['project']);
+                $stats = [];
+                $i = 0;
+                unset($data['project']);
+                foreach($data as $task => $v) {
+                    $stats['data'][$i] = array(round($v['hours']), $i);
+                    $stats['ticks'][$i] = array($i, trim($v['name']));
+                    $i ++;
+                }
+                $stats['status'] = 1;
+                echo json_encode($stats);
+                exit;
+                break;
+        }
     }
 
     private function project_cost($data)
     {
+        $this->render('active_project', $data['project']);
+        unset($data['project']);
         $stats = [];
-        foreach($data as $project => $v) {
-            $i = 0;
-            foreach($v as $task => $val) {
-                $stats[$project]['data'][$i] = round($val['sum'], 2);
-                $stats[$project]['ticks'][$i] = trim($val['name']);
-                $i ++;
-            }
+        $i = 0;
+        foreach($data as $task => $v) {
+            $stats['data'][$i] = round($v['sum'], 2);
+            $stats['ticks'][$i] = trim($v['name']);
+            $i ++;
         }
+        $this->render('projects', $this->model('charts')->getProjectList(array('date_start' => $this->date_start, 'date_end' => $this->date_end)));
         $this->render('stats', $stats);
+    }
+
+    public function cost_ajax()
+    {
+        switch ($_REQUEST['action']) {
+            case "get_graph_data":
+                $date_range = array('date_start' => $_POST['date_start'], 'date_end' => $_POST['date_end']);
+                $data = $this->model('charts')->project_cost($date_range, $_POST['project']);
+                $stats = [];
+                $i = 0;
+                unset($data['project']);
+                foreach($data as $task => $v) {
+                    $stats['data'][$i] = array(round($v['sum'], 2), $i);
+                    $stats['ticks'][$i] = array($i, trim($v['name']));
+                    $i ++;
+                }
+                $stats['status'] = 1;
+                echo json_encode($stats);
+                exit;
+                break;
+        }
     }
 
     private function overall($data)
@@ -201,5 +276,4 @@ class index_controller extends controller
         $time['end'] = ($hour_end < 10 ? '0' . $hour_end : $hour_end) . ':' . ($minute_end < 10 ? '0' . $minute_end : $minute_end) . ':00';
         return $time;
     }
-    
 }

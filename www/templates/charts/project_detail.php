@@ -5,43 +5,20 @@
         </header>
         <div class="panel-body">
             <div class="row">
-                <div class="col-xs-5 col-md-2">
-                    <input placeholder="Date From" class="form-control datepicker" name="detail_date_start" value="<?php echo $_POST['detail_date_start'] ? $_POST['detail_date_start'] : ($_POST['date_start'] ? $_POST['date_start'] : date('Y-m-d', strtotime(date('Y-m-d') . ' - 15 day'))); ?>">
-                </div>
-                <div class="col-xs-5 col-md-2">
-                    <input placeholder="Date To" class="form-control datepicker" name="detail_date_end" value="<?php echo $_POST['detail_date_end'] ? $_POST['detail_date_end'] : ($_POST['date_end'] ? $_POST['date_end'] : date('Y-m-d')) ?>">
-                </div>
-                <div class="col-xs-2 col-md-2">
-                    <input type="submit" class="btn btn-info" name="choose_date_btn" value="Submit">
+                <div class="col-md-3">
+                    <div class="form-group">
+                        <select class="form-control select2" id="project">
+                            <?php foreach($projects as $project): ?>
+                                <option value="<?php echo $project['project']; ?>" <?php if($active_project == $project['project']) echo 'selected'; ?>>
+                                    <?php echo $project['project']; ?>
+                                </option>
+                            <?php endforeach; ?>
+                        </select>
+                    </div>
                 </div>
             </div>
             <div class="col-md-12">
-                <section class="panel general">
-                    <header class="panel-heading tab-bg-dark-navy-blue">
-                        <ul class="nav nav-tabs">
-                            <?php $i = 0; ?>
-                            <?php foreach($stats as $project => $v): ?>
-                                <li<?php if($i == 0) echo ' class="active"'; ?>>
-                                    <a data-toggle="tab" href="#task_tab_<?php echo $i; ?>">
-                                        <?php echo $project; ?>
-                                    </a>
-                                </li>
-                                <?php $i ++; ?>
-                            <?php endforeach; ?>
-                        </ul>
-                    </header>
-                    <div class="panel-body">
-                        <div class="tab-content">
-                            <?php $i = 0; ?>
-                            <?php foreach($stats as $project => $v): ?>
-                                <div class="tab-pane<?php if($i == 0) echo ' active'; ?>" id="task_tab_<?php echo $i; ?>">
-                                    <div id="task_<?php echo $i; ?>" style="width: 100%; height: 400px"></div>
-                                </div>
-                                <?php $i ++; ?>
-                            <?php endforeach; ?>
-                        </div>
-                    </div>
-                </section>
+                <div id="task" style="width: 100%; height: 400px"></div>
             </div>
         </div>
     </section>
@@ -49,14 +26,55 @@
 <script type="text/javascript">
     $ = jQuery.noConflict();
     $(document).ready(function () {
-        <?php $stat = $stats[array_keys($stats)[0]]; ?>
-        $.plot($("#task_0"), [ {
+        $(".select2").select2();
+        $("#project").change(function()
+        {
+            var value = $(this).val();
+            var params = {
+                'action': 'get_graph_data',
+                'values': {
+                    'date_start': $("[name='date_start']").val(),
+                    'date_end': $("[name='date_end']").val(),
+                    'project': value
+                },
+                callback: function (msg) {
+                    ajax_respond(msg,
+                        function(respond)
+                        {
+                            $("#task").html('');
+                            $.plot($("#task"), [ {
+                                    data: respond.data,
+                                    color: '#866AA7',
+                                    bars: {
+                                        show: true,
+                                        barWidth: 0.8,
+                                        fillColor: '#8E79A8',
+                                        highlightColor: '#8E79A8D',
+                                        horizontal: true
+                                    }
+                                }],
+                                {
+                                    yaxis: {
+                                        color: 'white',
+                                        ticks: respond.ticks
+                                    },
+                                    xasis: {
+                                        color: 'white'
+                                    }
+                                }
+                            );
+                        }
+                    );
+                }
+            };
+            ajax(params);
+        });
+        $.plot($("#task"), [ {
                 data: [
-                    <?php foreach($stat['data'] as $k => $v): ?>
-                    [<?php echo $v; ?>,<?php echo $k; ?>]<?php if($k != count($stat['data']) - 1) echo ','; ?>
+                    <?php foreach($stats['data'] as $k => $v): ?>
+                    [<?php echo $v; ?>,<?php echo $k; ?>]<?php if($k != count($stats['data']) - 1) echo ','; ?>
                     <?php endforeach; ?>,
-
-                ],
+                  ],
                 color: '#866AA7',
                 bars: {
                     show: true,
@@ -70,64 +88,17 @@
                 yaxis: {
                     color: 'white',
                     ticks: [
-                        <?php foreach($stat['ticks'] as $k => $v): ?>
-                        [<?php echo $k; ?>, '<?php echo $v; ?>']<?php if($k != count($stat['ticks']) - 1) echo ','; ?>
+                        <?php foreach($stats['ticks'] as $k => $v): ?>
+                        [<?php echo $k; ?>, '<?php echo $v; ?>']<?php if($k != count($stats['ticks']) - 1) echo ','; ?>
                         <?php endforeach; ?>
                     ]
-
                 },
                 xasis: {
                     color: 'white',
-//                    max: 20
-
                 }
             }
         );
-        <?php $i = 1; ?>
-        <?php foreach($stats as $k => $stat): ?>
-        <?php if(array_keys($stats)[0] == $k) continue; ?>
-        $("[href='#task_tab_<?php echo $i; ?>']").click(function()
-        {
-            setTimeout(function()
-            {
-                $.plot($("#task_<?php echo $i; ?>"), [ {
-                        data: [
-                            <?php foreach($stat['data'] as $k => $v): ?>
-                            [<?php echo $v; ?>,<?php echo $k; ?>]<?php if($k != count($stat['data']) - 1) echo ','; ?>
-                            <?php endforeach; ?>,
 
-                        ],
-                        color: '#866AA7',
-                        bars: {
-                            show: true,
-                            barWidth: 0.8,
-                            fillColor: '#8E79A8',
-                            highlightColor: '#8E79A8',
-                            horizontal: true
-                        }
-                    }],
-                    {
-                        yaxis: {
-                            color: 'white',
-                            ticks: [
-                                <?php foreach($stat['ticks'] as $k => $v): ?>
-                                [<?php echo $k; ?>, '<?php echo $v; ?>']<?php if($k != count($stat['ticks']) - 1) echo ','; ?>
-                                <?php endforeach; ?>
-                            ]
-
-                        },
-                        xasis: {
-                            color: 'white',
-//                    max: 20
-
-                        }
-                    }
-                );
-            }, 200);
-        });
-
-        <?php $i++; ?>
-        <?php endforeach; ?>
 
 });
 </script>

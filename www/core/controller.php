@@ -230,11 +230,11 @@ abstract class controller extends base
         foreach($tmp as $v) {
             if(!$v['parent']) {
                 foreach($v as $key => $val) {
-                    if($permissions[$v['id']]) {
+                    if($permissions[$v['id']] || $v['permitted']) {
                         if(!in_array($v['route'], $permitted_urls)) {
                             $permitted_urls[] = $v['route'];
                         }
-                        if($v['route'] == $system_route) {
+                        if($v['route'] == $system_route || $v['permitted']) {
                             $permit_page = true;
                         }
                         if(!$v['hidden']) {
@@ -244,13 +244,12 @@ abstract class controller extends base
                 }
             } else {
                 foreach($v as $key => $val) {
-                    if($permissions[$v['id']]) {
+                    if($permissions[$v['id']] || $v['permitted']) {
                         if(!in_array($v['route'], $permitted_urls)) {
                             $permitted_urls[] = $v['route'];
                         }
-                        if($v['route'] == $system_route) {
+                        if($v['route'] == $system_route || $v['permitted']) {
                             $permit_page = true;
-                            registry::set('page_permission', $permissions[$v['id']]);
                         }
                         if(!$v['hidden']) {
                             $sidebar[$v['parent']]['children'][$v['id']][$key] = $val;

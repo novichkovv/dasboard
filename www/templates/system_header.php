@@ -29,6 +29,7 @@
     <link href="<?php echo SITE_DIR; ?>css/theme/style.css" rel="stylesheet" type="text/css" />
     <link href="<?php echo SITE_DIR; ?>css/style.css" rel="stylesheet" type="text/css" />
     <link href="<?php echo SITE_DIR; ?>css/libs/jquery-ui.min.css" type="text/css" rel="stylesheet" />
+    <link href="<?php echo SITE_DIR; ?>css/libs/select2.min.css" type="text/css" rel="stylesheet" />
 
     <!-- HTML5 Shim and Respond.js IE8 support of HTML5 elements and media queries -->
     <!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
@@ -48,7 +49,7 @@
     <script language="javascript" type="text/javascript" src="<?php echo SITE_DIR; ?>js/theme/plugins/flot/excanvas.min.js"></script>
     <![endif]-->
     <script src="<?php echo SITE_DIR; ?>js/theme/plugins/flot/jquery.flot.min.js"></script>
-
+    <script src="<?php echo SITE_DIR; ?>js/libs/select2.min.js"></script>
 
     <script src="<?php echo SITE_DIR; ?>js/theme/plugins/chart.js" type="text/javascript"></script>
     <script src="<?php echo SITE_DIR; ?>js/libs/dropzone.min.js" type="text/javascript"></script>

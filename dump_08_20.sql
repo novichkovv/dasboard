@@ -3056,3 +3056,45 @@ CREATE ALGORITHM=UNDEFINED DEFINER=`viatechn_anton`@`localhost` SQL SECURITY DEF
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;
 /*!40101 SET CHARACTER_SET_RESULTS=@OLD_CHARACTER_SET_RESULTS */;
 /*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
+
+ALTER TABLE charts ADD url VARCHAR (30) NOT NULL AFTER icon;
+
+UPDATE `dashboard`.`charts` SET `url`='index' WHERE `id`='1';
+UPDATE `dashboard`.`charts` SET `url`='index' WHERE `id`='2';
+UPDATE `dashboard`.`charts` SET `url`='members_table' WHERE `id`='3';
+UPDATE `dashboard`.`charts` SET `url`='office_utilization' WHERE `id`='4';
+UPDATE `dashboard`.`charts` SET `url`='week_performance' WHERE `id`='5';
+UPDATE `dashboard`.`charts` SET `url`='detail' WHERE `id`='6';
+UPDATE `dashboard`.`charts` SET `url`='cost' WHERE `id`='7';
+UPDATE `dashboard`.`charts` SET `url`='overall_cost' WHERE `id`='8';
+UPDATE `dashboard`.`charts` SET `icon`='fa fa-calendar-plus-o' WHERE `id`='5';
+UPDATE `dashboard`.`charts` SET `icon`='fa fa-circle-o-notch' WHERE `id`='4';
+UPDATE `dashboard`.`charts` SET `icon`='fa fa-hourglass-o' WHERE `id`='2';
+UPDATE `dashboard`.`charts` SET `icon`='fa fa-bar-chart' WHERE `id`='1';
+UPDATE `dashboard`.`charts` SET `icon`='fa fa-th' WHERE `id`='3';
+UPDATE `dashboard`.`charts` SET `icon`='fa fa-tasks' WHERE `id`='6';
+UPDATE `dashboard`.`charts` SET `icon`='fa fa-usd' WHERE `id`='7';
+UPDATE `dashboard`.`charts` SET `icon`='fa fa-area-chart' WHERE `id`='8';
+
+ALTER TABLE dashboard.charts ADD color VARCHAR (30) NOT NULL AFTER icon;
+
+UPDATE `dashboard`.`charts` SET `color`='st-grey' WHERE `id`='3';
+UPDATE `dashboard`.`charts` SET `color`='st-yellow' WHERE `id`='2';
+UPDATE `dashboard`.`charts` SET `color`='st-red' WHERE `id`='1';
+UPDATE `dashboard`.`charts` SET `color`='st-green' WHERE `id`='4';
+UPDATE `dashboard`.`charts` SET `color`='st-blue' WHERE `id`='5';
+UPDATE `dashboard`.`charts` SET `color`='st-violet' WHERE `id`='6';
+UPDATE `dashboard`.`charts` SET `color`='st-pink' WHERE `id`='7';
+UPDATE `dashboard`.`charts` SET `color`='st-dark-blue' WHERE `id`='8';
+
+ALTER TABLE dashboard.system_routes ADD permitted TINYINT NOT NULL AFTER hidden;
+
+INSERT INTO `dashboard`.`system_routes` (`route`, `title`, `position`, `hidden`, `permitted`, `icon`) VALUES ('index/index', 'Dashboard', '11', '1', '1', '');
+INSERT INTO `dashboard`.`system_routes` (`route`, `title`, `position`, `hidden`, `permitted`) VALUES ('index/members_table', 'Dashboard', '12', '1', '1');
+INSERT INTO `dashboard`.`system_routes` (`route`, `title`, `position`, `hidden`, `permitted`) VALUES ('index/office_utilization', 'Dashboard', '13', '1', '1');
+INSERT INTO `dashboard`.`system_routes` (`route`, `title`, `position`, `hidden`, `permitted`) VALUES ('index/week_performance', 'Dashboard', '14', '1', '1');
+INSERT INTO `dashboard`.`system_routes` (`route`, `title`, `position`, `hidden`, `permitted`) VALUES ('index/detail', 'Dashboard', '15', '1', '1');
+INSERT INTO `dashboard`.`system_routes` (`route`, `title`, `position`, `hidden`, `permitted`) VALUES ('index/cost', 'Dashboard', '16', '1', '1');
+
+
+
