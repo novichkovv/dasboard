@@ -44,5 +44,9 @@
 
                 }
             });
+        var xaxisLabel = $("<div class='axisLabel xaxisLabel'></div>")
+            .text("Hours")
+            .appendTo($("#team_member_hours"));
+        xaxisLabel.css("top", $("#team_member_hours").height() - 40);
     });
 </script>

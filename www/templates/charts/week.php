@@ -39,7 +39,8 @@
                 },
                 xasis: {
                     color: 'white',
-//                    max: 20
+                    max: 200,
+                    min: 200
 
                 }
             });

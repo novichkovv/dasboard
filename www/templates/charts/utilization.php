@@ -39,7 +39,14 @@
                 },
                 xasis: {
                     color: 'white',
+                    max: 200,
+                    min: 200
                 }
             });
+
+        var xaxisLabel = $("<div class='axisLabel xaxisLabel'></div>")
+            .text("%")
+            .appendTo($("#utilization"));
+        xaxisLabel.css("top", $("#utilization").height() - 40);
     });
 </script>

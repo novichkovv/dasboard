@@ -837,3 +837,8 @@ section.content {
      font-size: 14px !important;
      min-width: 20% !important;
  }
+ .xaxisLabel {
+     position: absolute;
+     font-weight: bold;
+     left: 15%;
+ }

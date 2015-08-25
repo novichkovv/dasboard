@@ -44,5 +44,9 @@
 
                 }
             });
+        var xaxisLabel = $("<div class='axisLabel xaxisLabel'></div>")
+            .text("Hours")
+            .appendTo($("#active_projects"));
+        xaxisLabel.css("top", $("#active_projects").height() - 40);
     });
 </script>

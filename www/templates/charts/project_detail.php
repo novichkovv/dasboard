@@ -63,6 +63,10 @@
                                     }
                                 }
                             );
+                            var xaxisLabel = $("<div class='axisLabel xaxisLabel'></div>")
+                                .text("Hours")
+                                .appendTo($("#task"));
+                            xaxisLabel.css("top", $("#task").height() - 40);
                         }
                     );
                 }
@@ -98,6 +102,10 @@
                 }
             }
         );
+        var xaxisLabel = $("<div class='axisLabel xaxisLabel'></div>")
+            .text("Hours")
+            .appendTo($("#task"));
+        xaxisLabel.css("top", $("#task").height() - 40);
 
 
 });
