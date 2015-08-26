@@ -44,5 +44,10 @@
                 }
             }
         );
+
+        var xaxisLabel = $("<div class='axisLabel xaxisLabel'></div>")
+            .text("Costs")
+            .appendTo($("#overall"));
+        xaxisLabel.css("top", $("#overall").height() - 40);
     });
 </script>

@@ -98,7 +98,10 @@
                 }
             }
         );
-
+        var xaxisLabel = $("<div class='axisLabel xaxisLabel'></div>")
+            .text("Costs")
+            .appendTo($("#project"));
+        xaxisLabel.css("top", $("#project").height() - 40);
 
     });
 </script>

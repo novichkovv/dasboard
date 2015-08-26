@@ -73,6 +73,36 @@
     </div>
 </div>
 
+<div class="modal fade" id="warning_modal_2">
+    <div class="modal-dialog modal-sm">
+        <div class="modal-content">
+            <div class="modal-header modal-warning">
+                <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
+                <h4 class="modal-title">
+                    <i class="text-danger fa fa-warning"></i>
+                    Following Records have Incorrect Dates
+                </h4>
+            </div>
+            <div class="modal-body with-padding">
+                <table class="table">
+                    <thead>
+                    <tr>
+                        <th>#</th>
+                        <th>Name</th>
+                    </tr>
+                    </thead>
+                    <tbody id="table_body_2">
+
+                    </tbody>
+                </table>
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+            </div>
+        </div>
+    </div>
+</div>
+
 <div class="modal fade" id="edit_modal">
     <div class="modal-dialog modal-sm">
         <form id="edit_mapping_form">
@@ -149,6 +179,17 @@
                                 '   <td>' + respond.result[i][2] + '</td>' +
                                 '</tr>');
                                 $("#warning_modal_1").modal('show');
+                            }
+                        } else if(respond.status == 5) {
+                            $("#table_body_2").html('');
+                            for(var i in respond.result) {
+                                $("#table_body_2").append('' +
+                                '<tr>' +
+                                '   <td>' + respond.result[i][0] + '</td>' +
+                                '   <td>' + respond.result[i][1] + '</td>' +
+//                                '   <td>' + respond.result[i][2] + '</td>' +
+                                '</tr>');
+                                $("#warning_modal_2").modal('show');
                             }
                         } else {
                             Notifier.error(respond.error, 'Fail');

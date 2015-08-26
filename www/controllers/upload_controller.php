@@ -13,6 +13,7 @@ class upload_controller extends controller
             $error = false;
             $mapping_errors = [];
             $type_errors = [];
+            $date_errors = [];
             foreach ($_FILES as $file) {
                 $simpleXLSX = new simpleXLSX_class($file['tmp_name']);
                 $array = $simpleXLSX->rows(1);
@@ -22,30 +23,48 @@ class upload_controller extends controller
                         foreach ($row as $key => $val) {
                             $row[$key] = trim($val);
                         }
-
                         if($k == 0) {
                             continue;
                         }
                         if (!$user = $this->model('user_mapping')->getByField('user_name', $row[0])) {
                             $mapping_errors[$row[0]] = $row;
                         }
-                        $values[$k]['username'] = $row[0];
+                        $date_time = $simpleXLSX->unixstamp($row[3] + $row[4]);
+                        $date = date('Y-m-d', strtotime($date_time));
+                        $values[$row[0]][$date]['username'] = $row[0];
                         if($row[2] == 'Clock In') {
-                            $values[$k]['work_begin'] = date('Y-m-d H:i:s', $simpleXLSX->unixstamp($row[3] + $row[4]));
+                            $values[$row[0]][$date]['k'] = $k + 1;
+                            $values[$row[0]][$date]['work_begin'] = date('Y-m-d H:i:s', $date_time);
                         } elseif($row[2] == 'Clock Out') {
-                            $values[$k]['id'] = $this->model('work_time')->getByFields(array(
-                                'username' => $row[0],
-                                'work_end' => '0000-00-00 00:00:00'
-                            ))['id'];
-                            $values[$k]['work_end'] = date('Y-m-d H:i:s', $simpleXLSX->unixstamp($row[3] + $row[4]));
+//                            $values[$k]['id'] = $this->model('work_time')->getByFields(array(
+//                                'username' => $row[0],
+//                                'work_end' => '0000-00-00 00:00:00'
+//                            ))['id'];
+                            $values[$row[0]][$date]['work_end'] = date('Y-m-d H:i:s', $date_time);
                         } else {
                             $type_errors[] = array($k + 1, $user['user_name'], $row[2]);
                         }
-                        if($values[$k]['username']) {
-                            $this->model('work_time')->insert($values[$k]);
-                        }
+//                        if($values[$k]['username']) {
+//                            $this->model('work_time')->insert($values[$k]);
+//                        }
                     }
-                    if(!$type_errors && !$mapping_errors) {
+                    if ($values) {
+                        foreach ($values as $v) {
+                            foreach ($v as $row) {
+                                if($row['work_end'] <= $row['work_begin']) {
+                                    $date_errors[] = array($row['k'], $row['username'], 2);;
+                                }
+                                if(!$row['work_begin'] || date('Y-m-d', strtotime($row['work_begin']) == '1970-01-01' || $row['work_begin']) == '000-00-00 00:00:00'
+                                || !$row['work_end'] || date('Y-m-d', strtotime($row['work_end']) == '1970-01-01' || $row['work_end']) == '000-00-00 00:00:00') {
+                                    $date_errors[] = array($row['k'], $row['username'], 2);
+                                }
+                                unset($row['k']);
+                                $this->model('work_time')->insert($row);
+                            }
+                        }
+
+                    }
+                    if(!$type_errors && !$mapping_errors && !$date_errors) {
                         $this->model('work_time')->commitTransaction();
                     } else {
                         $this->model('work_time')->rollbackTransaction();
@@ -61,6 +80,8 @@ class upload_controller extends controller
                 echo json_encode(array('status' => 3, 'result' => $mapping_errors));
             } elseif ($type_errors) {
                 echo json_encode(array('status' => 4, 'result' => $type_errors));
+            } elseif ($date_errors) {
+                echo json_encode(array('status' => 5, 'result' => $date_errors));
             } else {
                 echo json_encode(array('status' => 1, 'values' => $values));
             }

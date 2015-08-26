@@ -11,7 +11,7 @@
 <script type="text/javascript">
     $ = jQuery.noConflict();
     $(document).ready(function () {
-        $.plot($("#week"), [ {
+        var plot = $.plot($("#week"), [ {
                 data: [
                     <?php foreach($stats['data'] as $k => $v): ?>
                     [<?php echo $v; ?>,<?php echo $k; ?>]<?php if($k != count($stats['data']) - 1) echo ','; ?>
@@ -40,9 +40,22 @@
                 xasis: {
                     color: 'white',
                     max: 200,
-                    min: 200
+                    min: -200
+
 
                 }
             });
+        var opts = plot.getOptions();
+        opts.xaxes[0].min = 0;
+        opts.xaxes[0].max = 200;
+        opts.xaxes[0].minTickSize = 25;
+        opts.xaxes[0].ticks = [[0, 0], [25, '25%'],[50,'50%'],[75,'75%'],[100,'100%'],[125,'125%'],[150,'150%'],[175,'175%'],[200,'200%']];
+        plot.setupGrid();
+        plot.draw();
+
+        var xaxisLabel = $("<div class='axisLabel xaxisLabel'></div>")
+            .text("%")
+            .appendTo($("#utilization"));
+        xaxisLabel.css("top", $("#utilization").height() - 40);
     });
 </script>
