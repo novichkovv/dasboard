@@ -55,10 +55,32 @@ class dashboard_controller extends controller
 
     private function getCharts($url)
     {
-        $this->date_start = ($_POST['date_start'] ? $_POST['date_start'] : ( $_SESSION['date_start'] ? $_SESSION['date_start'] : date('Y-m-d', strtotime(date('Y-m-d') . ' - 15 day'))) . ' 00:00:00');
-        $this->date_end = ($_POST['date_end'] ? $_POST['date_end'] : ( $_SESSION['date_end'] ? $_SESSION['date_end'] : date('Y-m-d')) . ' 23:59:59');
+        $this->date_start = date('Y-m-d 00:00:00', strtotime(date('Y-m-d') . ' - 15 day'));
+        $this->date_end = date('Y-m-d 23:59:59');
+        if($_SESSION['date_start']) {
+            $this->date_start = $_SESSION['date_start'];
+        }
+        if($_SESSION['date_start']) {
+            $this->date_end = $_SESSION['date_end'];
+        }
+        if($_POST['date_start']) {
+            $this->date_start = $_POST['date_start'] . ' 00:00:00';
+        }
+        if($_POST['date_end']) {
+            $this->date_end = $_POST['date_end'] . ' 23:59:59';
+        }
+        if(!$_SESSION['timestamp']) {
+            $_SESSION['timestamp'] = date('Y-m-d');
+        }
         $_SESSION['date_start'] = $this->date_start;
         $_SESSION['date_end'] = $this->date_end;
+       // $this->date_start = ($_POST['date_start'] ? $_POST['date_start'] : ( $_SESSION['date_start'] ? $_SESSION['date_start'] : date('Y-m-d', strtotime(date('Y-m-d') . ' - 15 day'))) . ' 00:00:00');
+       // $this->date_end = ($_POST['date_end'] ? $_POST['date_end'] : ( $_SESSION['date_end'] ? $_SESSION['date_end'] : date('Y-m-d')) . ' 23:59:59');
+        if($_SESSION['timestamp'] != date('Y-m-d')) {
+            unset($_SESSION['date_start']);
+            unset($_SESSION['date_end']);
+            unset($_SESSION['timestamp']);
+        }
         $this->render('date_start', $this->date_start);
         $this->render('date_end', $this->date_end);
         $permitted_charts = $this->model('asanatt_charts')->getPermittedChartsList($url);
