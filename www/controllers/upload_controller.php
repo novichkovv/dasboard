@@ -16,7 +16,7 @@ class upload_controller extends controller
             $date_errors = [];
             $values = [];
             $unclosed = [];
-            $tmp = $this->model('work_time')->getByField('work_end', '0000-00-00 00:00:00', true);
+            $tmp = $this->model('asanatt_excel_time')->getByField('work_end', '0000-00-00 00:00:00', true);
             foreach($tmp as $row) {
                 $unclosed[$row['username']] = $row;
             }
@@ -25,7 +25,7 @@ class upload_controller extends controller
                 $simpleXLSX = new simpleXLSX_class($file['tmp_name']);
                 $array = $simpleXLSX->rows(1);
                 if (is_array($array)) {
-                    $this->model('work_time')->beginTransaction();
+                    $this->model('asanatt_excel_time')->beginTransaction();
                     $arr = [];
                     foreach ($array as $k => $row) {
                         foreach($row as $key => $val) {
@@ -57,7 +57,7 @@ class upload_controller extends controller
                     foreach ($arr as $user_name => $rows) {
                         ksort($rows);
                         foreach($rows as $date_time => $row) {
-                            if (!$user = $this->model('user_mapping')->getByField('user_name', $row[0])) {
+                            if (!$user = $this->model('asanatt_user_mapping')->getByField('user_name', $row[0])) {
                                 $mapping_errors[$user_name] = $row;
                             }
                             if($row[2] == 'Clock In') {
@@ -89,15 +89,15 @@ class upload_controller extends controller
                                     $date_errors[] = array($row['k'], $row['username'], 2);;
                                 }
                                 unset($row['k']);
-                                $this->model('work_time')->insert($row);
+                                $this->model('asanatt_excel_time')->insert($row);
                             }
                         }
 
                     }
                     if(!$type_errors && !$mapping_errors && !$date_errors) {
-                        $this->model('work_time')->commitTransaction();
+                        $this->model('asanatt_excel_time')->commitTransaction();
                     } else {
-                        $this->model('work_time')->rollbackTransaction();
+                        $this->model('asanatt_excel_time')->rollbackTransaction();
                     }
                 } else {
                     $error = 'File could not be read';
@@ -129,12 +129,12 @@ class upload_controller extends controller
                 }
                 if(!$_POST['mapping']['user_name'] || !$_POST['mapping']['user_email']) {
                     echo json_encode(array('status' => 2, 'error' => 'Missed Required Fields'));
-                } elseif(!$_POST['mapping']['id'] && $this->model('user_mapping')->getByField('user_name', $_POST['mapping']['user_name'])) {
+                } elseif(!$_POST['mapping']['id'] && $this->model('asanatt_user_mapping')->getByField('user_name', $_POST['mapping']['user_name'])) {
                     echo json_encode(array('status' => 2, 'error' => 'User Name Already Exists'));
-                } elseif(!$_POST['mapping']['id'] && $this->model('user_mapping')->getByField('user_email', $_POST['mapping']['user_email'])['id']) {
+                } elseif(!$_POST['mapping']['id'] && $this->model('asanatt_user_mapping')->getByField('user_email', $_POST['mapping']['user_email'])['id']) {
                     echo json_encode(array('status' => 2, 'error' => 'User Email Already Exists'));
                 } else {
-                    if($this->model('user_mapping')->insert($_POST['mapping'])) {
+                    if($this->model('asanatt_user_mapping')->insert($_POST['mapping'])) {
                         echo json_encode(array('status' => 1));
                     } else {
                         echo json_encode(array('status' => 2, 'Unexpected Error'));

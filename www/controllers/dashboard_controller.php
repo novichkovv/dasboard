@@ -13,43 +13,43 @@ class dashboard_controller extends controller
     
     public function index()
     {
-        $this->render('links', $this->model('charts')->getRestChartsList(__FUNCTION__));
+        $this->render('links', $this->model('asanatt_charts')->getRestChartsList(__FUNCTION__));
         $this->getCharts(__FUNCTION__);
     }
 
     public function members_table()
     {
-        $this->render('links', $this->model('charts')->getRestChartsList(__FUNCTION__));
+        $this->render('links', $this->model('asanatt_charts')->getRestChartsList(__FUNCTION__));
         $this->getCharts(__FUNCTION__);
     }
 
     public function office_utilization()
     {
-        $this->render('links', $this->model('charts')->getRestChartsList(__FUNCTION__));
+        $this->render('links', $this->model('asanatt_charts')->getRestChartsList(__FUNCTION__));
         $this->getCharts(__FUNCTION__);
     }
 
     public function week_performance()
     {
-        $this->render('links', $this->model('charts')->getRestChartsList(__FUNCTION__));
+        $this->render('links', $this->model('asanatt_charts')->getRestChartsList(__FUNCTION__));
         $this->getCharts(__FUNCTION__);
     }
 
     public function detail()
     {
-        $this->render('links', $this->model('charts')->getRestChartsList(__FUNCTION__));
+        $this->render('links', $this->model('asanatt_charts')->getRestChartsList(__FUNCTION__));
         $this->getCharts(__FUNCTION__);
     }
 
     public function cost()
     {
-        $this->render('links', $this->model('charts')->getRestChartsList(__FUNCTION__));
+        $this->render('links', $this->model('asanatt_charts')->getRestChartsList(__FUNCTION__));
         $this->getCharts(__FUNCTION__);
     }
 
     public function overall_cost()
     {
-        $this->render('links', $this->model('charts')->getRestChartsList(__FUNCTION__));
+        $this->render('links', $this->model('asanatt_charts')->getRestChartsList(__FUNCTION__));
         $this->getCharts(__FUNCTION__);
     }
 
@@ -59,11 +59,11 @@ class dashboard_controller extends controller
         $this->date_end = ($_POST['date_end'] ? $_POST['date_end'] : ( $_SESSION['date_end'] ? $_SESSION['date_end'] : date('Y-m-d')) . ' 23:59:59');
         $_SESSION['date_start'] = $this->date_start;
         $_SESSION['date_end'] = $this->date_end;
-        $permitted_charts = $this->model('charts')->getPermittedChartsList($url);
+        $permitted_charts = $this->model('asanatt_charts')->getPermittedChartsList($url);
         foreach($permitted_charts as $chart) {
             $method_name = $chart['chart_key'];
             if(method_exists($this, $method_name)) {
-                $data = $this->model('charts')->$method_name(array('date_start' => $this->date_start, 'date_end' => $this->date_end));
+                $data = $this->model('asanatt_charts')->$method_name(array('date_start' => $this->date_start, 'date_end' => $this->date_end));
                 $this->$method_name($data);
                 $this->template .= $this->fetch('charts' . DS . $method_name);
             } else {
@@ -163,7 +163,7 @@ class dashboard_controller extends controller
                 $stats['ticks'][$i] = trim($v['name']);
                 $i ++;
         }
-        $this->render('projects', $this->model('charts')->getProjectList(array('date_start' => $this->date_start, 'date_end' => $this->date_end)));
+        $this->render('projects', $this->model('asanatt_charts')->getProjectList(array('date_start' => $this->date_start, 'date_end' => $this->date_end)));
         $this->render('stats', $stats);
     }
 
@@ -172,7 +172,7 @@ class dashboard_controller extends controller
         switch ($_REQUEST['action']) {
             case "get_graph_data":
                 $date_range = array('date_start' => $_POST['date_start'], 'date_end' => $_POST['date_end']);
-                $data = $this->model('charts')->project_detail($date_range, $_POST['project']);
+                $data = $this->model('asanatt_charts')->project_detail($date_range, $_POST['project']);
                 $stats = [];
                 $i = 0;
                 unset($data['project']);
@@ -199,7 +199,7 @@ class dashboard_controller extends controller
             $stats['ticks'][$i] = trim($v['name']);
             $i ++;
         }
-        $this->render('projects', $this->model('charts')->getProjectList(array('date_start' => $this->date_start, 'date_end' => $this->date_end)));
+        $this->render('projects', $this->model('asanatt_charts')->getProjectList(array('date_start' => $this->date_start, 'date_end' => $this->date_end)));
         $this->render('stats', $stats);
     }
 
@@ -208,7 +208,7 @@ class dashboard_controller extends controller
         switch ($_REQUEST['action']) {
             case "get_graph_data":
                 $date_range = array('date_start' => $_POST['date_start'], 'date_end' => $_POST['date_end']);
-                $data = $this->model('charts')->project_cost($date_range, $_POST['project']);
+                $data = $this->model('asanatt_charts')->project_cost($date_range, $_POST['project']);
                 $stats = [];
                 $i = 0;
                 unset($data['project']);
@@ -245,7 +245,7 @@ class dashboard_controller extends controller
         $tasks = array("Work on Asana","Play with Asana","fix time tracker","Consider updating your project status","Software","Cadworx","CRM bug fixes","invoice hcc","Rolex Time","Shoring takeoff","I 35 Ellis County ","Update: Jan. - Apr. 2015 projects for Website ","Verify Existing Con...");
         $n = 0;
         for($i = strtotime($date_start); $i <= strtotime($date_end); $i += 3600*24) {
-            foreach ($this->model('user_mapping')->getAll() as $user) {
+            foreach ($this->model('asanatt_user_mapping')->getAll() as $user) {
                 $time = $this->randomTimeRange();
                 $start = date('Y-m-d', $i) . ' ' . $time['start'];
                 $end = date('Y-m-d', $i) . ' ' . $time['end'];

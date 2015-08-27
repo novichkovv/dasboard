@@ -10,11 +10,11 @@ class users_controller extends controller
     public function index()
     {
         if(isset($_POST['delete_btn'])) {
-            $this->model('users')->deleteById($_POST['delete_id']);
+            $this->model('asanatt_users')->deleteById($_POST['delete_id']);
             header('Location: ' . SITE_DIR . 'users/');
             exit;
         }
-        $this->render('users', $this->model('users')->getUsers());
+        $this->render('users', $this->model('asanatt_users')->getUsers());
         $this->view('users' . DS . 'list');
     }
 
@@ -23,7 +23,7 @@ class users_controller extends controller
         switch($_REQUEST['action']) {
             case "get_users_table":
                 $params = array();
-                $params['table'] = 'users u';
+                $params['table'] = 'asanatt_users u';
                 $params['select'] = array(
                     'u.id',
                     'u.user_name',
@@ -38,7 +38,7 @@ class users_controller extends controller
                             <span class=\"text-danger fa fa-times\"></span>
                         </a>")'
                 );
-                $params['join']['user_groups'] = array(
+                $params['join']['asanatt_user_groups'] = array(
                     'on' => 'u.user_group_id = g.id',
                     'as' => 'g',
                     'left' => true
@@ -67,7 +67,7 @@ class users_controller extends controller
             if($_POST['user_password']) {
                 $row['user_password'] = md5($_POST['user_password']);
             }
-            $this->model('users')->insert($row);
+            $this->model('asanatt_users')->insert($row);
             if($_POST['user_password']) {
                 $this->logOut();
                 $this->auth(registry::get('user')['email'], md5($_POST['user_password']));
@@ -78,9 +78,9 @@ class users_controller extends controller
             exit;
         }
 
-        $this->render('user_groups', $this->model('user_groups')->getAll());
+        $this->render('user_groups', $this->model('asanatt_user_groups')->getAll());
         if($_GET['id']) {
-            $this->render('user', $this->model('users')->getById($_GET['id']));
+            $this->render('user', $this->model('asanatt_users')->getById($_GET['id']));
         }
         $this->view('users' . DS . 'add');
     }
@@ -88,11 +88,11 @@ class users_controller extends controller
     public function groups()
     {
         if(isset($_POST['delete_btn'])) {
-            $this->model('user_groups')->deleteById($_POST['delete_id']);
+            $this->model('asanatt_user_groups')->deleteById($_POST['delete_id']);
             header('Location: ' . SITE_DIR . 'users/groups/');
             exit;
         }
-        $this->render('groups', $this->model('user_groups')->getAll());
+        $this->render('groups', $this->model('asanatt_user_groups')->getAll());
         $this->view('users' . DS . 'groups');
     }
 
@@ -104,13 +104,13 @@ class users_controller extends controller
                 $row['id'] = $_GET['id'];
             }
             $row['group_name'] = $_POST['group_name'];
-            $this->model('user_groups')->insert($row);
+            $this->model('asanatt_user_groups')->insert($row);
             header('Location: ' . SITE_DIR . 'users/groups/');
             exit;
         }
 
         if($_GET['id']) {
-            $this->render('group', $this->model('user_groups')->getById($_GET['id']));
+            $this->render('group', $this->model('asanatt_user_groups')->getById($_GET['id']));
         }
         $this->view('users' . DS . 'add_group');
     }
@@ -118,14 +118,14 @@ class users_controller extends controller
     public function permissions()
     {
         if(isset($_POST['save_permissions_btn'])) {
-            $this->model('system_routes_user_groups_relations')->deleteAll();
+            $this->model('asanatt_system_routes_user_groups_relations')->deleteAll();
             foreach($_POST['permission'] as $user_group_id => $routes) {
                 if($routes) {
                     foreach($routes as $system_route_id) {
                         $row = [];
                         $row['user_group_id'] = $user_group_id;
                         $row['system_route_id'] = $system_route_id;
-                        $this->model('system_routes_user_groups_relations')->insert($row);
+                        $this->model('asanatt_system_routes_user_groups_relations')->insert($row);
                     }
                 }
             }
@@ -133,11 +133,11 @@ class users_controller extends controller
             exit;
         }
         $permissions = [];
-        $tmp = $this->model('system_routes_user_groups_relations')->getAll();
+        $tmp = $this->model('asanatt_system_routes_user_groups_relations')->getAll();
         foreach($tmp as $v) {
             $permissions[$v['user_group_id']][] = $v['system_route_id'];
         }
-        $tmp = $this->model('system_routes')->getAll('position');
+        $tmp = $this->model('asanatt_system_routes')->getByField('permitted', '0', true, 'position');
         $routes = [];
         foreach($tmp as $v) {
             if(!$v['parent']) {
@@ -146,7 +146,7 @@ class users_controller extends controller
                 $routes[$v['parent']]['children'][$v['id']] = $v;
             }
         }
-        $groups = $this->model('user_groups')->getAll();
+        $groups = $this->model('asanatt_user_groups')->getAll();
 
         $result = [];
         foreach($groups as $v) {
@@ -174,16 +174,16 @@ class users_controller extends controller
         switch($_REQUEST['action']) {
             case "get_charts_permissions":
                 $permissions = [];
-                $tmp = $this->model('charts_user_groups_relations')->getAll();
+                $tmp = $this->model('asanatt_charts_user_groups_relations')->getAll();
                 foreach($tmp as $v) {
                     $permissions[$v['user_group_id']][] = $v['chart_id'];
                 }
-                $tmp = $this->model('charts')->getAll();
+                $tmp = $this->model('asanatt_charts')->getAll();
                 $charts = [];
                 foreach($tmp as $v) {
                     $charts[$v['id']] = $v;
                 }
-                $groups = $this->model('user_groups')->getAll();
+                $groups = $this->model('asanatt_user_groups')->getAll();
 
                 $result = [];
                 foreach($groups as $v) {
@@ -210,7 +210,7 @@ class users_controller extends controller
                         break;
                 }
                 //echo $part . 's_user_groups_relations';
-                $this->model($part . 's_user_groups_relations')->deleteAll();
+                $this->model('asanatt_' . $part . 's_user_groups_relations')->deleteAll();
                 if (isset($part)) {
                     foreach ($_POST['permission'][$key] as $user_group_id => $routes) {
                         if ($routes) {
@@ -218,7 +218,7 @@ class users_controller extends controller
                                 $row = [];
                                 $row['user_group_id'] = $user_group_id;
                                 $row[$part . '_id'] = $system_route_id;
-                                $this->model($part . 's_user_groups_relations')->insert($row);
+                                $this->model('asanatt_' . $part . 's_user_groups_relations')->insert($row);
                             }
                         }
                     }

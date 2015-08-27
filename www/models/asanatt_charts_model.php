@@ -5,7 +5,7 @@
  * Date: 10.08.2015
  * Time: 14:36
  */
-class charts_model extends model
+class asanatt_charts_model extends model
 {
     public function getPermittedChartsList($url)
     {
@@ -13,9 +13,9 @@ class charts_model extends model
             SELECT
                 *
             FROM
-                charts c
+                asanatt_charts c
                     JOIN
-                charts_user_groups_relations r ON r.chart_id = c.id
+                asanatt_charts_user_groups_relations r ON r.chart_id = c.id
             WHERE
                 r.user_group_id = :user_group_id
                     AND
@@ -34,9 +34,9 @@ class charts_model extends model
                 icon,
                 color
             FROM
-                charts c
+                asanatt_charts c
                     JOIN
-                charts_user_groups_relations r ON r.chart_id = c.id
+                asanatt_charts_user_groups_relations r ON r.chart_id = c.id
             WHERE
                 r.user_group_id = :user_group_id
                     AND
@@ -97,7 +97,7 @@ class charts_model extends model
                         work_begin,
                         work_end)) seconds
         FROM
-            work_time
+            asanatt_excel_time
         WHERE
             work_begin > :date_start
                 AND work_end < :date_end
@@ -137,7 +137,7 @@ class charts_model extends model
                         work_begin,
                         work_end))/3600 hours
         FROM
-            work_time
+            asanatt_excel_time
         WHERE
             work_begin > :date_start
                 AND work_end < :date_end
@@ -237,7 +237,7 @@ class charts_model extends model
                 JOIN
             asanatt_worktime w USING (tid)
 				join
-			user_mapping m ON m.user_name = t.username
+			asanatt_user_mapping m ON m.user_name = t.username
         WHERE
             work_begin > :date_start
                 AND work_end < :date_end
@@ -271,7 +271,7 @@ class charts_model extends model
                 JOIN
             asanatt_worktime w USING (tid)
 				join
-			user_mapping m ON m.user_name = t.username
+			asanatt_user_mapping m ON m.user_name = t.username
         WHERE
             work_begin > :date_start
                 AND work_end < :date_end

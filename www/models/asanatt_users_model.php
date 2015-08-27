@@ -5,7 +5,7 @@
  * Date: 26.03.15
  * Time: 12:52
  */
-class users_model extends model
+class asanatt_users_model extends model
 {
     public function getUsers()
     {
@@ -14,9 +14,9 @@ class users_model extends model
             u.*,
             g.group_name
         FROM
-            users u
+            asanatt_users u
         JOIN
-            user_groups g
+            asanatt_user_groups g
             ON u.user_group_id = g.id
         ORDER BY create_date
         ');

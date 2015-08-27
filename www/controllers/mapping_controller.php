@@ -18,7 +18,7 @@ class mapping_controller extends controller
         switch($_REQUEST['action']) {
             case "mapping_table":
                 $params = [];
-                $params['table'] = 'user_mapping';
+                $params['table'] = 'asanatt_user_mapping';
                 $params['order'] = 'id DESC';
                 $params['select'] = array(
                     'user_email',
@@ -39,12 +39,12 @@ class mapping_controller extends controller
                 }
                 if(!$_POST['mapping']['user_name'] || !$_POST['mapping']['user_email']) {
                     echo json_encode(array('status' => 2, 'error' => 'Missed Required Fields'));
-                } elseif(!$_POST['mapping']['id'] && $this->model('user_mapping')->getByField('user_name', $_POST['mapping']['user_name'])) {
+                } elseif(!$_POST['mapping']['id'] && $this->model('asanatt_user_mapping')->getByField('user_name', $_POST['mapping']['user_name'])) {
                     echo json_encode(array('status' => 2, 'error' => 'User Name Already Exists'));
-                } elseif(!$_POST['mapping']['id'] && $this->model('user_mapping')->getByField('user_email', $_POST['mapping']['user_email'])['id']) {
+                } elseif(!$_POST['mapping']['id'] && $this->model('asanatt_user_mapping')->getByField('user_email', $_POST['mapping']['user_email'])['id']) {
                     echo json_encode(array('status' => 2, 'error' => 'User Email Already Exists'));
                 } else {
-                    if($this->model('user_mapping')->insert($_POST['mapping'])) {
+                    if($this->model('asanatt_user_mapping')->insert($_POST['mapping'])) {
                         echo json_encode(array('status' => 1));
                     } else {
                         echo json_encode(array('status' => 2, 'Unexpected Error'));
@@ -54,7 +54,7 @@ class mapping_controller extends controller
                 break;
 
             case "get_mapping":
-                if(!$mapping = $this->model('user_mapping')->getById($_POST['id'])) {
+                if(!$mapping = $this->model('asanatt_user_mapping')->getById($_POST['id'])) {
                     echo json_encode(array('status' => 2, 'Wrong Mapping Id'));
                 } else {
                     echo json_encode(array('status' => 1, 'result' => $mapping));
@@ -63,10 +63,10 @@ class mapping_controller extends controller
                 break;
 
             case "delete_mapping":
-                if(!$mapping = $this->model('user_mapping')->getById($_POST['id'])) {
+                if(!$mapping = $this->model('asanatt_user_mapping')->getById($_POST['id'])) {
                     echo json_encode(array('status' => 2, 'Wrong Mapping Id'));
                 } else {
-                    $this->model('user_mapping')->deleteById($_POST['id']);
+                    $this->model('asanatt_user_mapping')->deleteById($_POST['id']);
                     echo json_encode(array('status' => 1, 'result' => $mapping));
                 }
                 exit;

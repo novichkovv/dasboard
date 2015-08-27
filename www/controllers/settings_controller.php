@@ -21,7 +21,7 @@ class settings_controller extends controller
                         'id' => registry::get('user')['id'],
                         'user_password' => md5($_POST['password'])
                     );
-                    if($this->model('users')->insert($row)) {
+                    if($this->model('asanatt_users')->insert($row)) {
                         echo json_encode(array('status' => 1));
                         $this->logOut();
                         $this->auth(registry::get('user')['email'], md5($_POST['password']));

@@ -10,7 +10,7 @@ class mapping_model extends model
     public function getNames()
     {
         $stm = $this->pdo->prepare('
-            SELECT username FROM work_time GROUP BY username
+            SELECT username FROM asanatt_excel_time GROUP BY username
         ');
         return $this->get_all($stm);
     }
