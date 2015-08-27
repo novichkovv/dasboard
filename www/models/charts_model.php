@@ -101,6 +101,7 @@ class charts_model extends model
         WHERE
             work_begin > :date_start
                 AND work_end < :date_end
+                AND work_end != "0000-00-00 00:00:00"
             GROUP BY DATE(work_begin), username
         ');
         return $this->get_all($stm, $date_range);
@@ -140,6 +141,7 @@ class charts_model extends model
         WHERE
             work_begin > :date_start
                 AND work_end < :date_end
+                AND work_end != "0000-00-00 00:00:00"
             GROUP BY username
         ');
         $tmp = $this->get_all($stm, $date_range);
