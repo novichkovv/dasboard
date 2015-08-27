@@ -59,6 +59,8 @@ class dashboard_controller extends controller
         $this->date_end = ($_POST['date_end'] ? $_POST['date_end'] : ( $_SESSION['date_end'] ? $_SESSION['date_end'] : date('Y-m-d')) . ' 23:59:59');
         $_SESSION['date_start'] = $this->date_start;
         $_SESSION['date_end'] = $this->date_end;
+        $this->render('date_start', $this->date_start);
+        $this->render('date_end', $this->date_end);
         $permitted_charts = $this->model('asanatt_charts')->getPermittedChartsList($url);
         foreach($permitted_charts as $chart) {
             $method_name = $chart['chart_key'];
