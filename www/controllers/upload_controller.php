@@ -81,7 +81,6 @@ class upload_controller extends controller
                     if ($values) {
                         foreach ($values as $v) {
                             foreach ($v as $row) {
-
 //                                if(!$row['work_begin'] || date('Y-m-d', strtotime($row['work_begin']) == '1970-01-01' || $row['work_begin']) == '000-00-00 00:00:00'
 //                                || !$row['work_end'] || date('Y-m-d', strtotime($row['work_end']) == '1970-01-01' || $row['work_end']) == '000-00-00 00:00:00') {
 //                                    $date_errors[] = array($row['k'], $row['username'], 2);

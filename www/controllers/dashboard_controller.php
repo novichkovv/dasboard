@@ -55,8 +55,10 @@ class dashboard_controller extends controller
 
     private function getCharts($url)
     {
-        $this->date_start = ($_POST['date_start'] ? $_POST['date_start'] : date('Y-m-d', strtotime(date('Y-m-d') . ' - 15 day'))) . ' 00:00:00';
-        $this->date_end = ($_POST['date_end'] ? $_POST['date_end'] : date('Y-m-d')) . ' 23:59:59';
+        $this->date_start = ($_POST['date_start'] ? $_POST['date_start'] : ( $_SESSION['date_start'] ? $_SESSION['date_start'] : date('Y-m-d', strtotime(date('Y-m-d') . ' - 15 day'))) . ' 00:00:00');
+        $this->date_end = ($_POST['date_end'] ? $_POST['date_end'] : ( $_SESSION['date_end'] ? $_SESSION['date_end'] : date('Y-m-d')) . ' 23:59:59');
+        $_SESSION['date_start'] = $this->date_start;
+        $_SESSION['date_end'] = $this->date_end;
         $permitted_charts = $this->model('charts')->getPermittedChartsList($url);
         foreach($permitted_charts as $chart) {
             $method_name = $chart['chart_key'];
@@ -108,13 +110,18 @@ class dashboard_controller extends controller
             $stats[$v['username']][$v['date']] = tools_class::formatTime($v['seconds']);
             $dates[$v['date']] = $v['date'];
         }
-        foreach($data as $k => $v) {
+        foreach($stats as $k => $v) {
             foreach($dates as $date) {
-                if(!$stats[$v['username']][$date]) {
-                    $stats[$v['username']][$date] = '';
+                if(!$stats[$k][$date]) {
+                    $stats[$k][$date] = ' ';
                 }
             }
         }
+        foreach($stats as $k => $v) {
+            ksort($v);
+            $stats[$k] = $v;
+        }
+
         $this->render('stats', $stats);
         $this->render('dates', $dates);
     }
