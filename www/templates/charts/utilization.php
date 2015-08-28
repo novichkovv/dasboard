@@ -11,6 +11,8 @@
 <script type="text/javascript">
     $ = jQuery.noConflict();
     $(document).ready(function () {
+        var count = <?php echo count($stats['data']); ?>;
+        $("#utilization").height(30 * count);
         var plot = $.plot($("#utilization"), [ {
                 data: [
                     <?php foreach($stats['data'] as $k => $v): ?>
@@ -51,10 +53,5 @@
         opts.xaxes[0].ticks = [[0, 0], [25, '25%'],[50,'50%'],[75,'75%'],[100,'100%'],[125,'125%'],[150,'150%'],[175,'175%'],[200,'200%']];
         plot.setupGrid();
         plot.draw();
-
-        var xaxisLabel = $("<div class='axisLabel xaxisLabel'></div>")
-            .text("%")
-            .appendTo($("#utilization"));
-        xaxisLabel.css("top", $("#utilization").height() - 40);
     });
 </script>

@@ -29,6 +29,7 @@
         $(".select2").select2();
         $("#project").change(function()
         {
+
             var value = $(this).val();
             var params = {
                 'action': 'get_graph_data',
@@ -41,7 +42,10 @@
                     ajax_respond(msg,
                         function(respond)
                         {
+
                             $("#task").html('');
+                            var count = respond.data.length;
+                            $("#task").height(30 * count);
                             $.plot($("#task"), [ {
                                     data: respond.data,
                                     color: '#866AA7',
@@ -69,6 +73,8 @@
             };
             ajax(params);
         });
+        var count = <?php echo count($stats['data']); ?>;
+        $("#task").height(30 * count);
         $.plot($("#task"), [ {
                 data: [
                     <?php foreach($stats['data'] as $k => $v): ?>

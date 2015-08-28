@@ -11,6 +11,8 @@
 <script type="text/javascript">
     $ = jQuery.noConflict();
     $(document).ready(function () {
+        var count = <?php echo count($stats['data']); ?>;
+        $("#week").height(30 * count);
         var plot = $.plot($("#week"), [ {
                 data: [
                     <?php foreach($stats['data'] as $k => $v): ?>

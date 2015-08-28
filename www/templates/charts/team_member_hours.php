@@ -11,7 +11,8 @@
 <script type="text/javascript">
     $ = jQuery.noConflict();
     $(document).ready(function () {
-        var ticks = ['a','b','c','d'];
+        var count = <?php echo count($stats['data']); ?>;
+        $("#team_member_hours").height(30 * count);
         $.plot($("#team_member_hours"), [ {
                 data: [
                     <?php foreach($stats['data'] as $k => $v): ?>
