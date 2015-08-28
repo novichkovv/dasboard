@@ -45,7 +45,7 @@
 
                             $("#task").html('');
                             var count = respond.data.length;
-                            $("#task").height(30 * count);
+                            $("#task").height(30 * count + 60);
                             $.plot($("#task"), [ {
                                     data: respond.data,
                                     color: '#866AA7',
@@ -74,7 +74,7 @@
             ajax(params);
         });
         var count = <?php echo count($stats['data']); ?>;
-        $("#task").height(30 * count);
+        $("#task").height(30 * count + 60);
         $.plot($("#task"), [ {
                 data: [
                     <?php foreach($stats['data'] as $k => $v): ?>

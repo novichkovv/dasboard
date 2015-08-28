@@ -12,7 +12,7 @@
     $ = jQuery.noConflict();
     $(document).ready(function () {
         var count = <?php echo count($stats['data']); ?>;
-        $("#week").height(30 * count);
+        $("#week").height(30 * count + 60);
         var plot = $.plot($("#week"), [ {
                 data: [
                     <?php foreach($stats['data'] as $k => $v): ?>

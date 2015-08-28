@@ -42,7 +42,7 @@
                         function(respond)
                         {
                             var count = respond.data.length;
-                            $("#task").height(30 * count);
+                            $("#task").height(30 * count + 60);
                             $("#task").html('');
                             $.plot($("#task"), [ {
                                     data: respond.data,
@@ -76,7 +76,7 @@
             ajax(params);
         });
         var count = <?php echo count($stats['data']); ?>;
-        $("#task").height(30 * count);
+        $("#task").height(30 * count + 60);
         $.plot($("#task"), [ {
                 data: [
                     <?php foreach($stats['data'] as $k => $v): ?>
