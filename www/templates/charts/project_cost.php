@@ -7,7 +7,8 @@
             <div class="row">
                 <div class="col-md-3">
                     <div class="form-group">
-                        <select class="form-control select2" id="project">
+                        <select class="form-control select2" id="project" data-placeholder="Choose Project">
+                            <option value=""></option>
                             <?php foreach($projects as $project): ?>
                                 <option value="<?php echo $project['project']; ?>" <?php if($active_project == $project['project']) echo 'selected'; ?>>
                                     <?php echo $project['project']; ?>
