@@ -178,17 +178,25 @@ class dashboard_controller extends controller
 
     private function project_detail($data)
     {
+        $common_data = $this->model('asanatt_charts')->active_projects(array('date_start' => $this->date_start, 'date_end' => $this->date_end));
         $stats = [];
-        $i = 0;
-        $this->render('active_project', $data['project']);
-        unset($data['project']);
-        foreach($data as $project => $v) {
-                $stats['data'][$i] = round($v['hours']);
-                $stats['ticks'][$i] = trim($v['name']);
-                $i ++;
+        foreach($common_data as $k => $v) {
+            $stats['data'][$k] = round($v['hours']);
+            $stats['ticks'][$k] = trim($v['project']);
         }
-        $this->render('projects', $this->model('asanatt_charts')->getProjectList(array('date_start' => $this->date_start, 'date_end' => $this->date_end)));
         $this->render('stats', $stats);
+
+//        $stats = [];
+//        $i = 0;
+//        $this->render('active_project', $data['project']);
+//        unset($data['project']);
+//        foreach($data as $project => $v) {
+//                $stats['data'][$i] = round($v['hours']);
+//                $stats['ticks'][$i] = trim($v['name']);
+//                $i ++;
+//        }
+        $this->render('projects', $this->model('asanatt_charts')->getProjectList(array('date_start' => $this->date_start, 'date_end' => $this->date_end)));
+//        $this->render('stats', $stats);
     }
 
     public function detail_ajax()
