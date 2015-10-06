@@ -111,7 +111,7 @@ class dashboard_controller extends controller
         $stats = [];
         foreach($data as $k => $v) {
             $stats['data'][$k] = round($v['hours']);
-            $stats['ticks'][$k] = trim($v['project']);
+            $stats['ticks'][$k] = trim(addslashes($v['project']));
         }
         $this->render('stats', $stats);
     }
@@ -121,7 +121,7 @@ class dashboard_controller extends controller
         $stats = [];
         foreach($data as $k => $v) {
             $stats['data'][$k] = round($v['hours']);
-            $stats['ticks'][$k] = $v['username'];
+            $stats['ticks'][$k] = addslashes($v['username']);
         }
         $this->render('stats', $stats);
 
@@ -170,7 +170,7 @@ class dashboard_controller extends controller
         $i = 0;
         foreach($data as $k => $v) {
             $stats['data'][$i] = $v;
-            $stats['ticks'][$i] = $k;
+            $stats['ticks'][$i] = addslashes($k);
             $i ++;
         }
         $this->render('stats', $stats);
@@ -182,7 +182,7 @@ class dashboard_controller extends controller
         $stats = [];
         foreach($common_data as $k => $v) {
             $stats['data'][$k] = round($v['hours']);
-            $stats['ticks'][$k] = trim($v['project']);
+            $stats['ticks'][$k] = trim(addslashes($v['project']));
         }
         $this->render('stats', $stats);
         $this->render('projects', $this->model('asanatt_charts')->getProjectList(array('date_start' => $this->date_start, 'date_end' => $this->date_end)));
@@ -199,7 +199,7 @@ class dashboard_controller extends controller
                 unset($data['project']);
                 foreach($data as $task => $v) {
                     $stats['data'][$i] = array(round($v['hours']), $i);
-                    $stats['ticks'][$i] = array($i, trim($v['name']));
+                    $stats['ticks'][$i] = array($i, addslashes(trim($v['name'])));
                     $i ++;
                 }
                 $stats['status'] = 1;
@@ -216,7 +216,7 @@ class dashboard_controller extends controller
         $i = 0;
         foreach($data as $val) {
             $stats['data'][$i] = round($val['sum'], 2);
-            $stats['ticks'][$i] = trim($val['project']);
+            $stats['ticks'][$i] = trim(addslashes($val['project']));
             $i ++;
         }
         $this->render('stats', $stats);
@@ -234,7 +234,7 @@ class dashboard_controller extends controller
                 unset($data['project']);
                 foreach($data as $task => $v) {
                     $stats['data'][$i] = array(round($v['sum'], 2), $i);
-                    $stats['ticks'][$i] = array($i, trim($v['name']));
+                    $stats['ticks'][$i] = array($i, trim(addslashes($v['name'])));
                     $i ++;
                 }
                 $stats['status'] = 1;
@@ -250,7 +250,7 @@ class dashboard_controller extends controller
         $i = 0;
         foreach($data as $val) {
             $stats['data'][$i] = round($val['sum'], 2);
-            $stats['ticks'][$i] = trim($val['project']);
+            $stats['ticks'][$i] = trim(addslashes($val['project']));
             $i ++;
         }
 

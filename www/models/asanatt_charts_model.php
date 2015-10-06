@@ -71,7 +71,7 @@ class asanatt_charts_model extends model
     {
         $stm = $this->pdo->prepare('
         SELECT
-            username,
+            m.user_name username,
             SUM(TIMESTAMPDIFF(SECOND,
                 work_begin,
                 work_end)) / 3600 hours
@@ -79,6 +79,8 @@ class asanatt_charts_model extends model
             asanatt_task t
                 JOIN
             asanatt_worktime w USING (tid)
+                JOIN
+			asanatt_user_mapping m ON m.user_email = t.username
         WHERE
             work_begin > :date_start
                 AND work_end < :date_end
@@ -112,7 +114,7 @@ class asanatt_charts_model extends model
         $hours = [];
         $stm = $this->pdo->prepare('
         SELECT
-            username,
+            m.user_name username,
             SUM(TIMESTAMPDIFF(SECOND,
                 work_begin,
                 work_end)) /3600 hours
@@ -120,6 +122,8 @@ class asanatt_charts_model extends model
             asanatt_task t
                 JOIN
             asanatt_worktime w USING (tid)
+                JOIN
+			asanatt_user_mapping m ON m.user_email = t.username
         WHERE
             work_begin > :date_start
                 AND work_end < :date_end
@@ -155,7 +159,7 @@ class asanatt_charts_model extends model
     {
         $stm = $this->pdo->prepare('
         SELECT
-            username,
+            m.user_name username,
             SUM(TIMESTAMPDIFF(SECOND,
                 work_begin,
                 work_end))  seconds
@@ -163,6 +167,8 @@ class asanatt_charts_model extends model
             asanatt_task t
                 JOIN
             asanatt_worktime w USING (tid)
+                JOIN
+			asanatt_user_mapping m ON m.user_email = t.username
         WHERE
             work_begin > :date_start
                 AND work_end < :date_end
@@ -265,13 +271,12 @@ class asanatt_charts_model extends model
             TIMESTAMPDIFF(SECOND,
                 work_begin,
                 work_end) / 3600 * user_rate sum
-
         FROM
             asanatt_task t
                 JOIN
             asanatt_worktime w USING (tid)
-				join
-			asanatt_user_mapping m ON m.user_name = t.username
+				JOIN
+			asanatt_user_mapping m ON m.user_email = t.username
         WHERE
             work_begin > :date_start
                 AND work_end < :date_end
