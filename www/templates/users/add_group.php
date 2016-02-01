@@ -17,6 +17,18 @@
                 <input type="text" class="form-control" name="group_name" value="<?php echo $group['group_name']; ?>">
             </div>
             <div class="form-group">
+                <div class="checkbox">
+                    <div class="squaredFour">
+                        <input name="can_approve" id="can_approve" value="1" type="checkbox" class="styled-checkbox"
+                            <?php if ($group['can_approve']): ?>
+                                checked
+                            <?php endif; ?>>
+                        <label for="can_approve"></label>
+                    </div>
+                    <span class="styled-checkbox-label">Allowed to approve overtime</span>
+                </div>
+            </div>
+            <div class="form-group">
                 <input class="btn btn-primary btn-lg" type="submit" name="save_group_btn" value="Save">
             </div>
         </form>

@@ -104,6 +104,7 @@ class users_controller extends controller
                 $row['id'] = $_GET['id'];
             }
             $row['group_name'] = $_POST['group_name'];
+            $row['can_approve'] = isset($_POST['can_approve']) ? 1 : 0;
             $this->model('asanatt_user_groups')->insert($row);
             header('Location: ' . SITE_DIR . 'users/groups/');
             exit;

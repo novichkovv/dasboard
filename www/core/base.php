@@ -42,7 +42,7 @@ class base
      */
 
     protected function writeLog($file, $value, $mode = 'a+') {
-        $f = fopen(ROOT_DIR . 'tmp' . DS . 'logs' . DS . $file . '.log', $mode);
+        $f = fopen(ROOT_DIR . DS . 'logs' . DS . $file . '.log', $mode);
         fwrite($f, date('Y-m-d H:i:s') . ' - ' .print_r($value, true) . "\n");
         fclose($f);
     }

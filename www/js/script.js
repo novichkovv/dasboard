@@ -115,11 +115,11 @@ var validate = function validate(form_id)
         }
     });
 
-    $(form).find('[data-one_ten="1"]').each(function()
+    $(form).find('[data-validate="numeric"]').each(function()
     {
         var val = $(this).val();
-        if((isNaN(parseInt(val)) || parseInt(val) < 0 || parseInt(val) > 10)) {
-            $(this).parent().find('.error-one_ten').slideDown();
+        if(val && typeof val != 'undefined' && val != null && isNaN(parseInt(val))) {
+            $(this).parent().find('.error-validate').slideDown();
             validate = false;
         }
     });

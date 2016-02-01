@@ -5,7 +5,7 @@
  * Date: 06.03.15
  * Time: 19:34
  */
-class model
+class model extends base
 {
     public $table;
     protected $pdo;

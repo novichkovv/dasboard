@@ -86,7 +86,7 @@ class upload_controller extends controller
 //                                    $date_errors[] = array($row['k'], $row['username'], 2);
 //                                } else
                                 if($row['work_end'] && $row['work_end'] <= $row['work_begin']) {
-                                    $date_errors[] = array($row['k'], $row['username'], 2);;
+                                    //$date_errors[] = array($row['k'], $row['username'], 2);
                                 }
                                 unset($row['k']);
                                 $this->model('asanatt_excel_time')->insert($row);

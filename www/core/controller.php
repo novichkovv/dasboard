@@ -41,6 +41,11 @@ abstract class controller extends base
             $this->sidebar();
         }
         $this->action_name = $action . ($this->check_auth ? '_na' : '');
+        $config = [];
+        foreach ($this->model('asanatt_system_config')->getAll() as $v) {
+            $config[$v['config_key']] = $v['config_value'];
+        }
+        registry::set('config', $config);
     }
 
     /**
