@@ -10,6 +10,11 @@ class summary_controller extends controller
     public function index()
     {
         $dates = $this->dates();
+        $users = [];
+        foreach ($this->model('asanatt_user_mapping')->getAll() as $user) {
+            $users[$user['id']] = $user;
+        }
+        registry::set('users', $users);
         $date_range = [];
         for($i = strtotime($dates['date_from']); $i <= strtotime($dates['date_to']); $i = $i + 3600*24) {
             $date_range[] = date('Y-m-d', $i);
@@ -18,9 +23,25 @@ class summary_controller extends controller
         $this->render('date_to', $dates['date_to']);
         $this->render('dates', $date_range);
         $this->render('users_list', $this->model('asanatt_user_mapping')->getAll('user_name'));
-        $late = $this->model('asanatt_excel_time')->getLateEmployees($dates);
-        $absent = $this->model('asanatt_excel_time')->getAbsentEmployees($dates);
-
+        if(empty($_POST['user'])) {
+            $this->render('users', $this->model('asanatt_user_mapping')->getAll('user_name'));
+        } else {
+            $this->render('users', $this->model('asanatt_user_mapping')->getByField('id', $_POST['user'], true));
+        }
+        $this->render('late', $this->model('asanatt_excel_time')->getLateEmployees($dates));
+        $this->render('absent', $this->model('asanatt_excel_time')->getAbsentEmployees($dates));
+        //print_r($absent);
+        $this->render('early', $this->model('asanatt_excel_time')->getEarlyFinished($dates));
+        //print_r($this->model('asanatt_excel_time')->getLateEmployees($dates));
+        //print_r($this->model('asanatt_excel_time')->getEarlyFinished($dates));
+        $this->render('less_worked', $this->model('asanatt_excel_time')->getLessWorked($dates));
+        $this->render('overtime', $this->model('asanatt_excel_time')->getOvertime($dates));
+        //print_r($less_worked);
+        //print_r($late);
+        //print_r($absent);
+        //print_r($early);
+        //print_r($less_worked);
+        //exit;
         $this->view('summary' . DS . 'index');
     }
 
