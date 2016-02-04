@@ -57,7 +57,7 @@
                 <?php foreach ($dates as $date): ?>
                     <td data-date="<?php echo $date; ?>" data-user="<?php echo $user['id']; ?>">
                         <div style="width: 50px; height: 50px;"
-                             <?php if ($overtime[$date][$user['id']]['suggested'] && (!isset($dashboard_user) || $dashboard_user ==$overtime[$date][$user['id']]['dashboard_user_id'])): ?>
+                             <?php if ($overtime[$date][$user['id']]['suggested']): ?>
                                  data-trigger="hover" data-toggle="popover" data-placement="bottom"
                                  data-content="<?php echo $overtime[$date][$user['id']]['comments'] ? $overtime[$date][$user['id']]['comments'] : ' - '; ?>"
                              <?php endif; ?>
@@ -67,29 +67,30 @@
                                     <i class="fa fa-edit"></i>
                                 </a>
                             <?php endif; ?>
-                            <?php if (!isset($dashboard_user) || $overtime[$date][$user['id']]['dashboard_user_id'] == $dashboard_user): ?>
-                                <?php if($overtime[$date][$user['id']]): ?>
-                                    <a data-toggle="modal" data-id="<?php echo $overtime[$date][$user['id']]['id']; ?>" href="#overtime_suggest_modal" class="btn btn-xs edit_suggested_overtime" type="button" style="background: none;">
-                                        <?php echo $overtime[$date][$user['id']]['suggested']; ?>
+                            <?php if($overtime[$date][$user['id']]): ?>
+                                <a data-toggle="modal" data-id="<?php echo $overtime[$date][$user['id']]['id']; ?>" href="#overtime_suggest_modal" class="btn btn-xs edit_suggested_overtime" type="button" style="background: none;">
+                                    <?php echo $overtime[$date][$user['id']]['suggested']; ?>
+                                </a>
+                                <?php if(!$overtime[$date][$user['id']]['approved'] && $allowed): ?>
+                                    <a data-toggle="modal" data-id="<?php echo $overtime[$date][$user['id']]['id']; ?>" href="#overtime_approve_modal" class="btn btn-xs approve_overtime" type="button" style="background: none;">
+                                        <i class="fa fa-edit text-info"></i>
                                     </a>
-                                    <?php if(!$overtime[$date][$user['id']]['approved'] && $allowed): ?>
-                                        <a data-toggle="modal" data-id="<?php echo $overtime[$date][$user['id']]['id']; ?>" href="#overtime_approve_modal" class="btn btn-xs approve_overtime" type="button" style="background: none;">
-                                            <i class="fa fa-edit text-info"></i>
-                                        </a>
-                                    <?php endif; ?>
-                                    <?php if($overtime[$date][$user['id']]['approved'] && $allowed): ?>
-                                        <a data-toggle="modal" data-value="<?php echo $overtime[$date][$user['id']]['approved']; ?>" data-id="<?php echo $overtime[$date][$user['id']]['id']; ?>" href="#overtime_approve_modal" class="btn btn-xs approve_overtime" type="button" style="background: none;">
+                                <?php endif; ?>
+                                <?php if($overtime[$date][$user['id']]['approved'] && $allowed): ?>
+                                    <a data-toggle="modal" data-value="<?php echo $overtime[$date][$user['id']]['approved']; ?>" data-id="<?php echo $overtime[$date][$user['id']]['id']; ?>" href="#overtime_approve_modal" class="btn btn-xs approve_overtime" type="button" style="background: none;">
                                             <span style="color: red;">
                                             <?php echo $overtime[$date][$user['id']]['approved']; ?>
                                             </span>
-                                        </a>
-                                    <?php endif; ?>
-                                    <?php if($overtime[$date][$user['id']]['approved'] && !$allowed): ?>
-                                        <span style="color: red;">
+                                    </a>
+                                <?php endif; ?>
+                                <?php if($overtime[$date][$user['id']]['approved'] && !$allowed): ?>
+                                    <span style="color: red;">
                                             <?php echo $overtime[$date][$user['id']]['approved']; ?>
                                             </span>
-                                    <?php endif; ?>
                                 <?php endif; ?>
+                            <?php endif; ?>
+                            <?php if (!isset($dashboard_user) || $overtime[$date][$user['id']]['dashboard_user_id'] == $dashboard_user): ?>
+
                             <?php endif; ?>
                         </div>
                     </td>
@@ -228,7 +229,6 @@
                     ajax_respond(msg, function(respond) {
                         for(var i in respond.overtime) {
                             $("[name='overtime[" + i + "]']").val(respond.overtime[i]);
-                            console.log("[name='overtime[" + i + "]']");
                         }
                     });
                 }
@@ -248,6 +248,8 @@
             var value = $(this).attr('data-value');
             if(value) {
                 $("[name='overtime[overtime_approved]']").val(value);
+            } else {
+                $("[name='overtime[overtime_approved]']").val('');
             }
         });
 
