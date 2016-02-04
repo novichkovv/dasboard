@@ -161,21 +161,23 @@
             dateFormat: 'yy-mm-dd'
         });
         $('[data-toggle="popover"]').popover({trigger: 'hover','placement': 'top', 'html': true});
-        console.log(browser());
+        var $table = $(".table-scrollable");
         switch (browser()) {
             case "ff":
-                $(".table-scrollable").scroll(function() {
+                $table.scroll(function() {
                     var top = $(this).scrollTop();
                     var left = $(this).scrollLeft();
-                    $('thead').css('margin-left', -left/500);
-                    $('.user_id').css('margin-top', -top/500);
-                    $('.user_id').css('margin-left', left);
-                    $('thead').css('margin-top', top);
+                    var $thead = $('thead');
+                    $thead.css('margin-left', -left/500);
+                    var $user_id = $('.user_id');
+                    $user_id.css('margin-top', -top/500);
+                    $user_id.css('margin-left', left);
+                    $thead.css('margin-top', top);
                 });
                 break;
             case "chrome":
             default :
-                $(".table-scrollable").scroll(function() {
+                $table.scroll(function() {
                     var top = $(this).scrollTop();
                     var left = $(this).scrollLeft();
                     $('thead').css('margin-left', -left);

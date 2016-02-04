@@ -211,12 +211,31 @@
         $(".datepicker").datepicker({
             dateFormat: 'yy-mm-dd'
         });
-        $(".table-scrollable").scroll(function() {
-            var top = $(this).scrollTop();
-            var left = $(this).scrollLeft();
-            $('thead').css('margin-left', -left);
-            $('.user_id').css('margin-top', -top);
-        });
+        var $table = $(".table-scrollable");
+        switch (browser()) {
+            case "ff":
+                $table.scroll(function() {
+                    var top = $(this).scrollTop();
+                    var left = $(this).scrollLeft();
+                    var $thead = $('thead');
+                    $thead.css('margin-left', -left/500);
+                    var $user_id = $('.user_id');
+                    $user_id.css('margin-top', -top/500);
+                    $user_id.css('margin-left', left);
+                    $thead.css('margin-top', top);
+                });
+                break;
+            case "chrome":
+            default :
+                $table.scroll(function() {
+                    var top = $(this).scrollTop();
+                    var left = $(this).scrollLeft();
+                    $('thead').css('margin-left', -left);
+                    $('.user_id').css('margin-top', -top);
+                });
+
+                break;
+        }
 
 //        $(document).scroll(function(e) {
 //            var offset = $('#under_footer').offset().top;
