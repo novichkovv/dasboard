@@ -8,3 +8,4 @@
 <div class="footer-main">
     Copyright &copy Dashboard, <?php echo date('Y'); ?>
 </div>
+<div id="under_footer"></div>

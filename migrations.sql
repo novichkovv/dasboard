@@ -18,4 +18,6 @@ CREATE TABLE asanatt_overtime (
 )ENGINE=MyISAM;
 
 ALTER TABLE asanatt_user_groups ADD can_approve TINYINT NOT NULL DEFAULT 0 AFTER group_name;
-
+ALTER TABLE asanatt_user_groups ADD can_see TINYINT NOT NULL DEFAULT 0 AFTER can_approve;
+ALTER TABLE asanatt_overtime ADD comments TEXT NULL AFTER overtime_approved;
+ALTER TABLE asanatt_overtime ADD dashboard_user_id BIGINT UNSIGNED NOT NULL AFTER user_id;

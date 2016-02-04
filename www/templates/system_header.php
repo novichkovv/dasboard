@@ -62,6 +62,7 @@
     <!-- calendar -->
     <script src="<?php echo SITE_DIR; ?>js/theme/plugins/fullcalendar/fullcalendar.js" type="text/javascript"></script>
     <script src="<?php echo SITE_DIR; ?>js/libs/notifier.js" type="text/javascript"></script>
+    <script src="<?php echo SITE_DIR; ?>js/libs/smooth.js" type="text/javascript"></script>
 
     <!-- Director App -->
     <script src="<?php echo SITE_DIR; ?>js/theme/Director/app.js" type="text/javascript"></script>

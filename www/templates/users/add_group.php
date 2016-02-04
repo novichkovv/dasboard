@@ -29,6 +29,18 @@
                 </div>
             </div>
             <div class="form-group">
+                <div class="checkbox">
+                    <div class="squaredFour">
+                        <input name="can_see" id="can_see" value="1" type="checkbox" class="styled-checkbox"
+                            <?php if ($group['can_see']): ?>
+                                checked
+                            <?php endif; ?>>
+                        <label for="can_see"></label>
+                    </div>
+                    <span class="styled-checkbox-label">Allowed to see all overtimes</span>
+                </div>
+            </div>
+            <div class="form-group">
                 <input class="btn btn-primary btn-lg" type="submit" name="save_group_btn" value="Save">
             </div>
         </form>

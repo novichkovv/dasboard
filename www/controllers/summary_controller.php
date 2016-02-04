@@ -49,6 +49,11 @@ class summary_controller extends controller
     {
         if($this->model('asanatt_user_groups')->getById(registry::get('user')['user_group_id'])['can_approve']) {
             $this->render('allowed', true);
+        } elseif($this->model('asanatt_user_groups')->getById(registry::get('user')['user_group_id'])['can_see']) {
+            $this->render('can_see', true);
+        } else {
+            $dashboard_user = registry::get('user')['id'];
+            $this->render('dashboard_user', $dashboard_user);
         }
         $dates = $this->dates();
         $date_range = [];
@@ -58,7 +63,9 @@ class summary_controller extends controller
         $this->render('date_from', $dates['date_from']);
         $this->render('date_to', $dates['date_to']);
         $this->render('dates', $date_range);
-        $this->render('users_list', $this->model('asanatt_user_mapping')->getAll('user_name'));
+        if(!isset($dashboard_user)) {
+            $this->render('users_list', $this->model('asanatt_user_mapping')->getAll('user_name'));
+        }
         if(empty($_POST['user'])) {
             $this->render('users', $this->model('asanatt_user_mapping')->getAll('user_name'));
         } else {
@@ -68,8 +75,11 @@ class summary_controller extends controller
         foreach ($this->model('asanatt_overtime')->getAll() as $v) {
             $overtime[$v['work_date']][$v['user_id']]['suggested'] = $v['overtime_suggested'];
             $overtime[$v['work_date']][$v['user_id']]['approved'] = $v['overtime_approved'];
+            $overtime[$v['work_date']][$v['user_id']]['comments'] = $v['comments'];
+            $overtime[$v['work_date']][$v['user_id']]['dashboard_user_id'] = $v['dashboard_user_id'];
             $overtime[$v['work_date']][$v['user_id']]['id'] = $v['id'];
         }
+        //print_r($overtime);
         $this->render('overtime', $overtime);
         $this->view('summary' . DS . 'overtime');
     }
@@ -83,12 +93,14 @@ class summary_controller extends controller
         switch ($_REQUEST['action']) {
             case "suggest_overtime":
                 foreach ($_POST['overtime'] as $key => $val) {
-                    if(!$val) {
+                    if(!$val && $key != 'comments') {
                         echo json_encode(array('status' => 2));
                         exit;
                     }
                 }
-                $id = $this->model('asanatt_overtime')->insert($_POST['overtime']);
+                $overtime = $_POST['overtime'];
+                $overtime['dashboard_user_id'] = registry::get('user')['id'];
+                $id = $this->model('asanatt_overtime')->insert($overtime);
                 $overtime = $this->model('asanatt_overtime')->getById($id);
                 $this->render('overtime', $overtime);
                 $template = $this->fetch('summary' . DS . 'ajax' . DS . 'overtime_table_cell');
@@ -144,13 +156,26 @@ class summary_controller extends controller
         if(isset($_POST['date_from'])) {
             $dates['date_from'] = $_POST['date_from'];
         } else {
-            $dates['date_from'] = date('Y-m-01');
+            if($_SESSION['date_start']) {
+                $dates['date_from'] = date('Y-m-d', strtotime($_SESSION['date_start']));
+            } else {
+                $dates['date_from'] = date('Y-m-01');
+            }
         }
+        $_SESSION['date_start'] = $dates['date_from'] . ' 00:00:00';
         if(isset($_POST['date_to'])) {
             $dates['date_to'] = $_POST['date_to'];
         } else {
-            $dates['date_to'] = date('Y-m-t');
+            if($_SESSION['date_end']) {
+                $dates['date_to'] = date('Y-m-d', strtotime($_SESSION['date_end']));
+            } else {
+                $dates['date_to'] = date('Y-m-t');
+            }
         }
+        if (strtotime($dates['date_to']) - strtotime($dates['date_from']) < 1728000) {
+            $dates['date_to'] = date('Y-m-d', strtotime($dates['date_from']) + 1728000);
+        }
+        $_SESSION['date_end'] = $dates['date_to'] . ' 23:59:59';
         return $dates;
     }
 }

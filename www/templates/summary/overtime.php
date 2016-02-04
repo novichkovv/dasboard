@@ -1,4 +1,4 @@
-<form method="post" action="">
+<form method="post" action="" style="position: absolute; z-index: 1000; height: 90px; background-color: #fff; width: 100%; padding: 10px;">
     <div class="row">
         <div class="col-xs-5 col-md-2">
             <input placeholder="Date From" class="form-control datepicker" name="date_from" value="<?php echo $date_from; ?>">
@@ -6,89 +6,91 @@
         <div class="col-xs-5 col-md-2">
             <input placeholder="Date To" class="form-control datepicker" name="date_to" value="<?php echo $date_to; ?>">
         </div>
-        <div class="col-xs-8 col-md-3">
-            <select name="user" class="form-control">
-                <option value="">
-                    All
-                </option>
-                <?php foreach ($users_list as $user): ?>
-                    <option value="<?php echo $user['id']; ?>"
-                        <?php if (!empty($_POST['user']) && $user['id'] == $_POST['user']): ?>
-                            selected
-                        <?php endif; ?>>
-                        <?php echo $user['user_name']; ?>
+            <div class="col-xs-8 col-md-3">
+                <select name="user" class="form-control">
+                    <option value="">
+                        All
                     </option>
-                <?php endforeach; ?>
-            </select>
-        </div>
+                    <?php foreach ($users_list as $user): ?>
+                        <option value="<?php echo $user['id']; ?>"
+                            <?php if (!empty($_POST['user']) && $user['id'] == $_POST['user']): ?>
+                                selected
+                            <?php endif; ?>>
+                            <?php echo $user['user_name']; ?>
+                        </option>
+                    <?php endforeach; ?>
+                </select>
+            </div>
         <div class="col-xs-2 col-md-2">
             <input type="submit" class="btn btn-info" value="Submit">
         </div>
     </div>
     <br>
+    <div style="width: 10px; height: 10px; background-color: black; display: inline-block"></div> - Suggested &nbsp;&nbsp;&nbsp;&nbsp;
+    <div style="width: 10px; height: 10px; background-color: red; display: inline-block"></div> - Approved &nbsp;&nbsp;&nbsp;&nbsp;
 </form>
-<div class="row">
-    <div class="col-md-12">
-        <div class="panel panel-info">
-            <div class="panel panel-heading">
-                <h3 class="panel-title">Overtime</h3>
-            </div>
-            <div class="panel-body table-scrollable" style="max-height: 500px; overflow: auto;">
-                <div style="width: 10px; height: 10px; background-color: black; display: inline-block"></div> - Suggested &nbsp;&nbsp;&nbsp;&nbsp;
-                <div style="width: 10px; height: 10px; background-color: red; display: inline-block"></div> - Approved
-                <table class="table table-bordered">
-                    <thead>
-                    <tr>
-                        <th width="150" style="width: 120px;">Employees</th>
-                        <?php foreach ($dates as $date): ?>
-                            <th><?php echo date('d/M', strtotime($date)); ?></th>
-                        <?php endforeach; ?>
-                    </tr>
-                    </thead>
-                    <tbody>
-                    <?php foreach ($users as $user): ?>
-                        <tr>
-                            <th class="user_id" data-id="<?php echo $user['id']; ?>" width="150" style="width: 120px;"><?php echo $user['user_name']; ?></th>
-                            <?php foreach ($dates as $date): ?>
-                                <td data-date="<?php echo $date; ?>" data-user="<?php echo $user['id']; ?>">
-                                    <?php if(!$overtime[$date][$user['id']]): ?>
-                                        <a data-toggle="modal" href="#overtime_suggest_modal" class="btn btn-xs suggest_overtime" type="button" style="background: none;">
-                                            <i class="fa fa-edit"></i>
+<div class="grey_stripe"></div>
+<div class="corner_cell">Employees</div>
+<div class="corner_cell bottom_corner"></div>
+<div class="table-scrollable" style="max-height: 500px; overflow: auto; margin-top: 99px;">
+    <table class="table table-bordered">
+        <thead style="position: absolute; background-color: #fff; z-index: 999">
+        <tr>
+            <th width="150"><div style="width: 250px;">Employees</div></th>
+            <?php foreach ($dates as $date): ?>
+                <th><div style="width: 50px;"><?php echo date('d/M', strtotime($date)); ?></div> </th>
+            <?php endforeach; ?>
+        </tr>
+        </thead>
+        <tbody>
+        <tr>
+            <td colspan="1000"><div style="height: 19px;"></div> </td>
+        </tr>
+        <?php foreach ($users as $user): ?>
+            <tr>
+                <td class="user_id" data-id="<?php echo $user['id']; ?>" style=" position: absolute; background-color: #fff; z-index: 999;">
+                    <div style="width: 250px; height: 50px; text-overflow: clip;">
+                        <?php echo $user['user_name']; ?>
+                    </div>
+                </td>
+                <td><div style="width: 250px;"></div> </td>
+                <?php foreach ($dates as $date): ?>
+                    <td data-date="<?php echo $date; ?>" data-user="<?php echo $user['id']; ?>">
+                        <div style="width: 50px; height: 50px;"
+                             <?php if ($overtime[$date][$user['id']]['suggested'] && (!isset($dashboard_user) || $dashboard_user ==$overtime[$date][$user['id']]['dashboard_user_id'])): ?>
+                                 data-trigger="hover" data-toggle="popover" data-placement="bottom"
+                                 data-content="<?php echo $overtime[$date][$user['id']]['comments'] ? $overtime[$date][$user['id']]['comments'] : ' - '; ?>"
+                             <?php endif; ?>
+                            >
+                            <?php if(!$overtime[$date][$user['id']]): ?>
+                                <a data-toggle="modal" href="#overtime_suggest_modal" class="btn btn-xs suggest_overtime" type="button" style="background: none;">
+                                    <i class="fa fa-edit"></i>
+                                </a>
+                            <?php endif; ?>
+                            <?php if (!isset($dashboard_user) || $overtime[$date][$user['id']]['dashboard_user_id'] == $dashboard_user): ?>
+                                <?php if($overtime[$date][$user['id']]): ?>
+                                    <?php echo $overtime[$date][$user['id']]['suggested']; ?>
+                                    <?php if(!$overtime[$date][$user['id']]['approved'] && $allowed): ?>
+                                        <a data-toggle="modal" data-id="<?php echo $overtime[$date][$user['id']]['id']; ?>" href="#overtime_approve_modal" class="btn btn-xs approve_overtime" type="button" style="background: none;">
+                                            <i class="fa fa-edit text-info"></i>
                                         </a>
                                     <?php endif; ?>
-                                    <?php if($overtime[$date][$user['id']]): ?>
-                                        <?php echo $overtime[$date][$user['id']]['suggested']; ?>
-                                        <?php if(!$overtime[$date][$user['id']]['approved'] && $allowed): ?>
-                                            <a data-toggle="modal" data-id="<?php echo $overtime[$date][$user['id']]['id']; ?>" href="#overtime_approve_modal" class="btn btn-xs approve_overtime" type="button" style="background: none;">
-                                                <i class="fa fa-edit text-info"></i>
-                                            </a>
-                                        <?php endif; ?>
-                                        <?php if($overtime[$date][$user['id']]['approved']): ?>
-                                            <div style="color: red;">
-                                                <?php echo $overtime[$date][$user['id']]['approved']; ?>
-                                            </div>
-                                        <?php endif; ?>
+                                    <?php if($overtime[$date][$user['id']]['approved']): ?>
+                                        <div style="color: red;">
+                                            <?php echo $overtime[$date][$user['id']]['approved']; ?>
+                                        </div>
                                     <?php endif; ?>
-                                </td>
-                            <?php endforeach; ?>
-                        </tr>
-                    <?php endforeach; ?>
-                    </tbody>
-                    <?php if (empty($_POST['user'])): ?>
-                        <tfoot>
-                        <tr>
-                            <th width="150" style="width: 120px;">Employees</th>
-                            <?php foreach ($dates as $date): ?>
-                                <th><?php echo date('d/M', strtotime($date)); ?></th>
-                            <?php endforeach; ?>
-                        </tr>
-                        </tfoot>
-                    <?php endif; ?>
-                </table>
-            </div>
-        </div>
-    </div>
+                                <?php endif; ?>
+                            <?php endif; ?>
+                        </div>
+                    </td>
+                <?php endforeach; ?>
+            </tr>
+        <?php endforeach; ?>
+        </tbody>
+    </table>
 </div>
+<div id="lower_space"></div>
 <div class="modal fade" id="overtime_suggest_modal">
     <div class="modal-dialog modal-sm">
         <div class="modal-content">
@@ -109,6 +111,10 @@
                         </div>
                         <input type="hidden" id="overtime_suggest_user" name="overtime[user_id]">
                         <input type="hidden" id="overtime_suggest_date" name="overtime[work_date]">
+                    </div>
+                    <div class="form-group">
+                        <label>Comment</label>
+                        <textarea name="overtime[comments]" class="form-control"></textarea>
                     </div>
                 </div>
                 <div class="modal-footer">
@@ -154,10 +160,49 @@
         $(".datepicker").datepicker({
             dateFormat: 'yy-mm-dd'
         });
+        $('[data-toggle="popover"]').popover({trigger: 'hover','placement': 'top', 'html': true});
+        console.log(browser());
+        switch (browser()) {
+            case "ff":
+                $(".table-scrollable").scroll(function() {
+                    var top = $(this).scrollTop();
+                    var left = $(this).scrollLeft();
+                    $('thead').css('margin-left', -left/500);
+                    $('.user_id').css('margin-top', -top/500);
+                    $('.user_id').css('margin-left', left);
+                    $('thead').css('margin-top', top);
+                });
+                break;
+            case "chrome":
+            default :
+                $(".table-scrollable").scroll(function() {
+                    var top = $(this).scrollTop();
+                    var left = $(this).scrollLeft();
+                    $('thead').css('margin-left', -left);
+                    $('.user_id').css('margin-top', -top);
+                });
+
+                break;
+        }
+
+
+//        $(document).scroll(function(e) {
+//            var offset = $('#under_footer').offset().top;
+//            var scroll_top = $(this).scrollTop() - 130;
+//            var height = screen.height;
+//            console.log(offset);
+//            console.log(scroll_top);
+//            console.log(height);
+//            console.log(offset - scroll_top);
+//
+//            if(offset - height <= scroll_top) {
+//                $(document).scrollTop(scroll_top + 100);
+//            }
+//        });
 
         $("body").on("click", ".suggest_overtime", function () {
             var date = $(this).closest('td').attr('data-date');
-            var user_id = $(this).closest('tr').find('th.user_id').attr('data-id');
+            var user_id = $(this).closest('tr').find('.user_id').attr('data-id');
             $("#overtime_suggest_user").val(user_id);
             $("#overtime_suggest_date").val(date);
         });
@@ -208,3 +253,67 @@
         })
     });
 </script>
+<style>
+    .content {
+        padding: 0 !important;
+    }
+    .left-side {
+        z-index: 1000;
+    }
+    .footer-main {
+        position: absolute;
+        width: 100%;
+        z-index: 1004;
+        height: 2000px;
+    }
+    .table {
+        border-spacing: 0 !important;
+    }
+    .corner_cell {
+        position: absolute;
+        z-index: 1001;
+        top: 149px;
+        padding: 8px;
+        background-color: #fff;
+        border: 1px solid #DDD;
+        width: 269px;
+        height: 39px;
+    }
+    .bottom_corner {
+        top: 633px;
+        height: 15px;
+        /*background-color: #999;*/
+    }
+    #lower_space {
+        position: absolute;
+        z-index: 1003;
+        height: 400px;
+        width: 100%;
+        background-color: #fff;
+        border-top: 1px solid#ccc;
+    }
+    #under_footer {
+        background-color: #a6a9a9;
+        z-index: 1005;
+        position: relative;
+        margin-top: 38px;
+        border-top: 1px solid grey;
+        height: 1000px;
+    }
+    .grey_stripe {
+        position: absolute;
+        width: 100%;
+        height: 10px;
+        background-color: #dfe5d7;
+        top: 140px;
+        z-index: 1001;
+    }
+    #total_wrapper {
+
+    }
+
+    /*.wrapper {*/
+        /*position: relative;*/
+        /*overflow: hidden;*/
+    /*}*/
+</style>
