@@ -69,16 +69,25 @@
                             <?php endif; ?>
                             <?php if (!isset($dashboard_user) || $overtime[$date][$user['id']]['dashboard_user_id'] == $dashboard_user): ?>
                                 <?php if($overtime[$date][$user['id']]): ?>
-                                    <?php echo $overtime[$date][$user['id']]['suggested']; ?>
+                                    <a data-toggle="modal" data-id="<?php echo $overtime[$date][$user['id']]['id']; ?>" href="#overtime_suggest_modal" class="btn btn-xs edit_suggested_overtime" type="button" style="background: none;">
+                                        <?php echo $overtime[$date][$user['id']]['suggested']; ?>
+                                    </a>
                                     <?php if(!$overtime[$date][$user['id']]['approved'] && $allowed): ?>
                                         <a data-toggle="modal" data-id="<?php echo $overtime[$date][$user['id']]['id']; ?>" href="#overtime_approve_modal" class="btn btn-xs approve_overtime" type="button" style="background: none;">
                                             <i class="fa fa-edit text-info"></i>
                                         </a>
                                     <?php endif; ?>
-                                    <?php if($overtime[$date][$user['id']]['approved']): ?>
-                                        <div style="color: red;">
+                                    <?php if($overtime[$date][$user['id']]['approved'] && $allowed): ?>
+                                        <a data-toggle="modal" data-value="<?php echo $overtime[$date][$user['id']]['approved']; ?>" data-id="<?php echo $overtime[$date][$user['id']]['id']; ?>" href="#overtime_approve_modal" class="btn btn-xs approve_overtime" type="button" style="background: none;">
+                                            <span style="color: red;">
                                             <?php echo $overtime[$date][$user['id']]['approved']; ?>
-                                        </div>
+                                            </span>
+                                        </a>
+                                    <?php endif; ?>
+                                    <?php if($overtime[$date][$user['id']]['approved'] && !$allowed): ?>
+                                        <span style="color: red;">
+                                            <?php echo $overtime[$date][$user['id']]['approved']; ?>
+                                            </span>
                                     <?php endif; ?>
                                 <?php endif; ?>
                             <?php endif; ?>
@@ -111,6 +120,7 @@
                         </div>
                         <input type="hidden" id="overtime_suggest_user" name="overtime[user_id]">
                         <input type="hidden" id="overtime_suggest_date" name="overtime[work_date]">
+                        <input type="hidden" name="overtime[id]">
                     </div>
                     <div class="form-group">
                         <label>Comment</label>
@@ -209,9 +219,36 @@
             $("#overtime_suggest_date").val(date);
         });
 
+        $("body").on("click", ".edit_suggested_overtime", function () {
+            var overtime_id = $(this).attr('data-id');
+            var params = {
+                'action': 'get_overtime',
+                'values': {'overtime_id': overtime_id},
+                'callback': function (msg) {
+                    ajax_respond(msg, function(respond) {
+                        for(var i in respond.overtime) {
+                            $("[name='overtime[" + i + "]']").val(respond.overtime[i]);
+                            console.log("[name='overtime[" + i + "]']");
+                        }
+                    });
+                }
+            };
+            ajax(params);
+//            var date = $(this).closest('td').attr('data-date');
+//            var user_id = $(this).closest('tr').find('.user_id').attr('data-id');
+//            var overtime = $(this).html();
+//            $("[name='overtime[overtime_suggested]']").val(overtime);
+//            $("#overtime_suggest_user").val(user_id);
+//            $("#overtime_suggest_date").val(date);
+        });
+
         $("body").on("click", ".approve_overtime", function () {
             var id = $(this).attr('data-id');
             $("#overtime_id").val(id);
+            var value = $(this).attr('data-value');
+            if(value) {
+                $("[name='overtime[overtime_approved]']").val(value);
+            }
         });
 
         $("#overtime_suggest_form").submit(function() {

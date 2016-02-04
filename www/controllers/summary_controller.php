@@ -93,7 +93,7 @@ class summary_controller extends controller
         switch ($_REQUEST['action']) {
             case "suggest_overtime":
                 foreach ($_POST['overtime'] as $key => $val) {
-                    if(!$val && $key != 'comments') {
+                    if(!$val && !in_array($key, array('comments', 'id'))) {
                         echo json_encode(array('status' => 2));
                         exit;
                     }
@@ -118,6 +118,12 @@ class summary_controller extends controller
                 $this->render('overtime', $overtime);
                 $template = $this->fetch('summary' . DS . 'ajax' . DS . 'overtime_table_cell');
                 echo json_encode(array('status' => 1, 'date' => $overtime['work_date'], 'user_id' => $overtime['user_id'], 'template' => $template));
+                exit;
+                break;
+
+            case "get_overtime":
+                $overtime = $this->model('asanatt_overtime')->getById($_POST['overtime_id']);
+                echo json_encode(array('status' => 1, 'overtime' => $overtime));
                 exit;
                 break;
         }
