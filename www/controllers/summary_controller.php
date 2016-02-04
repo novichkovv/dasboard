@@ -47,6 +47,8 @@ class summary_controller extends controller
 
     public function overtime()
     {
+        $user_id = $this->model('asanatt_user_mapping')->getByField('user_email', registry::get('user')['email'])['id'];
+        $this->render('user_id', $user_id);
         if($this->model('asanatt_user_groups')->getById(registry::get('user')['user_group_id'])['can_approve']) {
             $this->render('allowed', true);
         } elseif($this->model('asanatt_user_groups')->getById(registry::get('user')['user_group_id'])['can_see']) {
@@ -65,11 +67,21 @@ class summary_controller extends controller
         $this->render('dates', $date_range);
         if(!isset($dashboard_user)) {
             $this->render('users_list', $this->model('asanatt_user_mapping')->getAll('user_name'));
+        } else {
+            $this->render('users_list', $this->model('asanatt_user_mapping')->getByField('id', $user_id, true));
         }
         if(empty($_POST['user'])) {
-            $this->render('users', $this->model('asanatt_user_mapping')->getAll('user_name'));
+            if(!$dashboard_user) {
+                $this->render('users', $this->model('asanatt_user_mapping')->getAll('user_name'));
+            } else {
+                $this->render('users', $this->model('asanatt_user_mapping')->getByFields(array('id' => $user_id), true));
+            }
         } else {
-            $this->render('users', $this->model('asanatt_user_mapping')->getByField('id', $_POST['user'], true));
+            if(!$dashboard_user) {
+                $this->render('users', $this->model('asanatt_user_mapping')->getByField('id', $_POST['user'], true));
+            } else {
+                $this->render('users', $this->model('asanatt_user_mapping')->getByFields(array('id' => $user_id), true));
+            }
         }
         $overtime = [];
         foreach ($this->model('asanatt_overtime')->getAll() as $v) {
