@@ -35,8 +35,10 @@ class upload_controller extends controller
                         if($k == 0) {
                             continue;
                         }
+                        $offset = (int) gmdate( 'h', abs( date( 'Z' ) ) );
                         $unix_time = $simpleXLSX->unixstamp($row[3] + $row[4]);
                         $date_time = date('Y-m-d H:i:s', $unix_time);
+                        $date_time = date('Y-m-d H:i:s', strtotime($date_time . ' + ' . $offset . ' hour'));
                         if($unclosed[$row[0]]) {
                             $arr[$row[0]][$unclosed[$row[0]]['work_begin']] = array(
                                 $row[0],
@@ -51,11 +53,17 @@ class upload_controller extends controller
                         if(!$arr[$row[0]][$date_time]) {
                             $arr[$row[0]][$date_time] = $row;
                         } else {
-                            $arr[$row[0][date('Y-m-d H:i:s', $unix_time + 1)]];
+                            $arr[$row[0]][date('Y-m-d H:i:s', strtotime($date_time . ' + 1 minute'))] = $row;
                         }
                     }
+
                     foreach ($arr as $user_name => $rows) {
                         ksort($rows);
+
+//                        if ($user_name == 'Dy Buncio, Anton') {
+//                            print_r($rows);
+//                            exit;
+//                        }
                         foreach($rows as $date_time => $row) {
                             if (!$user = $this->model('asanatt_user_mapping')->getByField('user_name', $row[0])) {
                                 $mapping_errors[$user_name] = $row;

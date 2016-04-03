@@ -153,6 +153,12 @@ abstract class controller extends base
             ) {
                 registry::set('auth', true);
                 registry::set('user', $user);
+                if(!$user['asana_id']) {
+                    if($asana = $this->api()->getUser($user['email'])) {
+                        $user['asana_id'] = number_format($asana['data']['id'], 0, '.', '');
+                        $this->model('asanatt_users')->insert($user);
+                    }
+                }
                 return true;
             } else {
                 return false;
@@ -163,6 +169,12 @@ abstract class controller extends base
                 'email' => $_COOKIE['email'],
                 'user_password' => $_COOKIE['user_password']
             ))) {
+                if(!$user['asana_id']) {
+                    if($asana = $this->api()->getUser($user['email'])) {
+                        $user['asana_id'] = number_format($asana['data']['id'], 0, '.', '');
+                        $this->model('asanatt_users')->insert($user);
+                    }
+                }
                 registry::set('auth', true);
                 registry::set('user', $user);
                 return true;

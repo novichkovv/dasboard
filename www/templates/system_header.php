@@ -70,6 +70,7 @@
     <!-- Director dashboard demo (This is only for demo purposes) -->
     <script src="<?php echo SITE_DIR; ?>js/theme/Director/dashboard.js" type="text/javascript"></script>
     <script src="<?php echo SITE_DIR; ?>js/libs/jquery.dataTables.min.js" type="text/javascript"></script>
+    <script src="<?php echo SITE_DIR; ?>js/libs/jquery.dataTables.grouping.js" type="text/javascript"></script>
     <script src="<?php echo SITE_DIR; ?>js/script.js" type="text/javascript"></script>
 </head>
 

@@ -1,7 +1,6 @@
 INSERT INTO `dashboard`.`asanatt_system_routes` (`route`, `title`, `position`, `icon`) VALUES ('summary', 'Summary', '17', 'fa fa-calendar');
 INSERT INTO `dashboard`.`asanatt_system_routes` (`route`, `title`, `position`, `icon`) VALUES ('summary/settings', 'Settings', '18', 'fa fa-gears');
 INSERT INTO `dashboard`.`asanatt_system_routes` (`route`, `title`, `position`, `icon`) VALUES ('summary/overtime', 'Overtime', '19', 'fa fa-clock-o');
-INSERT INTO `dashboard`.`asanatt_system_routes` (`route`, `title`, `position`, `icon`) VALUES ('summary/approve', 'Approve', '19', 'fa fa-check-square-o');
 
 CREATE TABLE asanatt_system_config (
   id SERIAL PRIMARY KEY,
@@ -21,3 +20,5 @@ ALTER TABLE asanatt_user_groups ADD can_approve TINYINT NOT NULL DEFAULT 0 AFTER
 ALTER TABLE asanatt_user_groups ADD can_see TINYINT NOT NULL DEFAULT 0 AFTER can_approve;
 ALTER TABLE asanatt_overtime ADD comments TEXT NULL AFTER overtime_approved;
 ALTER TABLE asanatt_overtime ADD dashboard_user_id BIGINT UNSIGNED NOT NULL AFTER user_id;
+
+INSERT INTO `asanatt_system_routes` (`route`, `title`, `position`, `icon`) VALUES ('tracker', 'Time Tracker', '0', 'fa fa-check-circle-o');

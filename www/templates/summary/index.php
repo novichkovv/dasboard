@@ -62,34 +62,44 @@
                         <?php $e = $early[$date][$user['id']]['value'] ? $early[$date][$user['id']]['value'] : 0; ?>
                         <?php $w = $less_worked[$date][$user['id']]['value'] ? $less_worked[$date][$user['id']]['value'] : 0; ?>
                         <?php $o = $overtime[$date][$user['id']]['value'] ? $overtime[$date][$user['id']]['value'] : 0; ?>
+                        <?php
+                        if($l && !$e && !$w) {
+                            $deductions = $l;
+                        } elseif($e && !$l && !$w) {
+                            $deductions = $e;
+                        } else {
+                            $deductions = $e + $l > $w ? $e + $l : $w;
+                        }
+                        ?>
                         <div
                             <?php if ($absent['present'][$date][$user['id']]['work_end'] && $absent['present'][$date][$user['id']]['work_begin']): ?>
                             data-trigger="hover" data-toggle="popover" data-placement="bottom"
                             data-content="<?php echo date('H:i', strtotime($absent['present'][$date][$user['id']]['work_begin'])); ?> -
-                                    <?php echo date('H:i', strtotime($absent['present'][$date][$user['id']]['work_end'])); ?><br>"
-                                <?php endif; ?>style="width: 50px; height: 50px;">
-                        <?php if ($absent['absent'][$date][$user['id']]): ?>
-                            <span style="color: red;">Absent</span><br>
-                        <?php endif; ?>
-                        <?php if ($absent['present'][$date][$user['id']]): ?>
-                        <?php endif; ?>
-                        <?php $deductions = $l + $e + $w; ?>
-                        <?php if ($o): ?>
-                            <?php if ($o > $deductions): ?>
-                                <?php $over = $o - $deductions; ?>
-                                <?php $deductions = 0; ?>
+                                    <?php echo date('H:i', strtotime($absent['present'][$date][$user['id']]['work_end'])); ?><br>																		came late: <?php echo $l; ?><br>									                                    left early: <?php echo $e; ?><br>									                                    worked less: <?php echo $w; ?><br>									                                    overtime: <?php echo $o; ?>"
+                            <?php endif; ?>style="width: 50px; height: 50px;">
+                            <?php if ($absent['absent'][$date][$user['id']]): ?>
+                                <span style="color: red;">Absent</span><br>
                             <?php endif; ?>
-                            <?php if ($o <= $deductions): ?>
-                                <?php $over = 0; ?>
-                                <?php $deductions = $deductions - $o; ?>
+                            <?php if ($absent['present'][$date][$user['id']]): ?>
+<!--                                --><?php //$deductions = $l + $e + $w; ?><!--                       -->
+                                <?php if ($o): ?>
+                                    <?php if ($o > $deductions): ?>
+                                        <?php $over = $o - $deductions; ?>
+                                        <?php $deductions = 0; ?>
+                                    <?php endif; ?>
+                                    <?php if ($o <= $deductions): ?>
+                                        <?php $over = 0; ?>
+                                        <?php $deductions = $deductions - $o; ?>
+                                    <?php endif; ?>
+                                <?php endif; ?>
+                                <?php if ($deductions): ?>
+                                    <span style="color: red;"><?php echo round($deductions,2); ?>h</span>
+                                <?php endif; ?>
+                                <?php if ($over = floor($over/0.5)*0.5): ?>
+                                    <span style="color: green;"><?php echo $over; ?>h</span>
+                                <?php endif; ?>
                             <?php endif; ?>
-                        <?php endif; ?>
-                        <?php if ($deductions): ?>
-                            <span style="color: red;"><?php echo round($deductions,2); ?>h</span>
-                        <?php endif; ?>
-                        <?php if ($over): ?>
-                            <span style="color: green;"><?php echo round($over,2); ?>h</span>
-                        <?php endif; ?>
+
                         </div>
                     </td>
                 <?php endforeach; ?>

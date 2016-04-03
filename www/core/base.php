@@ -59,13 +59,29 @@ class base
         }
         if(!$value = registry::get('config')[$key]) {
             $config = registry::get('config');
-            $config[$key] = $this->model('system_config')->getByField('config_key', $key)['config_value'];
+            $config[$key] = $this->model('asanatt_system_config')->getByField('config_key', $key)['config_value'];
             registry::remove('config');
-            registry::set('config', $key);
+            registry::set('config', $config);
             return $config[$key];
         } else {
             return $value;
         }
+    }
+
+    /**
+     * @param $key
+     * @param $value
+     */
+
+    protected function setConfig($key, $value)
+    {
+        $row = $this->model('asanatt_system_config')->getByField('config_key', $key);
+        $row['config_value'] = $value;
+        $this->model('asanatt_system_config')->insert($row);
+        $config = registry::get('config');
+        $config[$key] = $value;
+        registry::remove('config');
+        registry::set('config', $config);
     }
 
     protected function getLocale($table, $key)
@@ -81,5 +97,14 @@ class base
     protected function getAllLocale($table)
     {
 
+    }
+
+    protected function api()
+    {
+        if(!$api = registry::get('asana_api')) {
+            $api = new api_class();
+            registry::set('asana_api', $api);
+        }
+        return $api;
     }
 }

@@ -30,18 +30,9 @@ class summary_controller extends controller
         }
         $this->render('late', $this->model('asanatt_excel_time')->getLateEmployees($dates));
         $this->render('absent', $this->model('asanatt_excel_time')->getAbsentEmployees($dates));
-        //print_r($absent);
         $this->render('early', $this->model('asanatt_excel_time')->getEarlyFinished($dates));
-        //print_r($this->model('asanatt_excel_time')->getLateEmployees($dates));
-        //print_r($this->model('asanatt_excel_time')->getEarlyFinished($dates));
         $this->render('less_worked', $this->model('asanatt_excel_time')->getLessWorked($dates));
         $this->render('overtime', $this->model('asanatt_excel_time')->getOvertime($dates));
-        //print_r($less_worked);
-        //print_r($late);
-        //print_r($absent);
-        //print_r($early);
-        //print_r($less_worked);
-        //exit;
         $this->view('summary' . DS . 'index');
     }
 
@@ -91,7 +82,6 @@ class summary_controller extends controller
             $overtime[$v['work_date']][$v['user_id']]['dashboard_user_id'] = $v['dashboard_user_id'];
             $overtime[$v['work_date']][$v['user_id']]['id'] = $v['id'];
         }
-        //print_r($overtime);
         $this->render('overtime', $overtime);
         $this->view('summary' . DS . 'overtime');
     }
@@ -105,7 +95,7 @@ class summary_controller extends controller
         switch ($_REQUEST['action']) {
             case "suggest_overtime":
                 foreach ($_POST['overtime'] as $key => $val) {
-                    if(!$val && !in_array($key, array('comments', 'id'))) {
+                    if($val === '' && !in_array($key, array('comments', 'id'))) {
                         echo json_encode(array('status' => 2));
                         exit;
                     }
@@ -115,6 +105,15 @@ class summary_controller extends controller
                 $id = $this->model('asanatt_overtime')->insert($overtime);
                 $overtime = $this->model('asanatt_overtime')->getById($id);
                 $this->render('overtime', $overtime);
+                $template = $this->fetch('summary' . DS . 'ajax' . DS . 'overtime_table_cell');
+                echo json_encode(array('status' => 1, 'date' => $overtime['work_date'], 'user_id' => $overtime['user_id'], 'template' => $template));
+                exit;
+                break;
+
+            case "delete_overtime":
+                $overtime = $this->model('asanatt_overtime')->getById($_POST['overtime']['id']);
+                $this->model('asanatt_overtime')->deleteById($overtime['id']);
+                unset($overtime['id']);
                 $template = $this->fetch('summary' . DS . 'ajax' . DS . 'overtime_table_cell');
                 echo json_encode(array('status' => 1, 'date' => $overtime['work_date'], 'user_id' => $overtime['user_id'], 'template' => $template));
                 exit;
@@ -167,7 +166,7 @@ class summary_controller extends controller
                 break;
         }
     }
-    
+
     private function dates()
     {
         $dates = [];

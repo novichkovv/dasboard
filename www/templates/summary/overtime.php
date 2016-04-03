@@ -6,21 +6,21 @@
         <div class="col-xs-5 col-md-2">
             <input placeholder="Date To" class="form-control datepicker" name="date_to" value="<?php echo $date_to; ?>">
         </div>
-            <div class="col-xs-8 col-md-3">
-                <select name="user" class="form-control">
-                    <option value="">
-                        All
+        <div class="col-xs-8 col-md-3">
+            <select name="user" class="form-control">
+                <option value="">
+                    All
+                </option>
+                <?php foreach ($users_list as $user): ?>
+                    <option value="<?php echo $user['id']; ?>"
+                        <?php if (!empty($_POST['user']) && $user['id'] == $_POST['user']): ?>
+                            selected
+                        <?php endif; ?>>
+                        <?php echo $user['user_name']; ?>
                     </option>
-                    <?php foreach ($users_list as $user): ?>
-                        <option value="<?php echo $user['id']; ?>"
-                            <?php if (!empty($_POST['user']) && $user['id'] == $_POST['user']): ?>
-                                selected
-                            <?php endif; ?>>
-                            <?php echo $user['user_name']; ?>
-                        </option>
-                    <?php endforeach; ?>
-                </select>
-            </div>
+                <?php endforeach; ?>
+            </select>
+        </div>
         <div class="col-xs-2 col-md-2">
             <input type="submit" class="btn btn-info" value="Submit">
         </div>
@@ -57,10 +57,10 @@
                 <?php foreach ($dates as $date): ?>
                     <td data-date="<?php echo $date; ?>" data-user="<?php echo $user['id']; ?>">
                         <div style="width: 50px; height: 50px;"
-                             <?php if ($overtime[$date][$user['id']]['suggested']): ?>
-                                 data-trigger="hover" data-toggle="popover" data-placement="bottom"
-                                 data-content="<?php echo $overtime[$date][$user['id']]['comments'] ? $overtime[$date][$user['id']]['comments'] : ' - '; ?>"
-                             <?php endif; ?>
+                            <?php if ($overtime[$date][$user['id']]['suggested']): ?>
+                                data-trigger="hover" data-toggle="popover" data-placement="bottom"
+                                data-content="<?php echo $overtime[$date][$user['id']]['comments'] ? $overtime[$date][$user['id']]['comments'] : ' - '; ?>"
+                            <?php endif; ?>
                             >
                             <?php if(!$overtime[$date][$user['id']]): ?>
                                 <a data-toggle="modal" href="#overtime_suggest_modal" class="btn btn-xs suggest_overtime" type="button" style="background: none;">
@@ -129,6 +129,9 @@
                     </div>
                 </div>
                 <div class="modal-footer">
+<!--                    --><?php //if ($allowed): ?>
+                        <button type="button" id="delete_suggested_overtime" class="btn btn-danger hidden">Delete</button>
+<!--                    --><?php //endif; ?>
                     <button type="submit" class="btn btn-primary">Save</button>
                     <button type="button" class="btn btn-default" data-dismiss="modal">Cancel</button>
                 </div>
@@ -198,26 +201,15 @@
                 break;
         }
 
-
-//        $(document).scroll(function(e) {
-//            var offset = $('#under_footer').offset().top;
-//            var scroll_top = $(this).scrollTop() - 130;
-//            var height = screen.height;
-//            console.log(offset);
-//            console.log(scroll_top);
-//            console.log(height);
-//            console.log(offset - scroll_top);
-//
-//            if(offset - height <= scroll_top) {
-//                $(document).scrollTop(scroll_top + 100);
-//            }
-//        });
-
         $("body").on("click", ".suggest_overtime", function () {
             var date = $(this).closest('td').attr('data-date');
             var user_id = $(this).closest('tr').find('.user_id').attr('data-id');
             $("#overtime_suggest_user").val(user_id);
             $("#overtime_suggest_date").val(date);
+            $("#delete_suggest").addClass('hidden');
+            $("[name='overtime[id]']").val('');
+            $("[name='overtime[overtime_suggested]']").val('');
+            $("[name='overtime[comments]']").val('');
         });
 
         $("body").on("click", ".edit_suggested_overtime", function () {
@@ -230,16 +222,28 @@
                         for(var i in respond.overtime) {
                             $("[name='overtime[" + i + "]']").val(respond.overtime[i]);
                         }
+                        $("#delete_suggested_overtime").removeClass('hidden');
                     });
                 }
             };
             ajax(params);
-//            var date = $(this).closest('td').attr('data-date');
-//            var user_id = $(this).closest('tr').find('.user_id').attr('data-id');
-//            var overtime = $(this).html();
-//            $("[name='overtime[overtime_suggested]']").val(overtime);
-//            $("#overtime_suggest_user").val(user_id);
-//            $("#overtime_suggest_date").val(date);
+        });
+
+        $("body").on("click", "#delete_suggested_overtime", function () {
+            var params = {
+                'action': 'delete_overtime',
+                'get_from_form': 'overtime_suggest_form',
+                'callback': function (msg) {
+                    ajax_respond(msg, function(respond) {
+                            $("td[data-user='" + respond.user_id + "'][data-date='" + respond.date + "']").html(respond.template);
+                            $("#overtime_suggest_modal").modal('hide');
+                        },
+                        function() {
+                            Notifier.warning('Something went wrong', 'Fault');
+                        })
+                }
+            };
+            ajax(params);
         });
 
         $("body").on("click", ".approve_overtime", function () {
@@ -260,12 +264,12 @@
                     'get_from_form': 'overtime_suggest_form',
                     'callback': function (msg) {
                         ajax_respond(msg, function(respond) {
-                            $("td[data-user='" + respond.user_id + "'][data-date='" + respond.date + "']").html(respond.template);
-                            $("#overtime_suggest_modal").modal('hide');
-                        },
-                        function() {
-                            Notifier.warning('Something went wrong', 'Fault');
-                        })
+                                $("td[data-user='" + respond.user_id + "'][data-date='" + respond.date + "']").html(respond.template);
+                                $("#overtime_suggest_modal").modal('hide');
+                            },
+                            function() {
+                                Notifier.warning('Something went wrong', 'Fault');
+                            })
                     }
                 };
                 ajax(params);
@@ -323,7 +327,6 @@
     .bottom_corner {
         top: 633px;
         height: 15px;
-        /*background-color: #999;*/
     }
     #lower_space {
         position: absolute;
@@ -349,12 +352,5 @@
         top: 140px;
         z-index: 1001;
     }
-    #total_wrapper {
 
-    }
-
-    /*.wrapper {*/
-        /*position: relative;*/
-        /*overflow: hidden;*/
-    /*}*/
 </style>
