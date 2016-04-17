@@ -40,4 +40,15 @@ class tools_class
         $hours = $hours < 10 ? '0' . $hours : $hours;
         return $hours . ':' . $min . ':' . $sec;
     }
+
+    public static function readXLS($file)
+    {
+        require_once LIBS_DIR . 'PHPExcel' . DS . 'PHPExcel.php';
+        $pExcel = PHPExcel_IOFactory::load($file);
+        $tables = [];
+        foreach ($pExcel->getWorksheetIterator() as $worksheet) {
+            $tables[] = $worksheet->toArray();
+        }
+        return $tables;
+    }
 }

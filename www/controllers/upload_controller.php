@@ -22,64 +22,83 @@ class upload_controller extends controller
             }
 
             foreach ($_FILES as $file) {
-                $simpleXLSX = new simpleXLSX_class($file['tmp_name']);
-                $array = $simpleXLSX->rows(1);
-                if (is_array($array)) {
+                // print_r(tools_class::readXLS($file['tmp_name']));
+//                exit;
+//                $simpleXLSX = new simpleXLSX_class($file['tmp_name']);
+                //$array = $simpleXLSX->rows(1);
+                $sheet = tools_class::readXLS($file['tmp_name'])[0];
+                if (is_array($sheet)) {
                     $this->model('asanatt_excel_time')->beginTransaction();
                     $arr = [];
-                    foreach ($array as $k => $row) {
+                    foreach ($sheet as $k => $row) {
                         foreach($row as $key => $val) {
                             $row[$key] = trim($val);
                             $row[5] = $k + 1;
                         }
+                        $user_name = $row[0];
                         if($k == 0) {
                             continue;
                         }
-                        $offset = (int) gmdate( 'h', abs( date( 'Z' ) ) );
-                        $unix_time = $simpleXLSX->unixstamp($row[3] + $row[4]);
-                        $date_time = date('Y-m-d H:i:s', $unix_time);
-                        $date_time = date('Y-m-d H:i:s', strtotime($date_time . ' + ' . $offset . ' hour'));
-                        if($unclosed[$row[0]]) {
-                            $arr[$row[0]][$unclosed[$row[0]]['work_begin']] = array(
-                                $row[0],
+                        $exp_date = explode('-', $row[3]);
+                        $date = '20' . $exp_date[2] . '-' . $exp_date[0] . '-' . $exp_date[1];
+                        $date_time = date('Y-m-d H:i:s', strtotime($date . ' ' . $row[4]));
+//                        $exp = explode(' ', $row[4]);
+
+                        //$offset = (int) gmdate( 'h', abs( date( 'Z' ) ) );
+                        //$unix_time = $simpleXLSX->unixstamp($row[3] + $row[4]);
+
+                        //$date_time = date('Y-m-d H:i:s', $unix_time);
+                        //$date_time = date('Y-m-d H:i:s', strtotime($date_time . ' + ' . $offset . ' hour'));
+                        //$date_time = date('Y-m-d H:i:s', $unix_time + $offset*3600);
+                        //if($user_name == 'Nicdao, Gladys') echo date('Y-m-d H:i:s', strtotime($date . ' ' . $row[4])) . "\n";
+//                        if(date('s', strtotime($date_time)) == '59') {
+////                            $date_time = date('Y-m-d H:i:s', $unix_time + ($offset + 1)*3600 + 1);
+////                            echo $date_time . "\n";
+//                        }
+//                        if($user_name == 'Bairan, Christian') {
+//                            //print_r($row);
+//                        //echo $unix_time;
+//                            //echo date('Y-m-d H:i:s', $unix_time . ' + ' . $offset . ' hour') . "\n";
+//                            echo date('Y-m-d H:i:s', $this->ExcelToPHP($row[3] + $row[4])) . "=\n";
+//                            echo date('Y-m-d H:i:s', $unix_time) . "-2\n";
+//                            echo $date_time . "-3\n";
+////                            exit;
+//                        }
+                        if($unclosed[$user_name]) {
+                            $arr[$user_name][$unclosed[$user_name]['work_begin']] = array(
+                                $user_name,
                                 '',
                                 'Clock In',
                                 '',
                                 '',
                                 0,
-                                $unclosed[$row[0]]['id']
+                                $unclosed[$user_name]['id']
                             );
                         }
-                        if(!$arr[$row[0]][$date_time]) {
-                            $arr[$row[0]][$date_time] = $row;
+                        if(!$arr[$user_name][$date_time]) {
+                            $arr[$user_name][$date_time] = $row;
                         } else {
-                            $arr[$row[0]][date('Y-m-d H:i:s', strtotime($date_time . ' + 1 minute'))] = $row;
+                            $arr[$user_name][date('Y-m-d H:i:s', strtotime($date_time . ' + 1 minute'))] = $row;
                         }
                     }
-
                     foreach ($arr as $user_name => $rows) {
                         ksort($rows);
-
-//                        if ($user_name == 'Dy Buncio, Anton') {
-//                            print_r($rows);
-//                            exit;
-//                        }
                         foreach($rows as $date_time => $row) {
-                            if (!$user = $this->model('asanatt_user_mapping')->getByField('user_name', $row[0])) {
+                            if (!$user = $this->model('asanatt_user_mapping')->getByField('user_name', $user_name)) {
                                 $mapping_errors[$user_name] = $row;
                             }
                             if($row[2] == 'Clock In') {
                                 $index = count($values[$user_name]);
                                 if($row[6]) {
                                     $index = 0;
-                                    $values[$row[0]][$index]['id'] = $row[6];
+                                    $values[$user_name][$index]['id'] = $row[6];
                                 }
                                 $values[$user_name][$index]['k'] = $row[5];
                                 $values[$user_name][$index]['work_begin'] = $date_time;
                                 $values[$user_name][$index]['username'] = $user_name;
                             } elseif($row[2] == 'Clock Out') {
                                 $index = count($values[$user_name]) - 1;
-                                $values[$row[0]][$index]['work_end'] = $date_time;
+                                $values[$user_name][$index]['work_end'] = $date_time;
                                 $values[$user_name][$index]['username'] = $user_name;
                             } else {
                                 $type_errors[] = array($row['k'], $user_name, $row[2]);
@@ -127,7 +146,34 @@ class upload_controller extends controller
         }
         $this->view('upload' . DS . 'index');
     }
+    function ExcelToPHP($dateValue = 0, $ExcelBaseDate = 1900) {
+        if ($ExcelBaseDate == 1900) {
+            $myExcelBaseDate = 25569;
+            //    Adjust for the spurious 29-Feb-1900 (Day 60)
+            if ($dateValue < 60) {
+                --$myExcelBaseDate;
+            }
+        } else {
+            $myExcelBaseDate = 24107;
+        }
 
+        // Perform conversion
+        if ($dateValue >= 1) {
+            $utcDays = $dateValue - $myExcelBaseDate;
+            $returnValue = round($utcDays * 86400);
+            if (($returnValue <= PHP_INT_MAX) && ($returnValue >= -PHP_INT_MAX)) {
+                $returnValue = (integer) $returnValue;
+            }
+        } else {
+            $hours = round($dateValue * 24);
+            $mins = round($dateValue * 1440) - round($hours * 60);
+            $secs = round($dateValue * 86400) - round($hours * 3600) - round($mins * 60);
+            $returnValue = (integer) gmmktime($hours, $mins, $secs);
+        }
+
+        // Return
+        return $returnValue;
+    }
     public function index_ajax()
     {
         switch($_REQUEST['action']) {

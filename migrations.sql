@@ -22,3 +22,4 @@ ALTER TABLE asanatt_overtime ADD comments TEXT NULL AFTER overtime_approved;
 ALTER TABLE asanatt_overtime ADD dashboard_user_id BIGINT UNSIGNED NOT NULL AFTER user_id;
 
 INSERT INTO `asanatt_system_routes` (`route`, `title`, `position`, `icon`) VALUES ('tracker', 'Time Tracker', '0', 'fa fa-check-circle-o');
+ALTER TABLE asanatt_users ADD asana_id VARCHAR (255) NULL AFTER id;

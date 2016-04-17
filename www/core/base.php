@@ -76,6 +76,7 @@ class base
     protected function setConfig($key, $value)
     {
         $row = $this->model('asanatt_system_config')->getByField('config_key', $key);
+        $row['config_key'] = $key;
         $row['config_value'] = $value;
         $this->model('asanatt_system_config')->insert($row);
         $config = registry::get('config');

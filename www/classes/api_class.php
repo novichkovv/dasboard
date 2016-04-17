@@ -17,7 +17,7 @@ class api_class extends base
     public function getAuthCode($code = null)
     {
         $refresh_token = $this->getConfig('refresh_token');
-        if(!$refresh_token && $code) {
+        if($code) {
             $params = array(
                 "grant_type" => "authorization_code",
                 "code" => $code,
@@ -53,6 +53,7 @@ class api_class extends base
         curl_setopt($curl, CURLOPT_POST, true);
         curl_setopt($curl, CURLOPT_POSTFIELDS, http_build_query($params));
         $response = curl_exec($curl);
+        echo $response;
         $res = json_decode($response, true);
         if(!empty($res['access_token'])) {
             //\Seiko\Database::setConfig('refresh_token', $res['refresh_token']);
@@ -74,12 +75,26 @@ class api_class extends base
         return $this->makeApiCall(API_URL . 'users/' . $user_id, 'GET');
     }
 
-    public function getTasks($workspace_id, $user_id){
-        $url = API_URL . 'workspaces/' . $workspace_id . '/tasks?assignee=' . $user_id . '&completed_since=now&opt_fields=name,modified_at,created_at,completed_at,due_on,assignee,completed,projects.name,subtasks.name';
+    public function getAllTasks($user_id)
+    {
+        $url = API_URL . '/tasks?assignee=' . $user_id . '&opt_fields=name,modified_at,created_at,completed_at,due_on,assignee,completed,projects.name,subtasks.name';
         $res = $this->makeApiCall($url, 'GET');
         foreach ($res['data'] as $k => $v) {
             $res['data'][$k]['id'] = number_format($v['id'], 0, '.', '');
             $res['data'][$k]['assignee']['id'] = number_format($v['assignee']['id'], 0, '.', '');
+        }
+        return $res;
+    }
+
+    public function getTasks($workspace_id, $user_id){
+        $url = API_URL . 'workspaces/' . $workspace_id . '/tasks?assignee=' . $user_id . '&opt_fields=name,modified_at,created_at,completed_at,due_on,assignee,completed,projects.name,subtasks.name';
+        $res = $this->makeApiCall($url, 'GET');
+        foreach ($res['data'] as $k => $v) {
+            $res['data'][$k]['id'] = number_format($v['id'], 0, '.', '');
+            $res['data'][$k]['assignee']['id'] = number_format($v['assignee']['id'], 0, '.', '');
+            if(!$v['name'] && !$v['projects']) {
+                unset($res['data'][$k]);
+            }
         }
         return $res;
     }

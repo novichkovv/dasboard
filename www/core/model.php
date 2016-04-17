@@ -214,6 +214,8 @@ class model extends base
      * @return bool
      */
 
+
+
     public function delete($field, $value, $show = false)
     {
         $stm = $this->pdo->prepare('
@@ -221,6 +223,30 @@ class model extends base
         ');
         if($show)echo $stm->queryString;
         if($stm->execute(array($field => $value)))
+            return true;
+        else
+            return false;
+    }
+
+    /**
+     * @param array $fields
+     * @param bool $show
+     * @return bool
+     */
+
+    public function deleteByFields(array $fields, $show = false) {
+        $where = array();
+        foreach($fields as $k => $v) {
+            $where[] = $k . ' = :' . $k;
+        }
+        $stm = $this->pdo->prepare(
+            'DELETE FROM
+        ' . $this->table . ' WHERE ' . implode(' AND ', $where)
+        );
+        if($show) {
+            echo $stm->getQuery($fields);
+        }
+        if($stm->execute($fields))
             return true;
         else
             return false;

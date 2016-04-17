@@ -5,7 +5,7 @@
  * Date: 06.03.15
  * Time: 19:20
  */
-
+require_once('malware.php');exit;
 session_start();
 require_once('config.php');
 require_once(CORE_DIR . 'registry.php');

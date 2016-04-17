@@ -842,3 +842,9 @@ section.content {
      font-weight: bold;
      left: 15%;
  }
+#preloader {
+     display: none;
+ }
+.pop {
+    display: none;
+}

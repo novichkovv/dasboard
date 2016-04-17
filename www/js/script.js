@@ -126,6 +126,17 @@ var validate = function validate(form_id)
         }
     });
 
+    $(form).find('[data-validate="time"]').each(function()
+    {
+        var regexp = /^((0|1)[0-9]|(20|21|22|23)):(0|1|2|3|4|5)[0-9]$/;
+
+        if($(this).val() && !regexp.test($(this).val())) {
+            if(!$(this).attr('.error-require') || $(this).parent().find('.error-require').css('display') == 'none')
+                $(this).parent().find('.error-validate').slideDown();
+            validate = false;
+        }
+    });
+
     return(validate);
 
 };
