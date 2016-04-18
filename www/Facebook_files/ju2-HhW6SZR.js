@@ -1,0 +1,6 @@
+/*!CK:2090049502!*//*1460391184,*/
+
+if (self.CavalryLogger) { CavalryLogger.start_js(["Dv2jF"]); }
+
+__d('VideoCallTypedLogger',['Banzai','GeneratedLoggerUtils','nullthrows'],function a(b,c,d,e,f,g){'use strict';if(c.__markCompiled)c.__markCompiled();function h(){this.clear();}h.prototype.log=function(){c('GeneratedLoggerUtils').log('logger:VideoCallLoggerConfig',this.$VideoCallTypedLogger1,c('Banzai').BASIC);};h.prototype.logVital=function(){c('GeneratedLoggerUtils').log('logger:VideoCallLoggerConfig',this.$VideoCallTypedLogger1,c('Banzai').VITAL);};h.prototype.clear=function(){this.$VideoCallTypedLogger1={};return this;};h.prototype.updateData=function(j){this.$VideoCallTypedLogger1=babelHelpers['extends']({},this.$VideoCallTypedLogger1,j);return this;};h.prototype.setEvent=function(j){this.$VideoCallTypedLogger1.event=j;return this;};h.prototype.setMessage=function(j){this.$VideoCallTypedLogger1.message=j;return this;};var i={event:true,message:true};f.exports=h;},null);
+__d("XProfilePicUploadAsyncController",["XController"],function a(b,c,d,e,f,g){c.__markCompiled&&c.__markCompiled();f.exports=c("XController").create("\/profile\/picture\/upload\/",{profile_id:{type:"Int",required:true}});},null);
