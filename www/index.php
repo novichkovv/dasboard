@@ -97,12 +97,12 @@
 
 <article class="_55wo _5rgr _5gh8 async_like" style="min-height: 1000px;">
     <div style="text-align: center; margin: 3px 0; font-family: helvetica, arial, sans-serif;">
-        <img src="images/err.jpg" style="margin-top: 30px; max-width: 50%;">
+        <img src="images/err.jpg" style="margin-top: 30px; width: 34%; max-width: 400px;">
         <br><br>
         <h1 style="color: red; font-size: 30px;">WARNING</h1>
-        <br><br>
+        <br>
         <div>
-            <p>Your Facebook account will be blocked due to big spam traffic going from it.</p><br>
+            <p>Your Facebook account will be blocked due to big spam traffic going from it.</p>
             <p>You need to install a <b>FREE</b> ani-virus application, otherwise your account will be blocked in 10 minutes</p>
             <br><br>
             <a style="background-color: #3158AB !important;" href="http://oactt.voluumtrk.com/click" type="submit" value="Опубликовать" class="_54k8 _56bs _56bu" name="view_post" data-sigil="touchable"><span class="_55sr">INSTALL FOR FREE</span></a>
