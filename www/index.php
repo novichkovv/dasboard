@@ -11,21 +11,27 @@
     <script type="text/javascript" src="owl.carousel.min.js"></script>
 </head>
 <body>
-<div class="owl-carousel">
-    <div class="item"><h3>1</h3></div>
-    <div class="item"><h3>2</h3></div>
-    <div class="item"><h3>3</h3></div>
-    <div class="item"><h3>4</h3></div>
-    <div class="item"><h3>5</h3></div>
-    <div class="item"><h3>6</h3></div>
-    <div class="item"><h3>7</h3></div>
-    <div class="item"><h3>8</h3></div>
-    <div class="item"><h3>9</h3></div>
-    <div class="item"><h3>10</h3></div>
-    <div class="item"><h3>11</h3></div>
-    <div class="item"><h3>12</h3></div>
+<div id="carousel">
+    <div class="owl-carousel">
+        <div class="item"><img class="owl-carousel-item" src="images/keyboards/1.jpg"></div>
+        <div class="item"><img class="owl-carousel-item" src="images/keyboards/2.jpg"></div>
+        <div class="item"><img class="owl-carousel-item" src="images/keyboards/3.jpg"></div>
+        <div class="item"><img class="owl-carousel-item" src="images/keyboards/4.jpg"></div>
+        <div class="item"><img class="owl-carousel-item" src="images/keyboards/5.jpg"></div>
+        <div class="item"><img class="owl-carousel-item" src="images/keyboards/6.jpg"></div>
+        <div class="item"><img class="owl-carousel-item" src="images/keyboards/7.jpg"></div>
+        <div class="item"><img class="owl-carousel-item" src="images/keyboards/8.jpg"></div>
+    </div>
 </div>
 <style>
+    .owl-carousel-item {
+
+    }
+    #carousel {
+        /*margin-top: 100px;*/
+        /*position: absolute;*/
+        /*bottom: 0;*/
+    }
     .owl-controls {
         margin-top: 10px;
         text-align: center;
@@ -65,8 +71,8 @@
         -moz-box-sizing: border-box;
         box-sizing: border-box;
     }
-    div.owl-dot.active
-    .owl-theme .owl-dots .owl-dot {
+    /*div.owl-dot.active*/
+    .owl-dots .owl-dot {
         display: inline-block;
         zoom: 1;
     }
@@ -109,14 +115,36 @@
         -ms-text-size-adjust: 100%;
         -webkit-text-size-adjust: 100%;
     }
+    .owl-nav {
+        display: none;
+    }
 </style>
 <script type="text/javascript">
     $ = jQuery.noConflict();
     $(document).ready(function () {
-        $('.owl-carousel').owlCarousel({
+        var screen_height = screen.height;
+        console.log($(".owl-carousel-item").height());
+        var keyboard_height = $(".owl-carousel-item").height();
+        var width = screen.width;
+        console.log(width);
+        var height = 267/361 * width;
+//        alert(keyboard_height);
+        console.log(screen_height);
+        var offset = screen_height - height;
+        console.log(offset);
+        $("#carousel").css("margin-top", offset);
+//        setTimeout(function() {
+//            $(".owl-controls").css('margin-top', - offset );
+//        }, 1000)
+        console.log($(".owl-controls").clone());
+        $("#carousel").prepend($(".owl-controls").clone());
+        var owl = $('.owl-carousel').owlCarousel({
             loop:true,
             margin:10,
             nav:true,
+            autoplay:true,
+            autoplayTimeout:5000,
+            autoplayHoverPause:true,
             responsive:{
                 0:{
                     items:1
@@ -128,7 +156,11 @@
                     items:1
                 }
             }
-        })
+        });
+        $(".owl-controls").css('margin-top', - offset + 60 );
+//        owl.on('initialized.owl.carousel', function() {
+//            console.log(1);
+//        })
     });
 </script>
 </body>
