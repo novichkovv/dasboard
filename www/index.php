@@ -122,7 +122,7 @@
 <script type="text/javascript">
     $ = jQuery.noConflict();
     $(document).ready(function () {
-        var screen_height = document.body.clientHeight;
+        var screen_height = $(window).height();
         console.log(screen_height);
         console.log($(".owl-carousel-item").height());
         var keyboard_height = $(".owl-carousel-item").height();
