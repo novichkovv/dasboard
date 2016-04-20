@@ -18,7 +18,7 @@ $device_name = $_GET['brand'] . ' ' . $_GET['model'];
 <body>
 <div id="top" style="padding: 10px; overflow: auto;">
     <div style="width: 36%; float: left;">
-        <img src="images/logo.jpg" style="max-width: 100%;">
+        <img src="images/logo.jpg" style="max-width: 90%;">
     </div>
     <div style="width: 64%; float: left;">
         <div style="text-align: right;">
@@ -34,7 +34,8 @@ $device_name = $_GET['brand'] . ' ' . $_GET['model'];
     </div>
     <div style="clear: both;">
     </div>
-    <h3 style="text-align: center;">Swipe Your Own Keyboard<br><br>
+    <h3 style="text-align: center;">
+<!--        <br><br>Swipe Your Own Keyboard-->
         <b style="color: #204F98;font-size: 38px;font-family: Times New Roman;">FREE TODAY</b><br>
         <?php if ($device_name): ?>
             <span style="margin: 10px; font-size: 25px; color: #0044cc;">For <?php echo $device_name; ?></span>
