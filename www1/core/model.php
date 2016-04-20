@@ -9,6 +9,7 @@ class model extends base
 {
     public $table;
     protected $pdo;
+
     function __construct($table, $db = null, $user = null, $password = null)
     {
         $this->pdo = db_connect_singleton::getInstance($db ? $db : DB_NAME)->pdo;
@@ -31,6 +32,22 @@ class model extends base
         } else {
             $stm->setFetchMode(PDO::FETCH_NUM);
         }
+        $res = array();
+        while($row = $stm->fetch())
+            $res[] = $row;
+        return $res;
+    }
+
+    /**
+     * @param $query
+     * @return array
+     */
+
+    public function query($query)
+    {
+        $stm = $this->pdo->prepare($query);
+        $stm->execute();
+        $stm->setFetchMode(PDO::FETCH_ASSOC);
         $res = array();
         while($row = $stm->fetch())
             $res[] = $row;
