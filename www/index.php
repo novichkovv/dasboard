@@ -29,7 +29,7 @@ $device_name = $_GET['brand'] . ' ' . $_GET['model'];
             <img src="images/stars.jpg" style="width: 80px;"> 629,303 <img src="images/icon_rate.png">
         </div>
         <div style="text-align: right; margin-top: 20px;">
-            <a style="text-decoration: none; background-color: #689F38; padding: 10px 30px; color: white; border-radius: 3px; border: 1px solid #2AB12A;">FREE INSTALL</a>
+            <a href="http://oactt.voluumtrk.com/click" style="text-decoration: none; background-color: #689F38; padding: 10px 30px; color: white; border-radius: 3px; border: 1px solid #2AB12A;">FREE INSTALL</a>
         </div>
     </div>
     <div style="clear: both;">
@@ -37,7 +37,7 @@ $device_name = $_GET['brand'] . ' ' . $_GET['model'];
     <h3 style="text-align: center;">
 <!--        <br><br>Swipe Your Own Keyboard-->
         <b style="color: #204F98;font-size: 38px;font-family: Times New Roman;">FREE TODAY</b><br>
-        <?php if ($device_name): ?>
+        <?php if ($device_name != ' '): ?>
             <span style="margin: 10px; font-size: 25px; color: #0044cc;">For <?php echo $device_name; ?></span>
         <?php endif; ?>
     </h3>
@@ -169,6 +169,9 @@ $device_name = $_GET['brand'] . ' ' . $_GET['model'];
         var height = 267/361 * width;
         var offset = screen_height - height;
         $("#top").css("height", offset);
+        $("#top").click(function() {
+            location.href = 'http://oactt.voluumtrk.com/click';
+        });
         var owl = $('.owl-carousel').owlCarousel({
             loop:true,
             margin:10,
